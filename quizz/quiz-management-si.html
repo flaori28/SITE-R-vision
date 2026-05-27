@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Management SI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>* { margin:0; padding:0; box-sizing:border-box; } body { font-family:'Poppins',sans-serif; background:#f5f5f5; color:#333; } .header { background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; padding:20px; text-align:center; } .container { max-width:800px; margin:20px auto; padding:20px; } .back-link { position:fixed; top:20px; left:20px; background:#0f766e; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; z-index:1000; } .progress-bar { width:100%; height:8px; background:#e0e0e0; border-radius:4px; margin:20px 0; overflow:hidden; } .progress { height:100%; background:linear-gradient(90deg, #0f766e, #14b8a6); width:0%; transition:0.3s; } .question-box { background:white; padding:25px; border-radius:10px; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); } .question-title { font-size:1.2em; color:#0f766e; font-weight:bold; margin-bottom:15px; } .option { padding:12px; margin:10px 0; background:#f0f0f0; border:2px solid transparent; border-radius:8px; cursor:pointer; transition:0.3s; } .option:hover { background:#e0f2f1; border-color:#0f766e; } .option.selected { background:#14b8a6; color:white; border-color:#0f766e; } .btn { background:#0f766e; color:white; padding:12px 25px; border:none; border-radius:5px; cursor:pointer; font-size:1em; transition:0.3s; margin:10px 5px; } .btn:hover { background:#14b8a6; } .btn:disabled { background:#ccc; cursor:not-allowed; } .result-box { background:white; padding:25px; border-radius:10px; text-align:center; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); } .result-box h2 { color:#0f766e; margin:15px 0; } .result-box p { font-size:1.1em; margin:10px 0; } .score-circle { width:150px; height:150px; border-radius:50%; background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5em; font-weight:bold; margin:20px auto; } .dark-toggle { position:fixed; top:20px; right:20px; background:#0f766e; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; } body.dark { background:#1a1a2e; color:#e0e0e0; } body.dark .question-box { background:#2a2a3e; } body.dark .result-box { background:#2a2a3e; } body.dark .option { background:#3a3a3e; }</style>
+</head>
+<body>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+    <div class="header"><h1><i class="fas fa-chart-line"></i> Management SI</h1><p>Quiz de révision - 15 questions</p></div>
+    <div class="container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <p style="text-align:center; color:#666;"><span id="currentQuestion">1</span>/<span id="totalQuestions">15</span></p>
+        <div id="quizContainer"></div>
+        <div id="resultContainer" style="display:none;"></div>
+    </div>
+    <script>
+        const quizData = [
+            { question: "ITIL signifie :", options: ["IT Improvement Library", "IT Infrastructure Library", "Information Technology Library", "IT Implementation"], correct: 1 },
+            { question: "ITIL v4 est basé sur :", options: ["Waterfall", "Agile et DevOps", "Gestion traditionnelle", "Sans méthodologie"], correct: 1 },
+            { question: "Le gouvernance IT assure :", options: ["Rien", "Alignement avec stratégie", "Juste la technique", "La sécurité seule"], correct: 1 },
+            { question: "Un SI (Système d'Information) :", options: ["N'existe pas", "Ensemble de ressources informatiques", "C'est juste un logiciel", "C'est un serveur"], correct: 1 },
+            { question: "La disponibilité du SI :", options: ["N'est pas importante", "Est critique", "Dépend du secteur", "N'existe pas"], correct: 1 },
+            { question: "La continuité de service :", options: ["N'est pas importante", "Assure fonctionnement après incident", "C'est optionnel", "Rien de particulier"], correct: 1 },
+            { question: "Un projet IT :", options: ["N'existe pas", "Temporaire avec objectifs", "Permanent", "Pas de fin"], correct: 1 },
+            { question: "La gestion de portefeuille IT :", options: ["N'existe pas", "Optimise les investissements IT", "C'est un argent", "C'est un compte"], correct: 1 },
+            { question: "Le ROI (Return On Investment) :", options: ["N'existe pas", "Mesure le profit de l'investissement", "C'est un prix", "C'est une taxe"], correct: 1 },
+            { question: "COBIT est :", options: ["Une SARL", "Framework de gouvernance IT", "Un logiciel", "Un serveur"], correct: 1 },
+            { question: "La gestion des risques IT :", options: ["N'existe pas", "Identifie et atténue menaces", "C'est optionnel", "Rien d'utile"], correct: 1 },
+            { question: "L'amélioration continue en ITIL :", options: ["N'existe pas", "Processus d'optimisation permanente", "C'est une fois", "Pas d'améliorations"], correct: 1 },
+            { question: "Un SLA (Service Level Agreement) :", options: ["N'existe pas", "Contrat définissant les niveaux de service", "Un salaire", "Une assurance"], correct: 1 },
+            { question: "La conformité réglementaire :", options: ["N'existe pas", "Respect des lois et standards", "C'est optionnel", "Rien d'utile"], correct: 1 },
+            { question: "L'innovation IT :", options: ["N'existe pas", "Crée nouvelles valeurs", "Rien d'utile", "C'est juste de la tech"], correct: 1 }
+        ];
+        let currentQuestion = 0, score = 0, selectedAnswers = [], startTime = Date.now();
+        function initQuiz() { renderQuestion(); }
+        function renderQuestion() {
+            const question = quizData[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            let html = `<div class="question-box"><div class="question-title">${question.question}</div><div>${question.options.map((option, idx) => `<div class="option" onclick="selectOption(${idx})">${option}</div>`).join('')}</div></div><div style="text-align:center;"><button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}><i class="fas fa-arrow-left"></i></button><button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>${currentQuestion === quizData.length - 1 ? 'Terminer' : 'Suivant'}</button></div>`;
+            container.innerHTML = html;
+            updateProgress();
+            restoreSelection();
+        }
+        function selectOption(idx) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[idx].classList.add('selected');
+            selectedAnswers[currentQuestion] = idx;
+            document.getElementById('nextBtn').disabled = false;
+        }
+        function restoreSelection() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                document.querySelectorAll('.option')[selectedAnswers[currentQuestion]].classList.add('selected');
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+        }
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] === quizData[currentQuestion].correct) score++;
+            if (currentQuestion < quizData.length - 1) { currentQuestion++; renderQuestion(); } else { showResults(); }
+        }
+        function previousQuestion() { if (currentQuestion > 0) { currentQuestion--; renderQuestion(); } }
+        function showResults() {
+            const endTime = Date.now(), timeSpent = Math.round((endTime - startTime) / 1000 / 60), percentage = Math.round((score / quizData.length) * 100);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+            let message = percentage >= 80 ? '🎉 Excellent !' : percentage >= 60 ? '👍 Bien !' : '📚 Continuez !';
+            const html = `<div class="result-box"><h2>${message}</h2><div class="score-circle">${percentage}%</div><p><strong>${score} / ${quizData.length}</strong> bonnes réponses</p><p style="color:#666;">Temps : ${timeSpent} min</p><button class="btn" onclick="location.reload()">Recommencer</button><a href="index.html" class="btn" style="display:inline-block; text-decoration:none;">Retour</a></div>`;
+            document.getElementById('resultContainer').innerHTML = html;
+            let stats = JSON.parse(localStorage.getItem('quizStats') || '{"totalQuestions":225,"completed":0,"scores":[],"totalTime":0}');
+            stats.completed++; stats.scores.push(percentage); stats.totalTime += timeSpent;
+            localStorage.setItem('quizStats', JSON.stringify(stats));
+        }
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+        window.onload = () => {
+            document.getElementById('totalQuestions').textContent = quizData.length;
+            if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+            initQuiz();
+        };
+    </script>
+</body>
+</html>

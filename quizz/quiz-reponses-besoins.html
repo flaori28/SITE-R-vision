@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Réponses aux Besoins</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f5f5f5; color:#333; }
+        .header { background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; padding:20px; text-align:center; }
+        .container { max-width:800px; margin:20px auto; padding:20px; }
+        .back-link { position:fixed; top:20px; left:20px; background:#0f766e; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; z-index:1000; }
+        .progress-bar { width:100%; height:8px; background:#e0e0e0; border-radius:4px; margin:20px 0; overflow:hidden; }
+        .progress { height:100%; background:linear-gradient(90deg, #0f766e, #14b8a6); width:0%; transition:0.3s; }
+        .question-box { background:white; padding:25px; border-radius:10px; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .question-title { font-size:1.2em; color:#0f766e; font-weight:bold; margin-bottom:15px; }
+        .option { padding:12px; margin:10px 0; background:#f0f0f0; border:2px solid transparent; border-radius:8px; cursor:pointer; transition:0.3s; }
+        .option:hover { background:#e0f2f1; border-color:#0f766e; }
+        .option.selected { background:#14b8a6; color:white; border-color:#0f766e; }
+        .option.correct { background:#4caf50; color:white; }
+        .option.incorrect { background:#f44336; color:white; }
+        .btn { background:#0f766e; color:white; padding:12px 25px; border:none; border-radius:5px; cursor:pointer; font-size:1em; transition:0.3s; margin:10px 5px; }
+        .btn:hover { background:#14b8a6; }
+        .btn:disabled { background:#ccc; cursor:not-allowed; }
+        .result-box { background:white; padding:25px; border-radius:10px; text-align:center; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .result-box h2 { color:#0f766e; margin:15px 0; }
+        .result-box p { font-size:1.1em; margin:10px 0; }
+        .score-circle { width:150px; height:150px; border-radius:50%; background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5em; font-weight:bold; margin:20px auto; }
+        .dark-toggle { position:fixed; top:20px; right:20px; background:#0f766e; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; }
+        body.dark { background:#1a1a2e; color:#e0e0e0; }
+        body.dark .question-box { background:#2a2a3e; }
+        body.dark .result-box { background:#2a2a3e; }
+        body.dark .option { background:#3a3a3e; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+
+    <div class="header">
+        <h1><i class="fas fa-lightbulb"></i> Réponses aux Besoins</h1>
+        <p>Quiz de révision - 15 questions</p>
+    </div>
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <p style="text-align:center; color:#666;"><span id="currentQuestion">1</span>/<span id="totalQuestions">15</span></p>
+
+        <div id="quizContainer"></div>
+        <div id="resultContainer" style="display:none;"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Un CDCF est :",
+                options: ["Un logiciel de gestion", "Un Cahier Des Charges Fonctionnel", "Un type de contrat", "Un serveur virtuel"],
+                correct: 1
+            },
+            {
+                question: "L'analyse des besoins doit être :",
+                options: ["Rapide", "Exhaustive et documentée", "Facultative", "Secrète"],
+                correct: 1
+            },
+            {
+                question: "Une étude de faisabilité inclut :",
+                options: ["Uniquement les budgets", "Technique, budget, juridique, organisation", "Seule la technique", "Rien d'important"],
+                correct: 1
+            },
+            {
+                question: "Cloud vs On-Premise : le choix dépend de :",
+                options: ["La couleur préférée du CTO", "Sécurité, coûts, scalabilité, compétences", "Seul le prix", "La mode IT"],
+                correct: 1
+            },
+            {
+                question: "Quel est un avantage du Cloud ?",
+                options: ["Coût initial élevé", "Scalabilité et flexibilité", "Latence garantie haute", "Complexité accrue"],
+                correct: 1
+            },
+            {
+                question: "Un avantage du On-Premise est :",
+                options: ["Moins cher", "Contrôle total des données", "Plus facile à maintenir", "Moins de responsabilités"],
+                correct: 1
+            },
+            {
+                question: "La collecte des besoins utilise :",
+                options: ["Seule l'intuition", "Interviews, ateliers, documentation", "Uniquement des rapports", "De la devination"],
+                correct: 1
+            },
+            {
+                question: "Un besoin fonctionnel est :",
+                options: ["Un coût de serveur", "Ce que le système doit FAIRE", "La capacité du disque dur", "Le nombre de utilisateurs"],
+                correct: 1
+            },
+            {
+                question: "Un besoin non-fonctionnel est :",
+                options: ["Les fonctionnalités du système", "Performance, sécurité, disponibilité", "La documentation", "Le cahier des charges"],
+                correct: 1
+            },
+            {
+                question: "La traçabilité dans un CDCF permet de :",
+                options: ["Faire des économies", "Lier chaque besoin à sa solution", "Réduire la documentation", "Augmenter la confusion"],
+                correct: 1
+            },
+            {
+                question: "L'acceptation des besoins par le client :",
+                options: ["N'est pas nécessaire", "Est fondamentale avant le développement", "Arrive en fin de projet", "Est optionnelle"],
+                correct: 1
+            },
+            {
+                question: "Une solution hybride signifie :",
+                options: ["100% Cloud", "Mélange de Cloud et On-Premise", "100% On-Premise", "Pas de solution"],
+                correct: 1
+            },
+            {
+                question: "Les risques de projet sont étudiés dans :",
+                options: ["Le planning", "L'étude de faisabilité", "Le budget", "Jamais"],
+                correct: 1
+            },
+            {
+                question: "Un SWOT analyse :",
+                options: ["Les serveurs", "Forces, Faiblesses, Opportunités, Menaces", "Les emplois", "Les salaires"],
+                correct: 1
+            },
+            {
+                question: "La validation du CDCF garantit :",
+                options: ["Le succès du projet", "L'alignement avec les besoins réels", "Le budget minimum", "La perfection du code"],
+                correct: 1
+            }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswers = [];
+        let startTime = Date.now();
+
+        function initQuiz() {
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const question = quizData[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            let html = `
+                <div class="question-box">
+                    <div class="question-title">${question.question}</div>
+                    <div id="optionsContainer">
+                        ${question.options.map((option, idx) => `
+                            <div class="option" onclick="selectOption(${idx})">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        <i class="fas fa-arrow-left"></i> Précédent
+                    </button>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        ${currentQuestion === quizData.length - 1 ? 'Terminer' : 'Suivant'} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            updateProgress();
+            restoreSelection();
+        }
+
+        function selectOption(idx) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[idx].classList.add('selected');
+            selectedAnswers[currentQuestion] = idx;
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function restoreSelection() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                const options = document.querySelectorAll('.option');
+                options[selectedAnswers[currentQuestion]].classList.add('selected');
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+        }
+
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] === quizData[currentQuestion].correct) {
+                score++;
+            }
+            
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function showResults() {
+            const endTime = Date.now();
+            const timeSpent = Math.round((endTime - startTime) / 1000 / 60);
+            const percentage = Math.round((score / quizData.length) * 100);
+
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+
+            let message = '';
+            if (percentage >= 80) message = '🎉 Excellent ! Vous maîtrisez bien ce sujet !';
+            else if (percentage >= 60) message = '👍 Bien ! Encore un peu de révision.';
+            else message = '📚 Continuez vos révisions !';
+
+            const html = `
+                <div class="result-box">
+                    <h2>${message}</h2>
+                    <div class="score-circle">${percentage}%</div>
+                    <p><strong>${score} / ${quizData.length}</strong> bonnes réponses</p>
+                    <p style="color:#666;">Temps : ${timeSpent} minutes</p>
+                    
+                    <button class="btn" onclick="location.reload()">
+                        <i class="fas fa-redo"></i> Recommencer
+                    </button>
+                    <a href="index.html" class="btn" style="display:inline-block; text-decoration:none;">
+                        <i class="fas fa-home"></i> Retour
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('resultContainer').innerHTML = html;
+
+            // Sauvegarder stats
+            let stats = JSON.parse(localStorage.getItem('quizStats') || '{"totalQuestions":225,"completed":0,"scores":[],"totalTime":0}');
+            stats.completed++;
+            stats.scores.push(percentage);
+            stats.totalTime += timeSpent;
+            localStorage.setItem('quizStats', JSON.stringify(stats));
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+
+        window.onload = () => {
+            document.getElementById('totalQuestions').textContent = quizData.length;
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark');
+            }
+            initQuiz();
+        };
+    </script>
+</body>
+</html>

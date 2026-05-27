@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Développement Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Poppins',sans-serif; background:#f5f5f5; color:#333; }
+        .header { background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; padding:20px; text-align:center; }
+        .container { max-width:800px; margin:20px auto; padding:20px; }
+        .back-link { position:fixed; top:20px; left:20px; background:#0f766e; color:white; padding:10px 15px; text-decoration:none; border-radius:5px; z-index:1000; }
+        .progress-bar { width:100%; height:8px; background:#e0e0e0; border-radius:4px; margin:20px 0; overflow:hidden; }
+        .progress { height:100%; background:linear-gradient(90deg, #0f766e, #14b8a6); width:0%; transition:0.3s; }
+        .question-box { background:white; padding:25px; border-radius:10px; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .question-title { font-size:1.2em; color:#0f766e; font-weight:bold; margin-bottom:15px; }
+        .option { padding:12px; margin:10px 0; background:#f0f0f0; border:2px solid transparent; border-radius:8px; cursor:pointer; transition:0.3s; }
+        .option:hover { background:#e0f2f1; border-color:#0f766e; }
+        .option.selected { background:#14b8a6; color:white; border-color:#0f766e; }
+        .btn { background:#0f766e; color:white; padding:12px 25px; border:none; border-radius:5px; cursor:pointer; font-size:1em; transition:0.3s; margin:10px 5px; }
+        .btn:hover { background:#14b8a6; }
+        .btn:disabled { background:#ccc; cursor:not-allowed; }
+        .result-box { background:white; padding:25px; border-radius:10px; text-align:center; margin:20px 0; box-shadow:0 2px 10px rgba(0,0,0,0.1); }
+        .result-box h2 { color:#0f766e; margin:15px 0; }
+        .result-box p { font-size:1.1em; margin:10px 0; }
+        .score-circle { width:150px; height:150px; border-radius:50%; background:linear-gradient(135deg, #0f766e, #14b8a6); color:white; display:flex; align-items:center; justify-content:center; font-size:2.5em; font-weight:bold; margin:20px auto; }
+        .dark-toggle { position:fixed; top:20px; right:20px; background:#0f766e; color:white; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; }
+        body.dark { background:#1a1a2e; color:#e0e0e0; }
+        body.dark .question-box { background:#2a2a3e; }
+        body.dark .result-box { background:#2a2a3e; }
+        body.dark .option { background:#3a3a3e; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour</a>
+    <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+
+    <div class="header">
+        <h1><i class="fas fa-globe"></i> Développement Web</h1>
+        <p>Quiz de révision - 15 questions</p>
+    </div>
+
+    <div class="container">
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <p style="text-align:center; color:#666;"><span id="currentQuestion">1</span>/<span id="totalQuestions">15</span></p>
+
+        <div id="quizContainer"></div>
+        <div id="resultContainer" style="display:none;"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "HTML5 est utilisé pour :", options: ["Styliser", "Structurer le contenu", "Créer de la logique", "Encrypter"], correct: 1 },
+            { question: "CSS3 permet de :", options: ["Ajouter du contenu", "Styliser et mettre en forme", "Faire de la logique serveur", "Gérer les BD"], correct: 1 },
+            { question: "Flexbox est :", options: ["Un langage", "Un modèle CSS de mise en page", "Un serveur", "Un navigateur"], correct: 1 },
+            { question: "CSS Grid :", options: ["Gère les lignes", "Gère les lignes ET colonnes", "Gère uniquement les colonnes", "C'est un serveur"], correct: 1 },
+            { question: "Le DOM en JavaScript représente :", options: ["Une base de données", "La structure HTML de la page", "Un style CSS", "Un serveur"], correct: 1 },
+            { question: "document.getElementById() retourne :", options: ["Tous les éléments", "Un élément par son ID", "Les images uniquement", "Rien"], correct: 1 },
+            { question: "addEventListener() en JS permet :", options: ["Ajouter du CSS", "Réagir aux événements de l'utilisateur", "Accéder à la BD", "Créer des tables"], correct: 1 },
+            { question: "PHP est exécuté :", options: ["Côté client", "Côté serveur", "Dans la BD", "Nulle part"], correct: 1 },
+            { question: "Un formulaire HTML POST envoie :", options: ["Les données dans l'URL", "Les données dans le corps de la requête", "Rien", "Les données en chiffrement"], correct: 1 },
+            { question: "La validation côté client :", options: ["Remplace la validation serveur", "Améliore l'expérience utilisateur", "Est seule obligatoire", "N'existe pas"], correct: 1 },
+            { question: "AJAX permet :", options: ["Recharger la page", "Mettre à jour le DOM sans rechargement", "Rien d'important", "Créer des BD"], correct: 1 },
+            { question: "JSON signifie :", options: ["Java Script Object Notation", "Cela dépend du contexte", "Un serveur web", "Une BD SQL"], correct: 0 },
+            { question: "Responsive design signifie :", options: ["Rapide", "S'adapter à tous les écrans", "Beau design", "Sécurisé"], correct: 1 },
+            { question: "Un media query CSS est utilisée pour :", options: ["Ajouter du texte", "Adapter le design selon la taille écran", "Requête une BD", "Valider un formulaire"], correct: 1 },
+            { question: "L'accessibilité web implique :", options: ["Joli design", "Utilisable par tous y compris handicapés", "Seulement des tests", "Rien d'important"], correct: 1 }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswers = [];
+        let startTime = Date.now();
+
+        function initQuiz() { renderQuestion(); }
+        function renderQuestion() {
+            const question = quizData[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            let html = `
+                <div class="question-box">
+                    <div class="question-title">${question.question}</div>
+                    <div id="optionsContainer">
+                        ${question.options.map((option, idx) => `<div class="option" onclick="selectOption(${idx})">${option}</div>`).join('')}
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <button class="btn" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}><i class="fas fa-arrow-left"></i> Précédent</button>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>${currentQuestion === quizData.length - 1 ? 'Terminer' : 'Suivant'} <i class="fas fa-arrow-right"></i></button>
+                </div>
+            `;
+            container.innerHTML = html;
+            updateProgress();
+            restoreSelection();
+        }
+        function selectOption(idx) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            options[idx].classList.add('selected');
+            selectedAnswers[currentQuestion] = idx;
+            document.getElementById('nextBtn').disabled = false;
+        }
+        function restoreSelection() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                document.querySelectorAll('.option')[selectedAnswers[currentQuestion]].classList.add('selected');
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentQuestion').textContent = currentQuestion + 1;
+        }
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] === quizData[currentQuestion].correct) score++;
+            if (currentQuestion < quizData.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+        function showResults() {
+            const endTime = Date.now();
+            const timeSpent = Math.round((endTime - startTime) / 1000 / 60);
+            const percentage = Math.round((score / quizData.length) * 100);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+            let message = percentage >= 80 ? '🎉 Excellent !' : percentage >= 60 ? '👍 Bien !' : '📚 Continuez !';
+            const html = `
+                <div class="result-box">
+                    <h2>${message}</h2>
+                    <div class="score-circle">${percentage}%</div>
+                    <p><strong>${score} / ${quizData.length}</strong> bonnes réponses</p>
+                    <p style="color:#666;">Temps : ${timeSpent} minutes</p>
+                    <button class="btn" onclick="location.reload()"><i class="fas fa-redo"></i> Recommencer</button>
+                    <a href="index.html" class="btn" style="display:inline-block; text-decoration:none;"><i class="fas fa-home"></i> Retour</a>
+                </div>
+            `;
+            document.getElementById('resultContainer').innerHTML = html;
+            let stats = JSON.parse(localStorage.getItem('quizStats') || '{"totalQuestions":225,"completed":0,"scores":[],"totalTime":0}');
+            stats.completed++; stats.scores.push(percentage); stats.totalTime += timeSpent;
+            localStorage.setItem('quizStats', JSON.stringify(stats));
+        }
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+        window.onload = () => {
+            document.getElementById('totalQuestions').textContent = quizData.length;
+            if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+            initQuiz();
+        };
+    </script>
+</body>
+</html>
