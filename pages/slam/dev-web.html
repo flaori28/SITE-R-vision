@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Développement Web - BTS SIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Poppins',sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);transition:all 0.3s ease}body.dark-mode{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);color:#e0e0e0}.page-content{max-width:1100px;margin:0 auto;padding:40px 20px}.page-header{text-align:center;margin-bottom:40px;padding:30px;background:rgba(255,255,255,0.95);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.1)}body.dark-mode .page-header{background:rgba(30,41,59,0.95)}.page-header h1{font-size:2.5em;color:#0f766e;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:15px}body.dark-mode .page-header h1{color:#5eead4}.page-header p{font-size:1.1em;color:#666}body.dark-mode .page-header p{color:#a0aec0}.lesson-content,.exercises-section,.quiz-section{background:white;border-radius:12px;padding:30px;margin-bottom:30px;box-shadow:0 4px 6px rgba(0,0,0,0.1)}body.dark-mode .lesson-content,body.dark-mode .exercises-section,body.dark-mode .quiz-section{background:#1e293b}.lesson-section{margin-bottom:25px}.lesson-section h2{color:#0f766e;margin-bottom:15px;padding-bottom:10px;border-bottom:3px solid #0f766e;display:flex;align-items:center;gap:10px}body.dark-mode .lesson-section h2{color:#5eead4;border-bottom-color:#5eead4}.lesson-section h3{color:#166e63;margin-top:15px;margin-bottom:10px;font-size:1.15em}body.dark-mode .lesson-section h3{color:#6ee7de}.definition-box{background:linear-gradient(135deg,#d1fae5 0%,#a7f3d0 100%);border-left:4px solid #0f766e;padding:15px;margin:15px 0;border-radius:8px}body.dark-mode .definition-box{background:linear-gradient(135deg,#0d3d35 0%,#0d4d45 100%);border-left-color:#5eead4}.definition-box strong{color:#0f766e}body.dark-mode .definition-box strong{color:#5eead4}.code-box{background:#1a1a2e;color:#00ff00;padding:15px;border-radius:8px;overflow-x:auto;font-family:'Courier New',monospace;font-size:0.9em;margin:15px 0;border-left:4px solid #00ff00;white-space:pre-wrap;word-wrap:break-word}.example-box{background:#f0f9ff;border-left:4px solid #0284c7;padding:15px;margin:15px 0;border-radius:8px;font-size:0.95em}body.dark-mode .example-box{background:#0c2340;border-left-color:#0ea5e9}.exercise{background:#f8fafc;border:2px solid #e2e8f0;padding:20px;margin-bottom:20px;border-radius:8px}body.dark-mode .exercise{background:#0f172a;border-color:#334155}.exercise-title{font-weight:600;color:#0f766e;margin-bottom:10px}body.dark-mode .exercise-title{color:#5eead4}.toggle-btn{background:#0f766e;color:white;border:none;padding:8px 16px;border-radius:6px;cursor:pointer;font-size:0.9em;margin-top:10px}body.dark-mode .toggle-btn{background:#166e63}.solution{display:none;background:#d1fae5;border-left:4px solid #059669;padding:15px;margin-top:15px;border-radius:6px;color:#065f46}body.dark-mode .solution{background:#0d3d35;border-left-color:#10b981;color:#86efac}.solution.show{display:block}.quiz-question{background:#f8fafc;border:2px solid #e2e8f0;padding:20px;margin-bottom:20px;border-radius:8px}body.dark-mode .quiz-question{background:#0f172a;border-color:#334155}.quiz-option{display:flex;align-items:center;padding:10px;margin:5px 0;background:white;border:2px solid #e2e8f0;border-radius:6px;cursor:pointer}body.dark-mode .quiz-option{background:#1e293b;border-color:#334155}.quiz-btn{background:#0f766e;color:white;border:none;padding:12px 30px;border-radius:6px;cursor:pointer;font-size:1em;margin-top:20px}.quiz-result{display:none;padding:20px;border-radius:8px;margin-top:20px;font-weight:600}.quiz-result.show{display:block}.quiz-result.correct{background:#d1fae5;color:#065f46}body.dark-mode .quiz-result.correct{background:#0d3d35;color:#86efac}.quiz-result.incorrect{background:#fee2e2;color:#7f1d1d}body.dark-mode .quiz-result.incorrect{background:#3d1f1f;color:#fca5a5}.back-btn{display:inline-block;margin-bottom:20px;padding:10px 20px;background:#0f766e;color:white;text-decoration:none;border-radius:6px}.progress-bar{width:100%;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;margin-bottom:30px}.progress-fill{height:100%;background:linear-gradient(90deg,#0f766e 0%,#14b8a6 100%);width:0%;transition:width 0.3s ease}
+    </style>
+</head>
+<body>
+<div class="page-content">
+    <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour</a>
+    <div class="page-header">
+        <h1><i class="fas fa-code"></i> Développement Web</h1>
+        <p>SLAM - HTML5, CSS3, JavaScript, PHP</p>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <div class="lesson-content">
+        <div class="lesson-section">
+            <h2><i class="fas fa-file-code"></i> HTML5 Sémantique</h2>
+            <p>HTML5 introduit des balises sémantiques qui donnent du sens au contenu.</p>
+            
+            <div class="definition-box">
+                <strong>&lt;header&gt; :</strong> En-tête de page avec logo, titre principal, navigation principale.
+            </div>
+            <div class="definition-box">
+                <strong>&lt;nav&gt; :</strong> Bloc de navigation (menus, liens de section).
+            </div>
+            <div class="definition-box">
+                <strong>&lt;main&gt; :</strong> Contenu principal de la page (une seule par page).
+            </div>
+            <div class="definition-box">
+                <strong>&lt;article&gt; :</strong> Contenu autonome réutilisable (blog post, news, commentaire).
+            </div>
+            <div class="definition-box">
+                <strong>&lt;section&gt; :</strong> Groupe thématique de contenu avec un titre.
+            </div>
+            <div class="definition-box">
+                <strong>&lt;aside&gt; :</strong> Contenu périphérique (sidebar, publicités, informations liées).
+            </div>
+            <div class="definition-box">
+                <strong>&lt;footer&gt; :</strong> Pied de page avec copyright, liens, informations légales.
+            </div>
+
+            <div class="example-box">
+                <strong>Exemple structure HTML5 :</strong>
+                <div class="code-box">&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;&lt;title&gt;Mon Site&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;&lt;h1&gt;Mon Blog&lt;/h1&gt;&lt;/header&gt;
+  &lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#"&gt;Accueil&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;
+  &lt;main&gt;
+    &lt;article&gt;&lt;h2&gt;Article 1&lt;/h2&gt;&lt;p&gt;Contenu...&lt;/p&gt;&lt;/article&gt;
+    &lt;aside&gt;&lt;h3&gt;Sidebar&lt;/h3&gt;&lt;/aside&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;&lt;p&gt;© 2024&lt;/p&gt;&lt;/footer&gt;
+&lt;/body&gt;&lt;/html&gt;</div>
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-paint-brush"></i> CSS3 : Flexbox et Grid</h2>
+            
+            <h3>Flexbox (Flexible Box Layout)</h3>
+            <p>Modèle de disposition 1D pour aligner items en rangée ou colonne.</p>
+            
+            <div class="code-box">.container {
+  display: flex;
+  flex-direction: row; /* ou column */
+  justify-content: space-between; /* Align horizontal */
+  align-items: center; /* Align vertical */
+  gap: 20px; /* Espace entre items */
+}
+
+.item {
+  flex: 1; /* Croissance égale */
+}</div>
+
+            <h3>CSS Grid</h3>
+            <p>Modèle 2D pour créer des grilles complexes.</p>
+
+            <div class="code-box">.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  grid-template-rows: auto 1fr auto;
+}</div>
+
+            <h3>Media Queries (Responsive)</h3>
+            <div class="code-box">/* Desktop */
+.container { display: flex; flex-direction: row; }
+
+/* Tablette */
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container { padding: 10px; }
+}</div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-terminal"></i> JavaScript : DOM et Événements</h2>
+            
+            <h3>Sélection d'éléments</h3>
+            <div class="code-box">/* Par ID */
+const elem = document.getElementById('myId');
+
+/* Par classe */
+const elems = document.querySelectorAll('.myClass');
+
+/* Modification contenu */
+elem.textContent = 'Nouveau texte';
+elem.innerHTML = '&lt;strong&gt;Bold&lt;/strong&gt;';</div>
+
+            <h3>Gestion d'événements</h3>
+            <div class="code-box">/* Ajouter écouteur */
+button.addEventListener('click', function() {
+  alert('Bouton cliqué!');
+});
+
+/* Formulaire */
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Empêcher rechargement
+  const email = document.getElementById('email').value;
+  console.log(email);
+});</div>
+
+            <h3>Requête Fetch Asynchrone</h3>
+            <div class="code-box">fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Erreur:', error));</div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-server"></i> PHP : Traitement Serveur</h2>
+            
+            <h3>Formulaires (GET et POST)</h3>
+            <div class="code-box">/* HTML */
+&lt;form method="POST" action="process.php"&gt;
+  &lt;input name="email" type="email"&gt;
+  &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;
+
+/* PHP */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $email = $_POST['email'];
+  echo "Email reçu: " . htmlspecialchars($email);
+}</div>
+
+            <h3>Sessions</h3>
+            <div class="code-box">/* Démarrer session */
+session_start();
+
+/* Stocker données */
+$_SESSION['user_id'] = 123;
+$_SESSION['username'] = 'Jean';
+
+/* Récupérer données */
+echo $_SESSION['username'];
+
+/* Détruire session */
+session_destroy();</div>
+
+            <h3>Connexion PDO à BD</h3>
+            <div class="code-box">$db = new PDO('mysql:host=localhost;dbname=mydb', 'user', 'password');
+
+/* Requête préparée */
+$stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
+$stmt->execute([123]);
+$result = $stmt->fetchAll();
+
+foreach ($result as $row) {
+  echo $row['name'];
+}</div>
+        </div>
+    </div>
+
+    <div class="exercises-section">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Exercices</h2>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercice 1 : Formulaire HTML5</div>
+            <div class="exercise-content">Créez un formulaire de contact valide avec champs : nom, email, message. Validez avec HTML5 (required, type="email").</div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol1').classList.toggle('show')">Voir</button>
+            <div class="solution" id="sol1">
+                <div class="code-box">&lt;form method="POST" action="contact.php"&gt;
+  &lt;label for="name"&gt;Nom:&lt;/label&gt;
+  &lt;input id="name" name="name" type="text" required&gt;
+  
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+  
+  &lt;label for="message"&gt;Message:&lt;/label&gt;
+  &lt;textarea id="message" name="message" required&gt;&lt;/textarea&gt;
+  
+  &lt;button type="submit"&gt;Envoyer&lt;/button&gt;
+&lt;/form&gt;</div>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercice 2 : Validation JavaScript</div>
+            <div class="exercise-content">Écrivez un script qui valide un champ email en temps réel et affiche un message d'erreur si invalide.</div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol2').classList.toggle('show')">Voir</button>
+            <div class="solution" id="sol2">
+                <div class="code-box">const emailInput = document.getElementById('email');
+const errorMsg = document.getElementById('error');
+
+emailInput.addEventListener('blur', function() {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!regex.test(this.value)) {
+    errorMsg.textContent = 'Email invalide';
+    errorMsg.style.color = 'red';
+  } else {
+    errorMsg.textContent = '';
+  }
+});</div>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercice 3 : Layout Flexbox</div>
+            <div class="exercise-content">Créez un layout responsive avec header, sidebar (gauche), main content (centre), footer. Mobile: stack vertical.</div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol3').classList.toggle('show')">Voir</button>
+            <div class="solution" id="sol3">
+                <div class="code-box">body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header, footer { background: #333; color: white; padding: 20px; }
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+aside { width: 200px; background: #f0f0f0; }
+main { flex: 1; padding: 20px; }
+
+@media (max-width: 768px) {
+  .container { flex-direction: column; }
+  aside { width: 100%; }
+}</div>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercice 4 : Script PHP Traitement Formulaire</div>
+            <div class="exercise-content">Écrivez un script PHP qui traite un formulaire POST et insère les données (nom, email) dans une BD MySQL via PDO.</div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol4').classList.toggle('show')">Voir</button>
+            <div class="solution" id="sol4">
+                <div class="code-box">&lt;?php
+$db = new PDO('mysql:host=localhost;dbname=mydb', 'user', 'password');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $name = htmlspecialchars($_POST['name']);
+  $email = htmlspecialchars($_POST['email']);
+  
+  $stmt = $db->prepare('INSERT INTO users (name, email) VALUES (?, ?)');
+  $stmt->execute([$name, $email]);
+  
+  echo 'Utilisateur créé!';
+}
+?&gt;</div>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">Exercice 5 : Fetch API</div>
+            <div class="exercise-content">Récupérez des données JSON d'une API externe et affichez-les dans une liste HTML dynamiquement.</div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol5').classList.toggle('show')">Voir</button>
+            <div class="solution" id="sol5">
+                <div class="code-box">fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(data => {
+    const list = document.getElementById('userList');
+    data.forEach(user => {
+      const li = document.createElement('li');
+      li.textContent = user.name;
+      list.appendChild(li);
+    });
+  })
+  .catch(error => console.error('Erreur:', error));</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz</h2>
+        <form id="quizForm">
+            <div class="quiz-question">
+                <h4>❓ Q1 : Quelle balise encadre le contenu principal ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q1" value="a"> &lt;section&gt;</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="b"> &lt;main&gt;</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="c"> &lt;article&gt;</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="d"> &lt;div&gt;</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q2 : Flexbox display property :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q2" value="a"> display: flex</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="b"> display: flexbox</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="c"> display: flow</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="d"> display: layout</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q3 : Qu'est-ce que e.preventDefault() ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q3" value="a"> Arrête le formulaire de se soumettre</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="b"> Empêche le comportement par défaut de l'événement</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="c"> Cache l'élément</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="d"> Supprime l'événement</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q4 : POST est utilisé pour :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q4" value="a"> Récupérer des données visibles dans l'URL</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="b"> Envoyer des données sensibles cachées dans le corps de la requête</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="c"> Sauvegarder les cookies</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="d"> Créer des sessions</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q5 : Fetch retourne :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q5" value="a"> Les données directement</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="b"> Un objet Response</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="c"> Un tableau</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="d"> Une chaîne de caractères</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q6 : CSS Grid grid-template-columns: repeat(3, 1fr) crée :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q6" value="a"> 3 colonnes de largeur égale</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="b"> 3 colonnes de largeur 1px</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="c"> 1 colonne de largeur 3fr</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="d"> 3 rangées</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q7 : htmlspecialchars() sert à :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Encoder les caractères spéciaux pour éviter les injections XSS</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="b"> Convertir en majuscules</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="c"> Supprimer les espaces</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="d"> Créer des variables</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q8 : Le type d'input "email" valide :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Uniquement côté client, pas côté serveur</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="b"> Format email basique (x@y.z)</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="c"> Format email strict en SMTP</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="d"> Rien, c'est juste un type</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q9 : Une session PHP dure :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q9" value="a"> Jusqu'à la fermeture du navigateur par défaut</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="b"> 24 heures toujours</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="c"> 30 minutes toujours</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="d"> Indéfiniment</label>
+                </div>
+            </div>
+            <div class="quiz-question">
+                <h4>❓ Q10 : Média query max-width: 768px cible :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option"><input type="radio" name="q10" value="a"> Uniquement les smartphones</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="b"> Les appareils avec écran ≤ 768px (tablettes et mobiles)</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="c"> Les appareils > 768px</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="d"> Aucun appareil</label>
+                </div>
+            </div>
+            <button type="submit" class="quiz-btn"><i class="fas fa-check"></i> Valider</button>
+        </form>
+        <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <script>
+        const correctAnswers = {q1:'b',q2:'a',q3:'b',q4:'b',q5:'b',q6:'a',q7:'a',q8:'a',q9:'a',q10:'b'};
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            const total = Object.keys(correctAnswers).length;
+            for (let q in correctAnswers) {
+                const sel = document.querySelector(`input[name="${q}"]:checked`);
+                if (sel && sel.value === correctAnswers[q]) score++;
+            }
+            const pct = Math.round((score/total)*100);
+            const res = document.getElementById('quizResult');
+            res.classList.add('show');
+            if (score >= 8) {
+                res.classList.remove('incorrect');
+                res.classList.add('correct');
+                res.innerHTML = `<i class="fas fa-check-circle"></i> Excellent ! ${score}/${total} (${pct}%)`;
+            } else if (score >= 6) {
+                res.classList.remove('incorrect');
+                res.classList.add('correct');
+                res.innerHTML = `<i class="fas fa-check-circle"></i> Très bien ! ${score}/${total} (${pct}%)`;
+            } else {
+                res.classList.remove('correct');
+                res.classList.add('incorrect');
+                res.innerHTML = `<i class="fas fa-times-circle"></i> À revoir. ${score}/${total} (${pct}%)`;
+            }
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores')||'{}');
+            scores['dev-web'] = {score,total,date:new Date().toLocaleDateString()};
+            localStorage.setItem('bts_sio_scores', JSON.stringify(scores));
+            updateProgressBar();
+        });
+        function updateProgressBar() {
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores')||'{}');
+            const comp = Object.keys(scores).length / 20 * 100;
+            document.getElementById('progressFill').style.width = comp + '%';
+        }
+        updateProgressBar();
+    </script>
+</body>
+</html>

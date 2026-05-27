@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJM - Culture Économique, Juridique et Managériale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .cejm-header {
+            background: linear-gradient(135deg, #0f766e 0%, #0891b2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .cejm-header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cejm-header p {
+            margin: 0;
+            font-size: 1.125rem;
+            opacity: 0.95;
+        }
+
+        .progress-bar-cejm {
+            background-color: var(--bg-hover);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-item-bar {
+            flex: 1;
+            height: 8px;
+            background-color: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-item-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f766e, #0891b2);
+            transition: width 0.5s ease;
+        }
+
+        .progress-item-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .table-of-contents {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-of-contents h2 {
+            margin-top: 0;
+            color: #0f766e;
+            margin-bottom: 1.5rem;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .toc-item {
+            padding: 1rem;
+            background-color: var(--bg);
+            border-left: 4px solid #0891b2;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toc-item:hover {
+            background-color: var(--bg-hover);
+            transform: translateX(5px);
+        }
+
+        .toc-item a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .toc-item i {
+            font-size: 1.5rem;
+            color: #0891b2;
+        }
+
+        .theme-section {
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            scroll-margin-top: 100px;
+        }
+
+        .theme-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #0891b2;
+        }
+
+        .theme-header i {
+            font-size: 2.5rem;
+            color: #0891b2;
+        }
+
+        .theme-header h2 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .theme-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #0f766e, #0891b2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-right: 0.5rem;
+        }
+
+        .course-subsection {
+            margin-bottom: 2rem;
+        }
+
+        .course-subsection h3 {
+            color: #0f766e;
+            border-left: 4px solid #0891b2;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .key-point {
+            background-color: rgba(15, 118, 110, 0.1);
+            border-left: 4px solid #0f766e;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .key-point strong {
+            color: #0f766e;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background-color: var(--bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #0f766e, #0891b2);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: var(--bg-hover);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .exercises-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .exercise-item {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        .exercise-item h4 {
+            margin-top: 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+
+        .exercise-item p {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .quiz-container {
+            background-color: rgba(8, 145, 178, 0.1);
+            border-left: 4px solid #0891b2;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .quiz-container h3 {
+            color: #0f766e;
+            margin-top: 0;
+        }
+
+        .quiz-question {
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-question h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .quiz-option:hover {
+            background-color: var(--bg-hover);
+            color: #0891b2;
+        }
+
+        .quiz-option input[type="radio"] {
+            cursor: pointer;
+            accent-color: #0891b2;
+        }
+
+        .quiz-result {
+            background-color: var(--bg-hover);
+            border: 2px solid #0891b2;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-result.show {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        .quiz-result h3 {
+            margin: 0 0 1rem 0;
+            color: #0891b2;
+        }
+
+        .quiz-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #0891b2;
+            margin: 1rem 0;
+        }
+
+        .quiz-result.success {
+            border-color: var(--success);
+        }
+
+        .quiz-result.success h3,
+        .quiz-result.success .quiz-score {
+            color: var(--success);
+        }
+
+        .quiz-result.failure {
+            border-color: var(--danger);
+        }
+
+        .quiz-result.failure h3,
+        .quiz-result.failure .quiz-score {
+            color: var(--danger);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0f766e, #0891b2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn-back:hover {
+            background-color: var(--bg-hover);
+            border-color: #0891b2;
+            color: #0891b2;
+        }
+
+        @media (max-width: 768px) {
+            .cejm-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .progress-bar-cejm {
+                grid-template-columns: 1fr;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content">
+        <a href="javascript:history.back()" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+
+        <!-- Header CEJM -->
+        <div class="cejm-header">
+            <h1><i class="fas fa-scale-balanced"></i> CEJM - Culture Économique, Juridique et Managériale</h1>
+            <p>Comprendre l'environnement économique, juridique et social de l'entreprise</p>
+        </div>
+
+        <!-- Barre de progression -->
+        <div class="progress-bar-cejm">
+            <div class="progress-item">
+                <div class="progress-item-label">Cours lus</div>
+                <div class="progress-item-bar">
+                    <div class="progress-item-fill" id="progressCourse" style="width: 0%"></div>
+                </div>
+                <span id="progressCoursePercent">0%</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-item-label">Quiz réussis</div>
+                <div class="progress-item-bar">
+                    <div class="progress-item-fill" id="progressQuiz" style="width: 0%"></div>
+                </div>
+                <span id="progressQuizPercent">0%</span>
+            </div>
+        </div>
+
+        <!-- Table des matières -->
+        <div class="table-of-contents">
+            <h2><i class="fas fa-list"></i> Sommaire</h2>
+            <div class="toc-grid">
+                <div class="toc-item">
+                    <a href="#theme1">
+                        <i class="fas fa-building"></i>
+                        <span>Thème 1 : L'entreprise dans son environnement</span>
+                    </a>
+                </div>
+                <div class="toc-item">
+                    <a href="#theme2">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Thème 2 : La régulation économique</span>
+                    </a>
+                </div>
+                <div class="toc-item">
+                    <a href="#theme3">
+                        <i class="fas fa-users"></i>
+                        <span>Thème 3 : L'entreprise et les salariés</span>
+                    </a>
+                </div>
+                <div class="toc-item">
+                    <a href="#theme4">
+                        <i class="fas fa-shield-halved"></i>
+                        <span>Thème 4 : Enjeux de société</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- THÈME 1 -->
+        <div class="theme-section" id="theme1">
+            <div class="theme-header">
+                <span class="theme-number">1</span>
+                <i class="fas fa-building"></i>
+                <h2>L'intégration de l'entreprise dans son environnement</h2>
+            </div>
+
+            <!-- Cours -->
+            <div class="course-subsection">
+                <h3>📚 L'environnement de l'entreprise : analyse PESTEL</h3>
+                <p>L'analyse PESTEL permet d'identifier les facteurs externes qui influencent l'entreprise :</p>
+
+                <div class="key-point">
+                    <strong>P = Politique</strong>
+                    Stabilité gouvernementale, lois, réglementations, subsidies
+                </div>
+
+                <div class="key-point">
+                    <strong>E = Économique</strong>
+                    Taux d'intérêt, inflation, croissance, chômage, fiscalité
+                </div>
+
+                <div class="key-point">
+                    <strong>S = Social</strong>
+                    Démographie, culture, attitudes, niveau d'éducation, emploi
+                </div>
+
+                <div class="key-point">
+                    <strong>T = Technologique</strong>
+                    Innovation, R&D, automatisation, numérisation, IA
+                </div>
+
+                <div class="key-point">
+                    <strong>E = Écologique</strong>
+                    Réchauffement climatique, pollution, ressources, durabilité
+                </div>
+
+                <div class="key-point">
+                    <strong>L = Légal</strong>
+                    Lois du travail, droit de la concurrence, protection des données
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>📊 Les parties prenantes</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Parties prenantes internes</th>
+                        <th>Parties prenantes externes</th>
+                    </tr>
+                    <tr>
+                        <td>Salariés</td>
+                        <td>Clients/Consommateurs</td>
+                    </tr>
+                    <tr>
+                        <td>Dirigeants</td>
+                        <td>Fournisseurs</td>
+                    </tr>
+                    <tr>
+                        <td>Actionnaires</td>
+                        <td>Banques/Investisseurs</td>
+                    </tr>
+                    <tr>
+                        <td>Représentants du personnel</td>
+                        <td>État/Collectivités</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Concurrents</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Associations/ONG</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="course-subsection">
+                <h3>⚖️ Les formes juridiques de l'entreprise</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Forme</th>
+                        <th>Capital</th>
+                        <th>Responsabilité</th>
+                        <th>Dirigeants</th>
+                        <th>Associés</th>
+                    </tr>
+                    <tr>
+                        <td><strong>EI</strong> (Entreprise Individuelle)</td>
+                        <td>Illimité</td>
+                        <td>Illimitée</td>
+                        <td>Propriétaire</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EURL</strong> (SARL à 1 assoc.)</td>
+                        <td>Variable</td>
+                        <td>Limitée au capital</td>
+                        <td>Gérant</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SARL</strong> (Soc. Resp. Limitée)</td>
+                        <td>Entre 1€ et illimité</td>
+                        <td>Limitée au capital</td>
+                        <td>Gérant</td>
+                        <td>2 à 100</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SAS</strong> (Soc. Actions Simplifiée)</td>
+                        <td>Libre</td>
+                        <td>Limitée au capital</td>
+                        <td>Président</td>
+                        <td>1 ou +</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SA</strong> (Soc. Anonyme)</td>
+                        <td>37 500€ mini</td>
+                        <td>Limitée au capital</td>
+                        <td>Conseil admin.</td>
+                        <td>2 à illimité</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="course-subsection">
+                <h3>💰 La valeur ajoutée</h3>
+                <div class="key-point">
+                    <strong>VA = Production - Consommations intermédiaires</strong><br>
+                    La valeur ajoutée représente la richesse créée par l'entreprise à partir de ses inputs (matières premières, énergie).
+                </div>
+                <p><strong>Exemple :</strong> Une ESN facture 100 000€ à un client. Elle dépense 60 000€ en salaires et prestataires. Sa VA = 40 000€.</p>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🚀 Mutations du numérique</h3>
+                <ul>
+                    <li><strong>E-commerce</strong> : Ventes en ligne, suppression d'intermédiaires</li>
+                    <li><strong>Télétravail</strong> : Travail à distance, collaboration en ligne</li>
+                    <li><strong>IA & Automatisation</strong> : Robotisation, réduction des coûts, création de nouveaux métiers</li>
+                    <li><strong>Cloud computing</strong> : Infrastructure externalisée, flexibilité</li>
+                    <li><strong>Big Data & Analytics</strong> : Exploiter les données pour la décision</li>
+                </ul>
+            </div>
+
+            <!-- Exercices -->
+            <div class="exercises-section">
+                <h2>📝 Exercices</h2>
+                <div class="exercises-list">
+                    <div class="exercise-item">
+                        <h4>Exercice 1 : Analyse PESTEL d'une ESN</h4>
+                        <p>Identifiez les composantes PESTEL pour une entreprise de services informatiques qui développe des solutions cloud.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>P :</strong> Régulation croissante du cloud, RGPD</li>
+                                <li><strong>E :</strong> Croissance IT, baisse des coûts hardware</li>
+                                <li><strong>S :</strong> Besoin de main-d'œuvre qualifiée en augmentation</li>
+                                <li><strong>T :</strong> IA, ML, cybersecurity en évolution rapide</li>
+                                <li><strong>E :</strong> Énergie des data centers, efficacité énergétique</li>
+                                <li><strong>L :</strong> RGPD, directives UE, données personnelles</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 2 : Comparaison SARL vs SAS</h4>
+                        <p>Comparez SARL et SAS pour une startup de développeurs freelances regroupés.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <table class="comparison-table">
+                                <tr><th>Critère</th><th>SARL</th><th>SAS</th></tr>
+                                <tr><td>Flexibilité</td><td>Statuts fixes</td><td>Très flexible</td></tr>
+                                <tr><td>Capital</td><td>1€ mini</td><td>Libre</td></tr>
+                                <tr><td>Impôts</td><td>IR/IS</td><td>IS par défaut</td></tr>
+                                <tr><td>Rémunération gérant</td><td>Limitée</td><td>Libre</td></tr>
+                                <tr><td>Formalisme</td><td>Plus strict</td><td>Moins strict</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 3 : Calcul de valeur ajoutée</h4>
+                        <p>Production brute d'une ESN : 500 000€. Consommations intermédiaires : 280 000€. Calculez la VA.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong><br>
+                            VA = 500 000 - 280 000 = 220 000€
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 4 : Identifier les parties prenantes</h4>
+                        <p>Pour une SARL de développement web, listez les parties prenantes internes et externes.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>Internes :</strong> Développeurs, designers, dirigeant, clients internes</li>
+                                <li><strong>Externes :</strong> Clients web, fournisseurs (hébergeurs), banque, État, concurrents agences, freelances</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 5 : Choix de structure juridique</h4>
+                        <p>Vous créez une startup d'IA avec 3 cofondateurs. Quelle forme juridique choisir et pourquoi ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <p><strong>SAS recommandée</strong> car :</p>
+                            <ul>
+                                <li>Très flexible pour une startup en évolution</li>
+                                <li>Facilite les levées de fonds futures</li>
+                                <li>Statuts adaptables à besoins futurs</li>
+                                <li>Rémunération des associés libre</li>
+                                <li>Alternative : SARL pour moins de complexité administrative</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz -->
+            <div class="quiz-container">
+                <h3>🎯 Quiz - Thème 1</h3>
+                <form id="quiz1">
+                    <div class="quiz-question">
+                        <h4>1. Quelle lettre de PESTEL représente les facteurs technologiques ?</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q1_1" value="0"> E (Économique)</label>
+                            <label class="quiz-option"><input type="radio" name="q1_1" value="1"> T (Technologique)</label>
+                            <label class="quiz-option"><input type="radio" name="q1_1" value="0"> P (Politique)</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. Quelle forme juridique a une responsabilité illimitée ?</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q1_2" value="0"> SARL</label>
+                            <label class="quiz-option"><input type="radio" name="q1_2" value="1"> EI (Entreprise Individuelle)</label>
+                            <label class="quiz-option"><input type="radio" name="q1_2" value="0"> SAS</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. La valeur ajoutée c'est :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q1_3" value="1"> Production - Consommations intermédiaires</label>
+                            <label class="quiz-option"><input type="radio" name="q1_3" value="0"> Production + Consommations</label>
+                            <label class="quiz-option"><input type="radio" name="q1_3" value="0"> Salaires + Impôts</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. Les actionnaires sont des parties prenantes :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q1_4" value="1"> Internes</label>
+                            <label class="quiz-option"><input type="radio" name="q1_4" value="0"> Externes</label>
+                            <label class="quiz-option"><input type="radio" name="q1_4" value="0"> Neutres</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. Quel impact du numérique n'est PAS listé ?</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q1_5" value="0"> E-commerce</label>
+                            <label class="quiz-option"><input type="radio" name="q1_5" value="0"> Télétravail</label>
+                            <label class="quiz-option"><input type="radio" name="q1_5" value="1"> Réduction de l'emploi (toujours)</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="submitQuiz('quiz1', 'theme1')">Soumettre</button>
+                </form>
+                <div id="result-theme1" class="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- THÈME 2 -->
+        <div class="theme-section" id="theme2">
+            <div class="theme-header">
+                <span class="theme-number">2</span>
+                <i class="fas fa-chart-line"></i>
+                <h2>La régulation de l'activité économique</h2>
+            </div>
+
+            <div class="course-subsection">
+                <h3>📊 Les mécanismes du marché</h3>
+                <div class="key-point">
+                    <strong>Offre & Demande</strong><br>
+                    Le prix d'équilibre se forme à l'intersection de la courbe d'offre et de demande. Plus la demande ↑, plus le prix ↑ (si offre reste stable).
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🏛️ Structures de marché</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Structure</th>
+                        <th>Nombre d'acteurs</th>
+                        <th>Exemple</th>
+                        <th>Caractéristiques</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Concurrence pure & parfaite</strong></td>
+                        <td>Très nombreux</td>
+                        <td>Agriculture</td>
+                        <td>Prix identiques, libre entrée</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Concurrence monopolistique</strong></td>
+                        <td>Nombreux</td>
+                        <td>Restaurants</td>
+                        <td>Produits différenciés</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Oligopole</strong></td>
+                        <td>Peu (3-5)</td>
+                        <td>Télécom (Orange, SFR, Bouygues)</td>
+                        <td>Interdépendance stratégique</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monopole</strong></td>
+                        <td>Un seul</td>
+                        <td>Historiquement EDF</td>
+                        <td>Barrières à l'entrée élevées</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🏛️ Rôle de l'État</h3>
+                <ul>
+                    <li><strong>Régulation :</strong> Antitrust, interdiction des cartels, contrôle des fusions</li>
+                    <li><strong>Intervention :</strong> Subventions, impôts, redistribution</li>
+                    <li><strong>Politique économique :</strong> Relance/rigueur selon contexte</li>
+                </ul>
+            </div>
+
+            <div class="course-subsection">
+                <h3>💻 GAFAM et régulation numérique</h3>
+                <div class="key-point">
+                    <strong>Position dominante</strong><br>
+                    Google (moteur), Amazon (cloud/retail), Apple (App Store), Meta (réseaux), Microsoft (OS). Autorité de la concurrence enquête sur abus.
+                </div>
+                <ul>
+                    <li>DMA (Digital Markets Act) : Imposer interopérabilité</li>
+                    <li>DSA (Digital Services Act) : Responsabilité contenus</li>
+                    <li>Loi ARCEP : Neutralité du net</li>
+                </ul>
+            </div>
+
+            <div class="exercises-section">
+                <h2>📝 Exercices - Thème 2</h2>
+                <div class="exercises-list">
+                    <div class="exercise-item">
+                        <h4>Exercice 1 : Identifier structure marché Cloud</h4>
+                        <p>Le marché du cloud est dominé par AWS, Azure, Google Cloud. Quelle structure est-ce ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution : Oligopole</strong>
+                            <p>Caractéristiques : Peu d'acteurs (3 majeurs), produits similaires, interdépendance stratégique dans les prix/services.</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 2 : Position dominante Google</h4>
+                        <p>Google détient 90% du marché des moteurs de recherche. Justifiez pourquoi c'est un problème de concurrence.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li>Position dominante = barrière à l'entrée infranchissable</li>
+                                <li>Abus possible : favoriser ses services (Youtube, Maps)</li>
+                                <li>Pas de concurrence = pas de baisse prix ou innovation forcée</li>
+                                <li>Autorité de la concurrence peut imposer séparation activités</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 3 : Politique monétaire vs budgétaire</h4>
+                        <p>Distinguez : hausse taux directeur BCE vs augmentation impôts gouvernement.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>Monétaire :</strong> Banco centrale, actions (taux, quantité monnaie), court terme</li>
+                                <li><strong>Budgétaire :</strong> Gouvernement, revenus/dépenses, long terme</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 4 : Intervention État numérique</h4>
+                        <p>Pourquoi l'État impose une taxe sur les services numériques (GAFAM) ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li>Revenus mondiaux non taxés localement (optimisation fiscale)</li>
+                                <li>Redistribution de richesses créées sur territoire</li>
+                                <li>Concurrence équitable avec entreprises locales</li>
+                                <li>Financer services publics</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 5 : Effets de réseau</h4>
+                        <p>Pourquoi Facebook devient plus puissant avec plus d'utilisateurs ? (Concept d'effet de réseau)</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li>Plus d'utilisateurs = plus attractif pour nouveaux</li>
+                                <li>Valeur du service ↑ avec nb utilisateurs</li>
+                                <li>Crée barrière à l'entrée pour concurrents</li>
+                                <li>Monopole naturel du digital (Instagram, WhatsApp)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <h3>🎯 Quiz - Thème 2</h3>
+                <form id="quiz2">
+                    <div class="quiz-question">
+                        <h4>1. Quel n'est PAS un acteur du marché cloud ?</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q2_1" value="0"> AWS</label>
+                            <label class="quiz-option"><input type="radio" name="q2_1" value="1"> Samsung</label>
+                            <label class="quiz-option"><input type="radio" name="q2_1" value="0"> Google Cloud</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. La politique monétaire est du ressort de :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q2_2" value="0"> Gouvernement</label>
+                            <label class="quiz-option"><input type="radio" name="q2_2" value="1"> Banque centrale (BCE)</label>
+                            <label class="quiz-option"><input type="radio" name="q2_2" value="0"> Parlement</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Une position dominante peut-elle être abusive ?</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q2_3" value="1"> Oui, si abus pratiqués</label>
+                            <label class="quiz-option"><input type="radio" name="q2_3" value="0"> Non, c'est légal</label>
+                            <label class="quiz-option"><input type="radio" name="q2_3" value="0"> Seulement aux USA</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. Effet de réseau signifie :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q2_4" value="1"> Valeur ↑ avec nb utilisateurs</label>
+                            <label class="quiz-option"><input type="radio" name="q2_4" value="0"> Réseau Internet</label>
+                            <label class="quiz-option"><input type="radio" name="q2_4" value="0"> Lenteur du serveur</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. Concurrence pure et parfaite = nombreux acteurs + :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q2_5" value="0"> Prix identiques</label>
+                            <label class="quiz-option"><input type="radio" name="q2_5" value="1"> Prix identiques + libre entrée</label>
+                            <label class="quiz-option"><input type="radio" name="q2_5" value="0"> Prix libres</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="submitQuiz('quiz2', 'theme2')">Soumettre</button>
+                </form>
+                <div id="result-theme2" class="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- THÈME 3 -->
+        <div class="theme-section" id="theme3">
+            <div class="theme-header">
+                <span class="theme-number">3</span>
+                <i class="fas fa-users"></i>
+                <h2>L'entreprise et sa relation avec les salariés et les tiers</h2>
+            </div>
+
+            <div class="course-subsection">
+                <h3>📋 Types de contrats de travail</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Durée</th>
+                        <th>Motif</th>
+                        <th>Préavis rupture</th>
+                    </tr>
+                    <tr>
+                        <td><strong>CDI</strong> (Contrat Durée Indéterminée)</td>
+                        <td>Indéfinie</td>
+                        <td>Emploi permanent</td>
+                        <td>Oui (selon convention)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CDD</strong> (Contrat Durée Déterminée)</td>
+                        <td>Déterminée (max 18 mois)</td>
+                        <td>Remplacement, pic d'activité</td>
+                        <td>Non, sauf rupture anticipée</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CTT</strong> (Contrat Travail Temporaire)</td>
+                        <td>Déterminée (max 6 mois)</td>
+                        <td>Intérim (agence)</td>
+                        <td>Non</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Apprentissage</strong></td>
+                        <td>1-3 ans</td>
+                        <td>Formation métier</td>
+                        <td>Probatoire 45j</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="course-subsection">
+                <h3>💼 Rupture du contrat</h3>
+                <div class="key-point">
+                    <strong>Licenciement pour motif personnel</strong><br>
+                    Faute simple, grave ou très grave de l'employé. Procédure : convocation entretien → lettre recommandée de licenciement → indemnités.
+                </div>
+                <div class="key-point">
+                    <strong>Licenciement économique</strong><br>
+                    Suppressions de poste pour difficultés économiques. Procédure longue avec PSE (Plan Sauvegarde Emploi), consultation CSE.
+                </div>
+                <div class="key-point">
+                    <strong>Rupture conventionnelle</strong><br>
+                    Accord amiable employeur/salarié. Avantage : rapide, pas contentieux. Allocation chômage possible.
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>⏰ Durée du travail</h3>
+                <ul>
+                    <li><strong>Durée légale :</strong> 35h/semaine en France</li>
+                    <li><strong>Heures supplémentaires :</strong> Au-delà de 35h/semaine, majorées de 25% ou 50%</li>
+                    <li><strong>Repos :</strong> Obligatoire (repos compensateur ou congés)</li>
+                    <li><strong>Forfait jours cadres :</strong> ~218 jours/an travaillés (pas décompte horaire)</li>
+                </ul>
+            </div>
+
+            <div class="course-subsection">
+                <h3>💰 Rémunération</h3>
+                <div class="key-point">
+                    <strong>SMIC (Salaire Minimum Interprofessionnel de Croissance)</strong><br>
+                    Rémunération minimale légale en France. 2024 : ~1750€ brut/mois.
+                </div>
+                <div class="key-point">
+                    <strong>Bulletin de paie</strong><br>
+                    Salaire brut - Cotisations salariales = Salaire net. Exemple : 2000€ brut → 1500€ net (après charges).
+                </div>
+                <div class="key-point">
+                    <strong>Épargne salariale</strong><br>
+                    Intéressement, participation, PEE (Plan Épargne Entreprise) : avantages fiscaux.
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>👥 Représentants du personnel</h3>
+                <ul>
+                    <li><strong>CSE</strong> (Comité Social et Économique) : Représente tous les salariés</li>
+                    <li><strong>Délégués syndicaux</strong> : Négocient accords collectifs</li>
+                    <li><strong>Convention collective :</strong> Accord entre patron et syndicats (salaires min, congés, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="course-subsection">
+                <h3>⚖️ Contrats informatiques</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Définition</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Licence</strong></td>
+                        <td>Droit d'usage logiciel (non propriété)</td>
+                        <td>Microsoft Office 365</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maintenance</strong></td>
+                        <td>Support technique + mises à jour</td>
+                        <td>Contrat support 24/7</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infogérance</strong></td>
+                        <td>Gestion complète SI client</td>
+                        <td>Gestion serveurs/réseaux</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SaaS</strong></td>
+                        <td>Logiciel comme service (cloud)</td>
+                        <td>Salesforce, Slack</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="exercises-section">
+                <h2>📝 Exercices - Thème 3</h2>
+                <div class="exercises-list">
+                    <div class="exercise-item">
+                        <h4>Exercice 1 : Lire un bulletin de paie</h4>
+                        <p>Salaire brut : 2500€. Cotisations salariales : 420€. Impôt : 150€. Calculez le salaire net.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong><br>
+                            Salaire net = 2500 - 420 - 150 = 1930€
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 2 : Choisir le bon contrat</h4>
+                        <p>Vous embauchez un développeur pour 6 mois (pic de projet). Quel contrat ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution : CDD (6 mois) ou CTT (intérim)</strong>
+                            <p>Motif : Durée déterminée, besoin temporaire. Pas CDI.</p>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 3 : Indemnités licenciement</h4>
+                        <p>Salaire brut 3000€, 5 ans d'ancienneté, licenciement économique. Indemnités = Salaire brut × 0.5 × années. Calculez.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong><br>
+                            Indemnités = 3000 × 0.5 × 5 = 7500€ (minimum légal)
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 4 : Analyser licence logicielle</h4>
+                        <p>Comparez : Licence perpétuelle payante vs SaaS en abonnement mensuel.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>Perpétuelle :</strong> Coût initial élevé, propriété du logiciel, mises à jour payantes</li>
+                                <li><strong>SaaS :</strong> Coût récurrent, flexibilité, support inclus, accès cloud</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 5 : Cas licenciement économique</h4>
+                        <p>Une ESN doit réduire ses coûts (crise). Procédure légale à respecter ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ol>
+                                <li>Consultation CSE (Comité Social Économique)</li>
+                                <li>Élaboration PSE (Plan Sauvegarde Emploi)</li>
+                                <li>Convocations individuelles pour entretien</li>
+                                <li>Lettres de licenciement recommandées</li>
+                                <li>Paiement indemnités légales minimum</li>
+                                <li>Respect préavis légal</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <h3>🎯 Quiz - Thème 3</h3>
+                <form id="quiz3">
+                    <div class="quiz-question">
+                        <h4>1. Durée maximale d'un CDD légalement :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q3_1" value="0"> 6 mois</label>
+                            <label class="quiz-option"><input type="radio" name="q3_1" value="1"> 18 mois</label>
+                            <label class="quiz-option"><input type="radio" name="q3_1" value="0"> 3 ans</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. SMIC = Salaire Minimum :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q3_2" value="0"> Interprofessionnel de Croissance</label>
+                            <label class="quiz-option"><input type="radio" name="q3_2" value="1"> Interprofessionnel de Croissance (vrai)</label>
+                            <label class="quiz-option"><input type="radio" name="q3_2" value="0"> International de Croissance</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Durée légale travail France :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q3_3" value="0"> 40h/semaine</label>
+                            <label class="quiz-option"><input type="radio" name="q3_3" value="1"> 35h/semaine</label>
+                            <label class="quiz-option"><input type="radio" name="q3_3" value="0"> 39h/semaine</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. CSE représente :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q3_4" value="1"> Tous les salariés</label>
+                            <label class="quiz-option"><input type="radio" name="q3_4" value="0"> Que les syndicats</label>
+                            <label class="quiz-option"><input type="radio" name="q3_4" value="0"> L'employeur</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. SaaS signifie :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q3_5" value="0"> Software as a Server</label>
+                            <label class="quiz-option"><input type="radio" name="q3_5" value="1"> Software as a Service</label>
+                            <label class="quiz-option"><input type="radio" name="q3_5" value="0"> Secure Applications Services</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="submitQuiz('quiz3', 'theme3')">Soumettre</button>
+                </form>
+                <div id="result-theme3" class="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- THÈME 4 -->
+        <div class="theme-section" id="theme4">
+            <div class="theme-header">
+                <span class="theme-number">4</span>
+                <i class="fas fa-shield-halved"></i>
+                <h2>L'entreprise face aux enjeux de société</h2>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🔐 Protection des données - RGPD</h3>
+                <div class="key-point">
+                    <strong>RGPD (Règlement Général Protection Données)</strong><br>
+                    Règlement UE entré en vigueur mai 2018. S'applique à toute entreprise traitant données personnelles de résidents UE.
+                </div>
+
+                <div class="key-point">
+                    <strong>Principes clés</strong>
+                    <ul>
+                        <li>Licéité : Justification légale du traitement</li>
+                        <li>Minimisation : Collecter juste le nécessaire</li>
+                        <li>Exactitude : Données correctes et à jour</li>
+                        <li>Limitation de conservation : Pas garder indéfiniment</li>
+                        <li>Intégrité et confidentialité : Sécuriser les données</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>Droits des personnes</strong>
+                    <ul>
+                        <li>Droit d'accès : Voir ses données</li>
+                        <li>Droit de rectification : Corriger données incorrectes</li>
+                        <li>Droit à l'effacement : "Droit à l'oubli"</li>
+                        <li>Droit à la portabilité : Récupérer ses données</li>
+                        <li>Droit d'opposition : Refuser traitement</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>Obligations entreprises</strong>
+                    <ul>
+                        <li>Désigner un DPO (Data Protection Officer)</li>
+                        <li>Tenir registre des traitements</li>
+                        <li>Privacy by Design (protection dès conception)</li>
+                        <li>Déclarer/signaler brèches</li>
+                        <li>Respect du droit d'accès/rectification</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>CNIL (Commission Nationale Informatique & Libertés)</strong><br>
+                    Autorité française chargée du RGPD. Peut imposer amendes : jusqu'à 4% du CA ou 20M€.
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🔓 Cybersécurité & droit</h3>
+                <div class="key-point">
+                    <strong>Infractions informatiques</strong>
+                    <ul>
+                        <li>Article 323-1 CP : Accès frauduleux (max 2 ans + 30k€)</li>
+                        <li>Article 323-3 CP : Altération données (max 5 ans + 75k€)</li>
+                        <li>Usurpation d'identité numérique (max 1 an + 15k€)</li>
+                    </ul>
+                </div>
+                <p><strong>Responsabilité :</strong> Entreprise peut être condamnée si failles graves non corrigées + préjudice.</p>
+            </div>
+
+            <div class="course-subsection">
+                <h3>©️ Propriété intellectuelle numérique</h3>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Type</th>
+                        <th>Protection</th>
+                        <th>Durée</th>
+                        <th>Exemple</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Droit d'auteur logiciel</strong></td>
+                        <td>Automatique (pas besoin d'enregistrement)</td>
+                        <td>70 ans après mort auteur</td>
+                        <td>Code source Python</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Licences libres</strong></td>
+                        <td>GPL, MIT, Apache (accès code source)</td>
+                        <td>Selon licence</td>
+                        <td>Linux, WordPress</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brevet</strong></td>
+                        <td>Innovation (Europe limité pour logiciels)</td>
+                        <td>20 ans</td>
+                        <td>Algorithme IA breveté</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marque & nom domaine</strong></td>
+                        <td>Enregistrement INPI/ICANN</td>
+                        <td>10 ans renouvelable</td>
+                        <td>Google.com, logo Amazon</td>
+                    </tr>
+                </table>
+
+                <div class="key-point">
+                    <strong>Licences libres majeures</strong>
+                    <ul>
+                        <li><strong>GPL :</strong> Code source accessible, modifications doivent rester libres</li>
+                        <li><strong>MIT :</strong> Très permissive, usage commercial autorisé</li>
+                        <li><strong>Apache 2.0 :</strong> Similarité MIT, gestion brevets explicite</li>
+                        <li><strong>Creative Commons :</strong> Pour contenus créatifs (pas code)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>♻️ RSE & numérique responsable</h3>
+                <div class="key-point">
+                    <strong>RSE (Responsabilité Sociétale Entreprise)</strong><br>
+                    3 piliers : Économique (rentabilité), Social (bien-être salariés), Environnemental (durabilité).
+                </div>
+
+                <div class="key-point">
+                    <strong>Green IT & empreinte carbone</strong>
+                    <ul>
+                        <li>Réduire consommation énergétique serveurs</li>
+                        <li>Optimiser logiciels (moins de ressources)</li>
+                        <li>Allonger durée de vie équipements</li>
+                        <li>Recyclage e-déchets responsable</li>
+                        <li>Émissions carbone data centers : ~200g CO2/GB stocké</li>
+                    </ul>
+                </div>
+
+                <div class="key-point">
+                    <strong>Reporting extra-financier (DPEF)</strong><br>
+                    Entreprises >500 salariés doivent rapporter actions RSE en matière environnement, social, gouvernance.
+                </div>
+            </div>
+
+            <div class="course-subsection">
+                <h3>🛒 Protection du consommateur en ligne</h3>
+                <ul>
+                    <li><strong>Droit de rétractation :</strong> 14 jours pour annuler achat (sauf exceptions)</li>
+                    <li><strong>Mentions légales :</strong> Obligatoires : nom, adresse, contact, CGV, politique confidentialité</li>
+                    <li><strong>Pratiques trompeuses :</strong> Interdites (prix faux, délais mensongers)</li>
+                    <li><strong>Directive e-commerce :</strong> Responsabilité plateforme sur contenus</li>
+                </ul>
+            </div>
+
+            <div class="exercises-section">
+                <h2>📝 Exercices - Thème 4</h2>
+                <div class="exercises-list">
+                    <div class="exercise-item">
+                        <h4>Exercice 1 : Identifier manquements RGPD</h4>
+                        <p>Un site collecte emails sans consentement explicite, les garde 5 ans, sans politique d'accès. Manquements ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li>Pas de consentement validé → violation licéité</li>
+                                <li>Conservation excessive (5 ans) → violation minimisation</li>
+                                <li>Pas de politique accès → violation droits utilisateurs</li>
+                                <li>Amende CNIL possible : jusqu'à 4% CA</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 2 : Rédiger politique confidentialité simple</h4>
+                        <p>En 3 points clés : quoi, pourquoi, comment sécurisé.</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution minimale :</strong>
+                            <ul>
+                                <li><strong>Quoi :</strong> "Collecte nom, email, IP pour traitement devis"</li>
+                                <li><strong>Pourquoi :</strong> "Base légale : consentement utilisateur"</li>
+                                <li><strong>Sécurité :</strong> "Données chiffrées, serveurs UE, accès limité"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 3 : Qualifier infraction informatique</h4>
+                        <p>Hacker accède sans autorisation BD client. Articles applicables et peines ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>Article 323-1 CP :</strong> Accès frauduleux → Max 2 ans + 30k€</li>
+                                <li><strong>Article 323-3 CP :</strong> Si altération données → Max 5 ans + 75k€</li>
+                                <li><strong>Entreprise :</strong> Responsabilité civile si failles non corrigées</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 4 : Comparer licences libres</h4>
+                        <p>Vous créez un logiciel IA. GPL vs MIT vs Apache : quel impact commercial ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution :</strong>
+                            <ul>
+                                <li><strong>GPL :</strong> Vous gardez propriété mais améliorations publiques</li>
+                                <li><strong>MIT/Apache :</strong> Autres peuvent commercialiser sans obligations</li>
+                                <li><strong>Recommandation :</strong> MIT/Apache si objectif diffusion/adoption</li>
+                                <li>GPL si veux forcer partage innovations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="exercise-item">
+                        <h4>Exercice 5 : Vérifier conformité site e-commerce</h4>
+                        <p>Site Amazon-like : que vérifier pour respecter directive e-commerce ?</p>
+                        <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                        <div class="exercise-solution">
+                            <strong>Solution (Checklist) :</strong>
+                            <ul>
+                                <li>✓ Mentions légales complètes (SIRET, adresse, contact)</li>
+                                <li>✓ CGV claires et acceptables</li>
+                                <li>✓ Politique confidentialité RGPD complète</li>
+                                <li>✓ Droit rétractation 14j visible</li>
+                                <li>✓ Pas info trompeuse (prix, délais, stocks)</li>
+                                <li>✓ Modalités paiement sécurisées</li>
+                                <li>✓ Modération contenus vendeurs (si marketplace)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-container">
+                <h3>🎯 Quiz - Thème 4</h3>
+                <form id="quiz4">
+                    <div class="quiz-question">
+                        <h4>1. RGPD s'applique à :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q4_1" value="0"> USA uniquement</label>
+                            <label class="quiz-option"><input type="radio" name="q4_1" value="1"> Données résidents UE</label>
+                            <label class="quiz-option"><input type="radio" name="q4_1" value="0"> Seulement France</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>2. Droits des personnes RGPD incluent :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q4_2" value="0"> Accès seul</label>
+                            <label class="quiz-option"><input type="radio" name="q4_2" value="1"> Accès, rectification, effacement, portabilité</label>
+                            <label class="quiz-option"><input type="radio" name="q4_2" value="0"> Aucun droit</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>3. Amende CNIL max :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q4_3" value="0"> 1 M€</label>
+                            <label class="quiz-option"><input type="radio" name="q4_3" value="1"> 4% CA ou 20M€</label>
+                            <label class="quiz-option"><input type="radio" name="q4_3" value="0"> 100 000€</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>4. Droit d'auteur logiciel dure :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q4_4" value="0"> 10 ans</label>
+                            <label class="quiz-option"><input type="radio" name="q4_4" value="1"> 70 ans après mort auteur</label>
+                            <label class="quiz-option"><input type="radio" name="q4_4" value="0"> Indéfini</label>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question">
+                        <h4>5. RSE = 3 piliers :</h4>
+                        <div class="quiz-options">
+                            <label class="quiz-option"><input type="radio" name="q4_5" value="0"> Technique, marketing, vente</label>
+                            <label class="quiz-option"><input type="radio" name="q4_5" value="1"> Économique, social, environnemental</label>
+                            <label class="quiz-option"><input type="radio" name="q4_5" value="0"> Légal, fiscal, compliance</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="submitQuiz('quiz4', 'theme4')">Soumettre</button>
+                </form>
+                <div id="result-theme4" class="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Retour -->
+        <a href="javascript:history.back()" class="btn-back" style="margin-top: 2rem;">
+            <i class="fas fa-arrow-left"></i> Retour au tableau de bord
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Toggle solution visibility
+        function toggleSolution(button) {
+            const solution = button.nextElementSibling;
+            solution.classList.toggle('show');
+            button.textContent = solution.classList.contains('show') ? 'Masquer la correction' : 'Voir la correction';
+        }
+
+        // Submit quiz
+        function submitQuiz(quizId, themeId) {
+            const form = document.getElementById(quizId);
+            const formData = new FormData(form);
+            
+            let correct = 0;
+            let total = 0;
+
+            // Count questions and check answers
+            for (let [key, value] of formData.entries()) {
+                total++;
+                if (value === '1') correct++;
+            }
+
+            const score = Math.round((correct / total) * 100);
+            const resultDiv = document.getElementById(`result-${themeId}`);
+            
+            resultDiv.classList.add('show');
+            resultDiv.innerHTML = `
+                <div class="quiz-result ${score >= 50 ? 'success' : 'failure'}">
+                    <h3>Résultat</h3>
+                    <div class="quiz-score">${score}%</div>
+                    <p>${correct}/${total} réponses correctes</p>
+                    <p style="color: var(--text-secondary);">${score >= 80 ? '🌟 Excellent !' : score >= 50 ? '👍 Bien !' : '📚 À revoir...'}</p>
+                    <button class="btn-primary" onclick="location.reload()">Recommencer</button>
+                </div>
+            `;
+            
+            saveScore(themeId, score);
+        }
+
+        // Save & load progress
+        function saveScore(theme, score) {
+            const scores = JSON.parse(localStorage.getItem('cejm_scores') || '{}');
+            if (!scores[theme] || score > scores[theme]) {
+                scores[theme] = score;
+                localStorage.setItem('cejm_scores', JSON.stringify(scores));
+            }
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const scores = JSON.parse(localStorage.getItem('cejm_scores') || '{}');
+            const themes = ['theme1', 'theme2', 'theme3', 'theme4'];
+            
+            const quizPercent = Math.round((Object.keys(scores).length / themes.length) * 100);
+            const avgScore = Object.keys(scores).length > 0 
+                ? Math.round(Object.values(scores).reduce((a, b) => a + b) / Object.keys(scores).length)
+                : 0;
+
+            document.getElementById('progressCourse').style.width = '50%'; // Static for now
+            document.getElementById('progressCoursePercent').textContent = '50%';
+            
+            document.getElementById('progressQuiz').style.width = quizPercent + '%';
+            document.getElementById('progressQuizPercent').textContent = quizPercent + '%';
+        }
+
+        // Initialize on load
+        updateProgress();
+    </script>
+</body>
+</html>

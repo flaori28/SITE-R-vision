@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réponses aux Besoins - BTS SIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: all 0.3s ease;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+        .page-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .page-header {
+            background: rgba(30, 41, 59, 0.95);
+        }
+        .page-header h1 {
+            font-size: 2.5em;
+            color: #0f766e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        body.dark-mode .page-header h1 {
+            color: #5eead4;
+        }
+        .page-header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+        body.dark-mode .page-header p {
+            color: #a0aec0;
+        }
+        .lesson-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .lesson-content {
+            background: #1e293b;
+        }
+        .lesson-section {
+            margin-bottom: 25px;
+        }
+        .lesson-section h2 {
+            color: #0f766e;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0f766e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark-mode .lesson-section h2 {
+            color: #5eead4;
+            border-bottom-color: #5eead4;
+        }
+        .lesson-section h3 {
+            color: #166e63;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+        body.dark-mode .lesson-section h3 {
+            color: #6ee7de;
+        }
+        .definition-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #0f766e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        body.dark-mode .definition-box {
+            background: linear-gradient(135deg, #0d3d35 0%, #0d4d45 100%);
+            border-left-color: #5eead4;
+        }
+        .definition-box strong {
+            color: #0f766e;
+        }
+        body.dark-mode .definition-box strong {
+            color: #5eead4;
+        }
+        .example-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+        body.dark-mode .example-box {
+            background: #0c2340;
+            border-left-color: #0ea5e9;
+        }
+        .exercises-section, .quiz-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .exercises-section,
+        body.dark-mode .quiz-section {
+            background: #1e293b;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #0f766e;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        body.dark-mode .section-title {
+            color: #5eead4;
+        }
+        .exercise {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        body.dark-mode .exercise {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        .exercise-title {
+            font-weight: 600;
+            color: #0f766e;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark-mode .exercise-title {
+            color: #5eead4;
+        }
+        .exercise-content {
+            color: #555;
+            margin: 10px 0;
+        }
+        body.dark-mode .exercise-content {
+            color: #cbd5e1;
+        }
+        .toggle-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn:hover {
+            background: #166e63;
+            transform: translateY(-2px);
+        }
+        .solution {
+            display: none;
+            background: #d1fae5;
+            border-left: 4px solid #059669;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            color: #065f46;
+        }
+        body.dark-mode .solution {
+            background: #0d3d35;
+            border-left-color: #10b981;
+            color: #86efac;
+        }
+        .solution.show {
+            display: block;
+        }
+        .quiz-container {
+            display: grid;
+            gap: 20px;
+        }
+        .quiz-question {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        body.dark-mode .quiz-question {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        .quiz-question h4 {
+            color: #0f766e;
+            margin-bottom: 15px;
+        }
+        body.dark-mode .quiz-question h4 {
+            color: #5eead4;
+        }
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .quiz-option {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        .quiz-option:hover {
+            border-color: #0f766e;
+        }
+        .quiz-option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .quiz-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .quiz-btn:hover {
+            background: #166e63;
+            transform: translateY(-2px);
+        }
+        .quiz-result {
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        .quiz-result.show {
+            display: block;
+        }
+        .quiz-result.correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        body.dark-mode .quiz-result.correct {
+            background: #0d3d35;
+            color: #86efac;
+        }
+        .quiz-result.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        body.dark-mode .quiz-result.incorrect {
+            background: #3d1f1f;
+            color: #fca5a5;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #0f766e;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #166e63;
+            transform: translateX(-5px);
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .comparison-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        body.dark-mode .comparison-table td {
+            border-color: #555;
+        }
+        .comparison-table th {
+            background: #0f766e;
+            color: white;
+            padding: 10px;
+            border: 1px solid #0f766e;
+        }
+        body.dark-mode .comparison-table th {
+            background: #166e63;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        body.dark-mode .progress-bar {
+            background: #334155;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f766e 0%, #14b8a6 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.8em; }
+            .lesson-content { padding: 20px; }
+            .comparison-table { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-content">
+    <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+    
+    <div class="page-header">
+        <h1><i class="fas fa-lightbulb"></i> Réponses aux Besoins</h1>
+        <p>BLOC 1 - Support et Mise à Disposition de Services Informatiques</p>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- LESSON CONTENT -->
+    <div class="lesson-content">
+        <div class="lesson-section">
+            <h2><i class="fas fa-comments"></i> Recueil des Besoins</h2>
+            <p>Le recueil des besoins est la phase fondamentale qui précède tout projet informatique. C'est le processus de collecte et de documentation des exigences du client ou des utilisateurs.</p>
+            
+            <h3>Méthodes de Recueil</h3>
+            
+            <div class="definition-box">
+                <strong>1. Les Interviews</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Questions ouvertes et fermées avec les parties prenantes</li>
+                    <li>Identification des contextes et contraintes</li>
+                    <li>Échange direct et création de relation de confiance</li>
+                </ul>
+            </div>
+
+            <div class="definition-box">
+                <strong>2. Les Questionnaires</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Formulaires standardisés envoyés à un large public</li>
+                    <li>Questions préécrites et réponses mesurables</li>
+                    <li>Adaptation facile aux différents groupes d'utilisateurs</li>
+                </ul>
+            </div>
+
+            <div class="definition-box">
+                <strong>3. Les Ateliers (Workshops)</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Réunions de groupe avec brainstorming</li>
+                    <li>Idées collaboratives et débat en temps réel</li>
+                    <li>Consensus plus rapide entre parties prenantes</li>
+                </ul>
+            </div>
+
+            <div class="definition-box">
+                <strong>4. L'Observation</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Observation directe du contexte de travail</li>
+                    <li>Identification des problèmes non verbalisés</li>
+                    <li>Compréhension des workflows réels</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <strong>💡 Exemple :</strong> Pour un projet de digitalisation d'une PME, on organise : interview avec direction (stratégie), questionnaire aux opérateurs (usabilité), atelier avec managers (processus), observation des postes de travail (contraintes matérielles).
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-check-circle"></i> Analyse de Faisabilité</h2>
+            
+            <h3>Faisabilité Technique</h3>
+            <p>Évaluation des capacités technologiques à réaliser le projet :</p>
+            
+            <div class="definition-box">
+                <strong>Points clés :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Compatibilité avec l'infrastructure existante</li>
+                    <li>Disponibilité de technologies appropriées</li>
+                    <li>Risques techniques et mitigation</li>
+                    <li>Compétences internes vs recrutement</li>
+                    <li>Délais réalistes de développement</li>
+                </ul>
+            </div>
+
+            <h3>Faisabilité Financière</h3>
+            <p>Analyse du budget et du retour sur investissement :</p>
+            
+            <div class="definition-box">
+                <strong>Éléments de coût :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Coûts d'acquisition (licences, matériel, infrastructure)</li>
+                    <li>Coûts de mise en œuvre (intégration, configuration)</li>
+                    <li>Coûts de formation du personnel</li>
+                    <li>Coûts de maintenance et support annuels</li>
+                    <li>Comparaison : <strong>ROI = (Bénéfices - Coûts) / Coûts × 100%</strong></li>
+                </ul>
+            </div>
+
+            <h3>Faisabilité Organisationnelle</h3>
+            <p>Capacité de l'organisation à accueillir le changement :</p>
+            
+            <div class="definition-box">
+                <strong>Critères :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Acceptation par les utilisateurs et management</li>
+                    <li>Impact sur l'organisation et les processus</li>
+                    <li>Ressources humaines disponibles</li>
+                    <li>Risque de résistance au changement</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-shield-alt"></i> Critères de Choix d'une Solution</h2>
+            
+            <h3>Open Source vs Propriétaire</h3>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th style="width: 50%;">Open Source</th>
+                    <th style="width: 50%;">Propriétaire</th>
+                </tr>
+                <tr>
+                    <td><strong>✓ Avantages :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Coûts de licence réduits</li>
+                            <li>Code source accessible</li>
+                            <li>Communauté active</li>
+                            <li>Pas de dépendance fournisseur</li>
+                        </ul>
+                    </td>
+                    <td><strong>✓ Avantages :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Support professionnel assuré</li>
+                            <li>Interface intuitive</li>
+                            <li>Maintenance garantie</li>
+                            <li>Mises à jour régulières</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>✗ Inconvénients :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Support communautaire inégal</li>
+                            <li>Documentation parfois incomplète</li>
+                            <li>Expertise requise</li>
+                            <li>Maintenance interne nécessaire</li>
+                        </ul>
+                    </td>
+                    <td><strong>✗ Inconvénients :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Coûts de licence élevés</li>
+                            <li>Dépendance au fournisseur</li>
+                            <li>Code source fermé</li>
+                            <li>Licence restrictive</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>On-Premise vs Cloud</h3>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th style="width: 50%;">On-Premise (Local)</th>
+                    <th style="width: 50%;">Cloud</th>
+                </tr>
+                <tr>
+                    <td><strong>✓ Avantages :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Contrôle total des données</li>
+                            <li>Infrastructure personnalisée</li>
+                            <li>Pas dépendance internet</li>
+                            <li>Sécurité localisée</li>
+                        </ul>
+                    </td>
+                    <td><strong>✓ Avantages :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Accès de n'importe où</li>
+                            <li>Pas de maintenance interne</li>
+                            <li>Scalabilité flexible</li>
+                            <li>Coûts d'investissement réduits</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>✗ Inconvénients :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Coûts d'infrastructure élevés</li>
+                            <li>Maintenance interne complexe</li>
+                            <li>Moins de flexibilité</li>
+                            <li>Expertise requise</li>
+                        </ul>
+                    </td>
+                    <td><strong>✗ Inconvénients :</strong>
+                        <ul style="margin-left: 15px;">
+                            <li>Dépendance internet</li>
+                            <li>Confidentialité des données</li>
+                            <li>Dépendance au fournisseur</li>
+                            <li>Coûts récurrents</li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Types de Services Cloud</h3>
+            
+            <div class="definition-box">
+                <strong>SaaS (Software as a Service) :</strong> Logiciels accessibles par navigateur (Microsoft 365, Salesforce, Slack). Bénéfices : accès, mises à jour automatiques, pas d'installation.
+            </div>
+
+            <div class="definition-box">
+                <strong>PaaS (Platform as a Service) :</strong> Plateforme de développement (Heroku, AWS Elastic Beanstalk). Bénéfices : déploiement rapide, infrastructure gérée.
+            </div>
+
+            <div class="definition-box">
+                <strong>IaaS (Infrastructure as a Service) :</strong> Serveurs virtualisés (AWS EC2, Azure, DigitalOcean). Bénéfices : flexibilité, payez à l'usage, scalabilité.
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-file-alt"></i> Structure du Cahier des Charges Fonctionnel (CDCF)</h2>
+            
+            <h3>1. Présentation du Contexte</h3>
+            <div class="definition-box">
+                <strong>Éléments :</strong> Description de l'organisation, contexte actuel, problématiques existantes, enjeux du projet.
+            </div>
+
+            <h3>2. Expression des Besoins</h3>
+            <div class="definition-box">
+                <strong>Besoins Métier :</strong> Ce que l'organisation veut accomplir (augmenter la productivité de 30%, réduire délais, améliorer satisfaction client).
+                <br><strong>Besoins Fonctionnels :</strong> Fonctionnalités requises (gestion de stock, facturation automatique, rapports personnalisés).
+                <br><strong>Besoins Non-Fonctionnels :</strong> Performance, sécurité, disponibilité (temps de réponse < 2s, uptime > 99%, sauvegardes quotidiennes).
+            </div>
+
+            <h3>3. Spécifications Techniques</h3>
+            <div class="definition-box">
+                <strong>Éléments :</strong> Architecture système, technologies, base de données, interfaces utilisateur, intégrations avec systèmes existants, sécurité.
+            </div>
+
+            <h3>4. Critères d'Acceptation</h3>
+            <div class="definition-box">
+                <strong>Éléments :</strong> Tests d'acceptation utilisateur (UAT), métriques de validation, conditions de succès, procédures de recette.
+            </div>
+
+            <h3>5. Planification et Délais</h3>
+            <div class="definition-box">
+                <strong>Éléments :</strong> Planning du projet, jalons importants, ressources allouées, budget estimé, risques identifiés.
+            </div>
+
+            <div class="example-box">
+                <strong>💡 Exemple simplifié :</strong><br>
+                <strong>Besoin métier :</strong> "Améliorer le traitement des commandes"<br>
+                <strong>Besoin fonctionnel :</strong> "Système de gestion de commandes web avec panier e-commerce"<br>
+                <strong>Besoin non-fonctionnel :</strong> "Performance < 2s, sécurité HTTPS, 99.5% disponibilité"<br>
+                <strong>Critère d'acceptation :</strong> "Traitement de 100 commandes/jour sans ralentissement"
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISES -->
+    <div class="exercises-section">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Exercices Pratiques</h2>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-tasks"></i> Exercice 1 : Analyse d'un Besoin Cloud
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Une PME manufacturière veut digitaliser sa gestion d'approvisionnement et stocker ses données dans le cloud. Analyse les critères : coûts annuels estimés à 50 000€, bénéfices attendus : réduction délais de 40% valorisée à 100 000€, moins 15 000€ de coûts IT interne.
+                <p style="margin-top: 10px;"><strong>Question :</strong> Calculez le ROI et décidez si la solution est intéressante financièrement. Lisez les 3 modèles cloud (SaaS/PaaS/IaaS) et proposez la meilleure option avec justification.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol1').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol1">
+                <strong>Correction :</strong><br><br>
+                <strong>Calcul du ROI :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Bénéfices totaux : 100 000€ - 15 000€ = 85 000€</li>
+                    <li>Coûts : 50 000€</li>
+                    <li>ROI = (85 000 - 50 000) / 50 000 × 100% = <strong>70%</strong></li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>✓ Décision :</strong> ROI de 70% en 1 an est excellent. Le projet est financièrement viable.</p>
+                <p style="margin-top: 10px;"><strong>Modèle recommandé :</strong> <strong>SaaS</strong> (ex: SAP SuccessFactors, Salesforce)</p>
+                <p><strong>Justification :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Accès web accessible depuis n'importe où</li>
+                    <li>Pas de maintenance serveur interne</li>
+                    <li>Mises à jour automatiques</li>
+                    <li>Scalabilité pour croissance future</li>
+                    <li>Support professionnel du fournisseur</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-file-alt"></i> Exercice 2 : Rédaction de CDCF
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Rédigez la section "Expression des Besoins" pour un projet de système de gestion de bibliothèque numérique avec :
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Besoin métier : Centraliser le catalogue et simplifier les emprunts</li>
+                    <li>Besoin fonctionnel : Catalogue searchable, système d'emprunt/retour, réservations</li>
+                    <li>Besoin non-fonctionnel : Accès mobile, 99% uptime, temps recherche < 1s</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol2').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol2">
+                <strong>Correction - Section Expression des Besoins :</strong><br><br>
+                <div style="background: #f8f8f8; padding: 15px; border-radius: 6px; color: #333;">
+                    <strong>2. EXPRESSION DES BESOINS</strong><br><br>
+                    <strong>2.1 Besoins Métier</strong><br>
+                    La bibliothèque souhaite :
+                    <ul style="margin-left: 20px;">
+                        <li>Centraliser le catalogue de livres (actuellement sur 3 bases différentes)</li>
+                        <li>Réduire les délais d'emprunt de 15 minutes (traitement papier) à 2 minutes (digital)</li>
+                        <li>Permettre les réservations et notifications automatiques</li>
+                        <li>Améliorer la satisfaction des usagers et élargir l'accès au public</li>
+                    </ul>
+                    <br>
+                    <strong>2.2 Besoins Fonctionnels</strong><br>
+                    Le système doit fournir :
+                    <ul style="margin-left: 20px;">
+                        <li>Interface de recherche avancée (titre, auteur, ISBN, catégorie, année)</li>
+                        <li>Système d'authentification des usagers</li>
+                        <li>Processus d'emprunt/retour simplifié (code-barres ou QR)</li>
+                        <li>Système de réservation avec notification par email</li>
+                        <li>Rapports de gestion (livres empruntés, retards, popularité)</li>
+                    </ul>
+                    <br>
+                    <strong>2.3 Besoins Non-Fonctionnels</strong><br>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Disponibilité :</strong> 99% uptime (max 8.76h downtime/an)</li>
+                        <li><strong>Performance :</strong> Recherche < 1s, page chargement < 2s</li>
+                        <li><strong>Accessibilité :</strong> Compatible mobile, responsive design</li>
+                        <li><strong>Sécurité :</strong> Chiffrement données personnelles (RGPD), authentification sécurisée</li>
+                        <li><strong>Scalabilité :</strong> Capacité pour 10 000 usagers simultanés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-balance-scale"></i> Exercice 3 : Grille de Critères de Choix
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Vous devez choisir un outil de gestion de projets pour votre équipe IT de 15 personnes. Trois solutions sont candidates : Asana (Cloud SaaS), Microsoft Project (On-Premise), Jira (Open Source).
+                <p style="margin-top: 10px;"><strong>Question :</strong> Établissez une grille de critères pondérés pour comparer les trois solutions et déterminez la meilleure option.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol3').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol3">
+                <strong>Correction - Grille de Sélection :</strong><br><br>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: #0f766e; color: white;">
+                        <th style="padding: 10px; text-align: left;">Critère</th>
+                        <th style="padding: 10px;">Poids</th>
+                        <th style="padding: 10px;">Asana</th>
+                        <th style="padding: 10px;">MS Project</th>
+                        <th style="padding: 10px;">Jira</th>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Facilité d'utilisation</strong></td>
+                        <td style="padding: 10px; text-align: center;">30%</td>
+                        <td style="padding: 10px; text-align: center;">9/10</td>
+                        <td style="padding: 10px; text-align: center;">6/10</td>
+                        <td style="padding: 10px; text-align: center;">7/10</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;"><strong>Coût annuel</strong></td>
+                        <td style="padding: 10px; text-align: center;">25%</td>
+                        <td style="padding: 10px; text-align: center;">8/10</td>
+                        <td style="padding: 10px; text-align: center;">4/10</td>
+                        <td style="padding: 10px; text-align: center;">9/10</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Fonctionnalités avancées</strong></td>
+                        <td style="padding: 10px; text-align: center;">20%</td>
+                        <td style="padding: 10px; text-align: center;">8/10</td>
+                        <td style="padding: 10px; text-align: center;">9/10</td>
+                        <td style="padding: 10px; text-align: center;">8/10</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;"><strong>Support/Documentation</strong></td>
+                        <td style="padding: 10px; text-align: center;">15%</td>
+                        <td style="padding: 10px; text-align: center;">9/10</td>
+                        <td style="padding: 10px; text-align: center;">8/10</td>
+                        <td style="padding: 10px; text-align: center;">7/10</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Intégrations disponibles</strong></td>
+                        <td style="padding: 10px; text-align: center;">10%</td>
+                        <td style="padding: 10px; text-align: center;">8/10</td>
+                        <td style="padding: 10px; text-align: center;">7/10</td>
+                        <td style="padding: 10px; text-align: center;">9/10</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>Calcul du Score Pondéré :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Asana :</strong> (9×0.30) + (8×0.25) + (8×0.20) + (9×0.15) + (8×0.10) = 8.4/10</li>
+                    <li><strong>MS Project :</strong> (6×0.30) + (4×0.25) + (9×0.20) + (8×0.15) + (7×0.10) = 6.7/10</li>
+                    <li><strong>Jira :</strong> (7×0.30) + (9×0.25) + (8×0.20) + (7×0.15) + (9×0.10) = 7.9/10</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>✓ Recommandation : ASANA</strong> avec score 8.4/10. Meilleur rapport facilité/coût, excellent support, interface intuitive pour les équipes IT Agiles.</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-cloud"></i> Exercice 4 : Migration Cloud
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Votre entreprise souhaite migrer son système ERP (actuellement On-Premise depuis 2010) vers le cloud. Les options sont : SaaS complet, IaaS, ou maintenir On-Premise.
+                <p style="margin-top: 10px;"><strong>Questions :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Listez les critères de faisabilité à analyser</li>
+                    <li>Comparez les 3 options (SaaS/IaaS/On-Premise) sur 5 critères clés</li>
+                    <li>Proposez une recommandation</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol4').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol4">
+                <strong>Correction :</strong><br><br>
+                <strong>1. Critères de faisabilité à analyser :</strong>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Technique :</strong> Compatibilité avec infrastructure actuelle, temps de migration, interruptions service</li>
+                    <li><strong>Financière :</strong> CAPEX vs OPEX, ROI 3-5 ans, coûts cachés</li>
+                    <li><strong>Organisationnelle :</strong> Acceptation utilisateurs, formations, changement processus</li>
+                    <li><strong>Sécurité/Conformité :</strong> RGPD, certifications, localité données</li>
+                    <li><strong>Vendeur :</strong> Support, SLA, stabilité financière</li>
+                </ul>
+                <br>
+                <strong>2. Comparaison des solutions :</strong>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: #0f766e; color: white;">
+                        <th style="padding: 10px;">Critère</th>
+                        <th style="padding: 10px;">SaaS</th>
+                        <th style="padding: 10px;">IaaS</th>
+                        <th style="padding: 10px;">On-Premise</th>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Coûts initiaux</strong></td>
+                        <td style="padding: 10px;">Bas ✓</td>
+                        <td style="padding: 10px;">Moyen</td>
+                        <td style="padding: 10px;">Élevé ✗</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;"><strong>Maintenance</strong></td>
+                        <td style="padding: 10px;">Minimal ✓</td>
+                        <td style="padding: 10px;">Modérée</td>
+                        <td style="padding: 10px;">Complexe ✗</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Customisation</strong></td>
+                        <td style="padding: 10px;">Limitée</td>
+                        <td style="padding: 10px;">Complète ✓</td>
+                        <td style="padding: 10px;">Complète ✓</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;"><strong>Disponibilité</strong></td>
+                        <td style="padding: 10px;">99.99% ✓</td>
+                        <td style="padding: 10px;">À configurer</td>
+                        <td style="padding: 10px;">À maintenir</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;"><strong>Dépendance vendeur</strong></td>
+                        <td style="padding: 10px;">Élevée</td>
+                        <td style="padding: 10px;">Modérée</td>
+                        <td style="padding: 10px;">Nulle ✓</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>✓ Recommandation :</strong> <strong>SAAS</strong> (ex: SAP S/4HANA Cloud, Oracle Cloud)</p>
+                <p><strong>Justification :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Coûts OPEX prévisibles au lieu de CAPEX massif</li>
+                    <li>Mises à jour et maintenance gérées par le fournisseur</li>
+                    <li>99.99% de disponibilité garantie</li>
+                    <li>Migration progressive possible sans interruption majeure</li>
+                    <li>Support expert 24/7</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-users"></i> Exercice 5 : Atelier de Recueil des Besoins
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Vous organisez un atelier de 2 heures pour recueillir les besoins d'une application e-commerce auprès de 20 personnes (direction, ventes, logistique, IT).
+                <p style="margin-top: 10px;"><strong>Questions :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Proposez l'agenda de cet atelier (timing et activités)</li>
+                    <li>Quelles questions poseriez-vous à la direction ? Aux ventes ? À la logistique ?</li>
+                    <li>Comment documenter les résultats ?</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol5').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol5">
+                <strong>Correction - Plan d'Atelier :</strong><br><br>
+                <strong>AGENDA 2 HEURES</strong><br><br>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: #0f766e; color: white;">
+                        <th style="padding: 10px; width: 20%;">Heure</th>
+                        <th style="padding: 10px; width: 50%;">Activité</th>
+                        <th style="padding: 10px; width: 30%;">Responsable</th>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;">14h00</td>
+                        <td style="padding: 10px;"><strong>Ouverture</strong> - Présentation enjeux, agenda, règles discussion</td>
+                        <td style="padding: 10px;">Chef projet</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;">14h10</td>
+                        <td style="padding: 10px;"><strong>Brainstorm 1</strong> - Problèmes actuels e-commerce (30 min)</td>
+                        <td style="padding: 10px;">Animateur</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;">14h40</td>
+                        <td style="padding: 10px;"><strong>Brainstorm 2</strong> - Fonctionnalités rêvées (30 min)</td>
+                        <td style="padding: 10px;">Animateur</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;">15h10</td>
+                        <td style="padding: 10px;"><strong>Atelier groupes</strong> - Par fonction (20 min)</td>
+                        <td style="padding: 10px;">Animateurs</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc;">
+                        <td style="padding: 10px;">15h30</td>
+                        <td style="padding: 10px;"><strong>Restitution</strong> - Chaque groupe présente (10 min)</td>
+                        <td style="padding: 10px;">Groupes</td>
+                    </tr>
+                    <tr style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <td style="padding: 10px;">15h50</td>
+                        <td style="padding: 10px;"><strong>Clôture</strong> - Récapitulatif, étapes suivantes</td>
+                        <td style="padding: 10px;">Chef projet</td>
+                    </tr>
+                </table>
+                <br>
+                <strong>QUESTIONS PAR FONCTION</strong><br><br>
+                <strong>🏢 Direction :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Quel est votre objectif de croissance ventes en 3 ans ?</li>
+                    <li>Quel budget maximum pour ce projet ?</li>
+                    <li>Faut-il intégrer avec l'ERP existant ?</li>
+                </ul>
+                <strong>📊 Ventes :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Quels types de produits vendez-vous (nombre SKU) ?</li>
+                    <li>Quel est votre panier moyen ?</li>
+                    <li>Besoin de promotions, codes promo, fidélité ?</li>
+                    <li>Quels modes de paiement acceptez-vous ?</li>
+                </ul>
+                <strong>🚚 Logistique :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Comment gérez-vous actuellement les commandes et stocks ?</li>
+                    <li>Quel est votre capacité de traitement par jour ?</li>
+                    <li>Besoin de suivi temps réel des expéditions ?</li>
+                </ul>
+                <strong>📁 Documentation :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Enregistrer tous les items du brainstorm</li>
+                    <li>Définir priorité : MUST HAVE, SHOULD HAVE, NICE TO HAVE</li>
+                    <li>Classer par catégorie : Métier, Technique, Performance</li>
+                    <li>Créer un document "Procès-verbal d'atelier"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-section">
+        <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz Interactif</h2>
+        
+        <form id="quizForm">
+            <!-- Q1 -->
+            <div class="quiz-question">
+                <h4>❓ Question 1 : Qu'est-ce qu'un CDCF ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="a"> Une liste de fonctionnalités urgentes à réaliser
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="b"> Un document décrivant les besoins, spécifications et critères d'acceptation d'un projet
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="c"> Un contrat entre le client et le fournisseur
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="d"> Un rapport d'audit technique
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question">
+                <h4>❓ Question 2 : Quelle est la meilleure méthode pour recueillir les besoins d'un grand groupe hétérogène ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="a"> Questionnaire écrit
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="b"> Interviews individuelles
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="c"> Combinaison : interviews + questionnaire + atelier de brainstorming
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="d"> Observations sans poser de questions
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question">
+                <h4>❓ Question 3 : Qu'est-ce que le ROI ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="a"> Le coût total du projet
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="b"> Le rapport entre les bénéfices obtenus et les coûts investis
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="c"> Le temps de retour sur investissement uniquement
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="d"> La marge bénéficiaire du projet
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-question">
+                <h4>❓ Question 4 : Quelle est la différence entre SaaS, PaaS et IaaS ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="a"> SaaS est complet, PaaS est partial, IaaS est minimal
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="b"> SaaS = logiciel complet, PaaS = plateforme de développement, IaaS = serveurs virtualisés
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="c"> Aucune différence, ce sont des synonymes
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="d"> SaaS est on-premise, les autres sont cloud
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-question">
+                <h4>❓ Question 5 : Quel avantage principal offre une solution Open Source ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="a"> Coûts de licence réduits et accès au code source
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="b"> Meilleure performance que le propriétaire
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="c"> Support professionnel inclus
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="d"> Pas besoin de maintenance
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-question">
+                <h4>❓ Question 6 : Un besoin non-fonctionnel est :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="a"> Une fonctionnalité optionnelle à ajouter plus tard
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="b"> Une exigence de performance, sécurité, disponibilité (ex: 99% uptime)
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="c"> Un besoin du support technique
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="d"> Un problème à résoudre après le lancement
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-question">
+                <h4>❓ Question 7 : Quel est l'avantage principal d'une solution On-Premise ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="a"> Coûts plus bas que le cloud
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="b"> Pas besoin de maintenance
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="c"> Contrôle total des données et de l'infrastructure
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="d"> Accès uniquement depuis le bureau
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-question">
+                <h4>❓ Question 8 : Qu'est-ce qu'un besoin métier ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="a"> Ce que l'organisation veut accomplir (ex: augmenter ventes, réduire coûts)
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="b"> Les spécifications techniques du système
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="c"> Une fonctionnalité logicielle
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="d"> Le support technique requis
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-question">
+                <h4>❓ Question 9 : La faisabilité technique évalue :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="a"> Uniquement le budget disponible
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="b"> La capacité technologique à réaliser le projet, les compétences requises, les risques
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="c"> Uniquement les délais
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="d"> Uniquement l'acceptation utilisateur
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-question">
+                <h4>❓ Question 10 : Quel est l'avantage principal du cloud SaaS pour une PME ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="a"> Coûts d'investissement réduits et pas de maintenance interne
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="b"> Accès limité aux données
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="c"> Performance identique au on-premise
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="d"> Pas besoin de connexion internet
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="quiz-btn">
+                <i class="fas fa-check"></i> Valider le Quiz
+            </button>
+        </form>
+
+        <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'a',
+            q6: 'b', q7: 'c', q8: 'a', q9: 'b', q10: 'a'
+        };
+
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+
+            for (let q in correctAnswers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === correctAnswers[q]) {
+                    score++;
+                }
+            }
+
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.classList.add('show');
+
+            if (score >= 8) {
+                resultDiv.classList.remove('incorrect');
+                resultDiv.classList.add('correct');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-check-circle"></i> <strong>Excellent !</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%)
+                `;
+            } else if (score >= 6) {
+                resultDiv.classList.remove('incorrect');
+                resultDiv.classList.add('correct');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-check-circle"></i> <strong>Très bien !</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%)
+                `;
+            } else {
+                resultDiv.classList.remove('correct');
+                resultDiv.classList.add('incorrect');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-times-circle"></i> <strong>À revoir.</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%). Relisez le cours.
+                `;
+            }
+
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores') || '{}');
+            scores['reponses-besoins'] = { score, total: totalQuestions, date: new Date().toLocaleDateString() };
+            localStorage.setItem('bts_sio_scores', JSON.stringify(scores));
+
+            updateProgressBar();
+        });
+
+        function updateProgressBar() {
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores') || '{}');
+            const completion = Object.keys(scores).length / 15 * 100;
+            document.getElementById('progressFill').style.width = completion + '%';
+        }
+
+        updateProgressBar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion du Patrimoine Informatique - BTS SIO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: all 0.3s ease;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+        }
+        .page-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .page-header {
+            background: rgba(30, 41, 59, 0.95);
+        }
+        .page-header h1 {
+            font-size: 2.5em;
+            color: #0f766e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        body.dark-mode .page-header h1 {
+            color: #5eead4;
+        }
+        .page-header p {
+            font-size: 1.1em;
+            color: #666;
+        }
+        body.dark-mode .page-header p {
+            color: #a0aec0;
+        }
+        .lesson-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .lesson-content {
+            background: #1e293b;
+        }
+        .lesson-section {
+            margin-bottom: 25px;
+        }
+        .lesson-section h2 {
+            color: #0f766e;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0f766e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark-mode .lesson-section h2 {
+            color: #5eead4;
+            border-bottom-color: #5eead4;
+        }
+        .lesson-section h3 {
+            color: #166e63;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.15em;
+        }
+        body.dark-mode .lesson-section h3 {
+            color: #6ee7de;
+        }
+        .definition-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #0f766e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        body.dark-mode .definition-box {
+            background: linear-gradient(135deg, #0d3d35 0%, #0d4d45 100%);
+            border-left-color: #5eead4;
+        }
+        .definition-box strong {
+            color: #0f766e;
+        }
+        body.dark-mode .definition-box strong {
+            color: #5eead4;
+        }
+        .example-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            font-size: 0.95em;
+        }
+        body.dark-mode .example-box {
+            background: #0c2340;
+            border-left-color: #0ea5e9;
+        }
+        .exercises-section, .quiz-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .exercises-section,
+        body.dark-mode .quiz-section {
+            background: #1e293b;
+        }
+        .section-title {
+            font-size: 1.8em;
+            color: #0f766e;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        body.dark-mode .section-title {
+            color: #5eead4;
+        }
+        .exercise {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        body.dark-mode .exercise {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        .exercise-title {
+            font-weight: 600;
+            color: #0f766e;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        body.dark-mode .exercise-title {
+            color: #5eead4;
+        }
+        .exercise-content {
+            color: #555;
+            margin: 10px 0;
+        }
+        body.dark-mode .exercise-content {
+            color: #cbd5e1;
+        }
+        .toggle-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        .toggle-btn:hover {
+            background: #166e63;
+            transform: translateY(-2px);
+        }
+        .solution {
+            display: none;
+            background: #d1fae5;
+            border-left: 4px solid #059669;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 6px;
+            color: #065f46;
+        }
+        body.dark-mode .solution {
+            background: #0d3d35;
+            border-left-color: #10b981;
+            color: #86efac;
+        }
+        .solution.show {
+            display: block;
+        }
+        .quiz-container {
+            display: grid;
+            gap: 20px;
+        }
+        .quiz-question {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        body.dark-mode .quiz-question {
+            background: #0f172a;
+            border-color: #334155;
+        }
+        .quiz-question h4 {
+            color: #0f766e;
+            margin-bottom: 15px;
+        }
+        body.dark-mode .quiz-question h4 {
+            color: #5eead4;
+        }
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+        }
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .quiz-option {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        .quiz-option:hover {
+            border-color: #0f766e;
+        }
+        .quiz-option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .quiz-btn {
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .quiz-btn:hover {
+            background: #166e63;
+            transform: translateY(-2px);
+        }
+        .quiz-result {
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        .quiz-result.show {
+            display: block;
+        }
+        .quiz-result.correct {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        body.dark-mode .quiz-result.correct {
+            background: #0d3d35;
+            color: #86efac;
+        }
+        .quiz-result.incorrect {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+        body.dark-mode .quiz-result.incorrect {
+            background: #3d1f1f;
+            color: #fca5a5;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #0f766e;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #166e63;
+            transform: translateX(-5px);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        body.dark-mode .progress-bar {
+            background: #334155;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0f766e 0%, #14b8a6 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.8em; }
+            .lesson-content { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-content">
+    <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+    
+    <div class="page-header">
+        <h1><i class="fas fa-server"></i> Gestion du Patrimoine Informatique</h1>
+        <p>BLOC 1 - Support et Mise à Disposition de Services Informatiques</p>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- LESSON CONTENT -->
+    <div class="lesson-content">
+        <div class="lesson-section">
+            <h2><i class="fas fa-book"></i> Définition du Patrimoine Informatique</h2>
+            <p>Le patrimoine informatique d'une organisation est l'ensemble de ses ressources liées à l'informatique et à la technologie. Il comprend :</p>
+            
+            <div class="definition-box">
+                <strong>✓ Le patrimoine matériel (Hardware) :</strong> Serveurs, ordinateurs, imprimantes, équipements réseau (routeurs, switchs, pare-feu), disques de stockage, baies de serveurs.
+            </div>
+
+            <div class="definition-box">
+                <strong>✓ Le patrimoine logiciel (Software) :</strong> Systèmes d'exploitation, applications métier, outils bureautiques, bases de données, licences logicielles.
+            </div>
+
+            <div class="definition-box">
+                <strong>✓ Le patrimoine de données :</strong> Fichiers, bases de données, archives, documents stratégiques.
+            </div>
+
+            <div class="definition-box">
+                <strong>✓ Le patrimoine réseau :</strong> Infrastructure réseau, connexions internet, adresses IP, noms de domaine.
+            </div>
+
+            <div class="example-box">
+                <strong>💡 Exemple :</strong> Une PME de 50 salariés possède un patrimoine informatique composé de 50 ordinateurs portables, 10 serveurs, 2 baies de stockage, 100 licences Microsoft Office, 30 téléphones professionnels, et une base de données cliente de 10 000 fiches.
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-tools"></i> Les Outils de Gestion de Parc et d'Inventaire</h2>
+            
+            <h3>GLPI (Gestionnaire Libre de Parc Informatique)</h3>
+            <p>GLPI est un outil Open Source fondamental pour la gestion du patrimoine informatique :</p>
+            
+            <div class="definition-box">
+                <strong>Fonctionnalités principales :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Inventaire centralisé des équipements</li>
+                    <li>Gestion des tickets de support (système de ticketing)</li>
+                    <li>Historique de maintenance des matériels</li>
+                    <li>Gestion des contrats et garanties</li>
+                    <li>Gestion des utilisateurs et droits d'accès</li>
+                </ul>
+            </div>
+
+            <h3>OCS Inventory</h3>
+            <p>OCS (Open Computers and Software Inventory) permet une découverte automatique des équipements réseau :</p>
+            
+            <div class="definition-box">
+                <strong>Caractéristiques :</strong>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Scan automatique du parc informatique</li>
+                    <li>Détection du matériel et des logiciels</li>
+                    <li>Génération de rapports d'inventaire</li>
+                    <li>Identification des équipements non conformes</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <strong>💡 Exemple de workflow GLPI :</strong> Un utilisateur signale une panne imprimante → création automatique d'un ticket → affectation au technicien → résolution → fermeture du ticket avec notes de maintenance.
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-sync"></i> Le Cycle de Vie des Équipements</h2>
+            <p>Chaque équipement informatique suit un cycle de vie standardisé :</p>
+
+            <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <strong>1️⃣ Acquisition</strong> → Achat ou location de l'équipement<br><br>
+                <strong>2️⃣ Déploiement</strong> → Installation et configuration<br><br>
+                <strong>3️⃣ Exploitation</strong> → Utilisation courante par l'utilisateur final<br><br>
+                <strong>4️⃣ Maintenance</strong> → Mises à jour, réparations, interventions<br><br>
+                <strong>5️⃣ Remplacement</strong> → Décision de fin de vie technologique<br><br>
+                <strong>6️⃣ Fin de vie</strong> → Recyclage ou destruction sécurisée
+            </div>
+
+            <h3>Durée de vie moyenne :</h3>
+            <ul style="margin-left: 20px;">
+                <li><strong>Ordinateurs :</strong> 4-5 ans</li>
+                <li><strong>Serveurs :</strong> 5-7 ans</li>
+                <li><strong>Équipements réseau :</strong> 5-8 ans</li>
+                <li><strong>Téléphones :</strong> 3-4 ans</li>
+            </ul>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-tachometer-alt"></i> Les Indicateurs de Suivi ITIL</h2>
+            
+            <h3>MTBF (Mean Time Between Failures)</h3>
+            <div class="definition-box">
+                <strong>Définition :</strong> Temps moyen entre deux pannes. Mesure la fiabilité d'un équipement.
+                <div style="margin-top: 10px;">
+                    <strong>Formule :</strong> MTBF = Temps total de fonctionnement / Nombre de pannes
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong>Interprétation :</strong> Plus la valeur est élevée, meilleure est la fiabilité.
+                </div>
+            </div>
+
+            <h3>MTTR (Mean Time To Repair)</h3>
+            <div class="definition-box">
+                <strong>Définition :</strong> Temps moyen de réparation. Mesure l'efficacité du support technique.
+                <div style="margin-top: 10px;">
+                    <strong>Formule :</strong> MTTR = Temps total de réparation / Nombre de pannes
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong>Interprétation :</strong> Plus cette valeur est basse, plus rapide est la résolution.
+                </div>
+            </div>
+
+            <h3>Disponibilité (Availability)</h3>
+            <div class="definition-box">
+                <strong>Définition :</strong> Pourcentage de temps pendant lequel un système est opérationnel.
+                <div style="margin-top: 10px;">
+                    <strong>Formule :</strong> Disponibilité = MTBF / (MTBF + MTTR) × 100%
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong>Exemples :</strong> 
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        <li>99% = 3.65 jours d'indisponibilité par an</li>
+                        <li>99.9% = 8.76 heures d'indisponibilité par an</li>
+                        <li>99.99% = 52 minutes d'indisponibilité par an</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="lesson-section">
+            <h2><i class="fas fa-exclamation-triangle"></i> Gestion des Incidents (Notions ITIL)</h2>
+            
+            <h3>Incident vs Problème</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                <div class="definition-box">
+                    <strong>🔴 Incident :</strong> Interruption non planifiée d'un service ou dégradation de sa qualité (exemple : serveur web hors ligne).
+                </div>
+                <div class="definition-box">
+                    <strong>🟠 Problème :</strong> Cause racine d'un ou plusieurs incidents. Résoudre un problème prévient les incidents futurs.
+                </div>
+            </div>
+
+            <h3>Processus de Gestion des Incidents (ITIL)</h3>
+            <ol style="margin-left: 20px;">
+                <li><strong>Signalement (Detection) :</strong> L'utilisateur signale un problème</li>
+                <li><strong>Enregistrement (Recording) :</strong> Création d'un ticket dans GLPI</li>
+                <li><strong>Classification :</strong> Priorité et urgence (Impact × Urgence)</li>
+                <li><strong>Diagnostic initial :</strong> Tentative de résolution rapide</li>
+                <li><strong>Escalade :</strong> Si nécessaire, transfert à un expert</li>
+                <li><strong>Résolution :</strong> Correction du problème</li>
+                <li><strong>Clôture :</strong> Validation avec l'utilisateur et archivage</li>
+            </ol>
+
+            <div class="example-box">
+                <strong>💡 Exemple :</strong> Un utilisateur signale : "Je n'accède plus à mon email". Le ticket est créé avec priorité HAUTE (impact ÉLEVÉ). Le support diagnostique : serveur SMTP indisponible. Le problème : manque d'espace disque. La résolution : libération d'espace. Résultat : MTTR = 45 minutes.
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISES -->
+    <div class="exercises-section">
+        <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Exercices Pratiques</h2>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-tasks"></i> Exercice 1 : Cartographie du Parc Informatique
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Une petite entreprise informatique possède :
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>5 ordinateurs de bureau (Dell, 2020)</li>
+                    <li>3 serveurs (HP, 2019)</li>
+                    <li>2 switchs réseau (Cisco, 2018)</li>
+                    <li>1 pare-feu (Fortigate, 2018)</li>
+                    <li>8 téléphones professionnels (Samsung, 2021)</li>
+                    <li>1 base de données (PostgreSQL, 50 utilisateurs)</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Question :</strong> Créez un tableau d'inventaire avec colonnes : Catégorie | Équipement | Marque | Année | Durée de vie restante estimée | Risque de remplacement.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol1').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol1">
+                <strong>Correction :</strong><br><br>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: rgba(0,0,0,0.1); border: 1px solid #059669;">
+                        <td style="padding: 8px;"><strong>Catégorie</strong></td>
+                        <td style="padding: 8px;"><strong>Équipement</strong></td>
+                        <td style="padding: 8px;"><strong>Année</strong></td>
+                        <td style="padding: 8px;"><strong>Durée restante</strong></td>
+                        <td style="padding: 8px;"><strong>Risque</strong></td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Matériel</td>
+                        <td style="padding: 8px;">Ordinateurs</td>
+                        <td style="padding: 8px;">2020</td>
+                        <td style="padding: 8px;">2-3 ans</td>
+                        <td style="padding: 8px;">Moyen</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Matériel</td>
+                        <td style="padding: 8px;">Serveurs</td>
+                        <td style="padding: 8px;">2019</td>
+                        <td style="padding: 8px;">2-3 ans</td>
+                        <td style="padding: 8px;">Moyen</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Réseau</td>
+                        <td style="padding: 8px;">Switchs</td>
+                        <td style="padding: 8px;">2018</td>
+                        <td style="padding: 8px;">1-2 ans</td>
+                        <td style="padding: 8px;">ÉLEVÉ</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Réseau</td>
+                        <td style="padding: 8px;">Pare-feu</td>
+                        <td style="padding: 8px;">2018</td>
+                        <td style="padding: 8px;">1-2 ans</td>
+                        <td style="padding: 8px;">ÉLEVÉ</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>Analyse :</strong> Les équipements réseau (2018) approchent de la fin de vie. Recommandation : budgétiser un remplacement en 2025-2026.</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-calculator"></i> Exercice 2 : Calcul de Disponibilité et MTTR
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Un serveur critique a fonctionné pendant 365 jours avec les statistiques suivantes :
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Nombre total de pannes : 4</li>
+                    <li>Temps total de réparation : 8 heures</li>
+                    <li>MTBF fourni par le constructeur : 50 000 heures</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Question :</strong> Calculez le MTTR réel et la disponibilité réelle du serveur. Comparez avec le MTBF constructeur.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol2').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol2">
+                <strong>Correction :</strong><br><br>
+                <strong>Calculs :</strong>
+                <ul style="margin-left: 20px;">
+                    <li><strong>MTTR réel :</strong> 8 heures / 4 pannes = <strong>2 heures</strong></li>
+                    <li><strong>Temps de fonctionnement :</strong> 365 × 24 = 8 760 heures</li>
+                    <li><strong>MTBF réel :</strong> 8 760 heures / 4 pannes = <strong>2 190 heures</strong></li>
+                    <li><strong>Disponibilité réelle :</strong> 2 190 / (2 190 + 2) × 100% = <strong>99.91%</strong></li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Analyse :</strong> Le MTTR réel (2h) est excellent. Le MTBF réel (2 190h) est inférieur au MTBF constructeur (50 000h), ce qui indique des conditions opérationnelles plus difficiles ou une usure prématurée. La disponibilité 99.91% est très bonne pour un serveur critique.</p>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-tasks"></i> Exercice 3 : Modélisation du Traitement des Tickets
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Vous devez modéliser le flux de traitement des incidents pour une équipe support ITIL avec :
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>État initial : Nouveau</li>
+                    <li>Étapes : Enregistrement → Diagnostic → Escalade → Résolution → Clôture</li>
+                    <li>Critères de classification : Impact (Bas/Moyen/Élevé) et Urgence (Basse/Normale/Haute)</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Question :</strong> Créez un tableau de définition des niveaux de priorité et du temps de réponse SLA correspondant.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol3').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol3">
+                <strong>Correction - Matrice de Priorité SLA :</strong><br><br>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: rgba(0,0,0,0.1); border: 1px solid #059669;">
+                        <td style="padding: 8px;"><strong>Impact</strong></td>
+                        <td style="padding: 8px;"><strong>Urgence</strong></td>
+                        <td style="padding: 8px;"><strong>Priorité</strong></td>
+                        <td style="padding: 8px;"><strong>Temps de réponse SLA</strong></td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">ÉLEVÉ</td>
+                        <td style="padding: 8px;">HAUTE</td>
+                        <td style="padding: 8px;">P1 (CRITIQUE)</td>
+                        <td style="padding: 8px;">15 minutes</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">ÉLEVÉ</td>
+                        <td style="padding: 8px;">Normale</td>
+                        <td style="padding: 8px;">P2 (HAUTE)</td>
+                        <td style="padding: 8px;">2 heures</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Moyen</td>
+                        <td style="padding: 8px;">HAUTE</td>
+                        <td style="padding: 8px;">P2 (HAUTE)</td>
+                        <td style="padding: 8px;">2 heures</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Moyen</td>
+                        <td style="padding: 8px;">Normale</td>
+                        <td style="padding: 8px;">P3 (MOYEN)</td>
+                        <td style="padding: 8px;">8 heures</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">Bas</td>
+                        <td style="padding: 8px;">Toute</td>
+                        <td style="padding: 8px;">P4 (BAS)</td>
+                        <td style="padding: 8px;">24-48 heures</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-lightbulb"></i> Exercice 4 : Cas GLPI
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Un utilisateur signale via GLPI : "Mon imprimante ne répond plus en réseau". Vous êtes responsable du support second niveau.
+                <p style="margin-top: 10px;"><strong>Questions :</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Quel est l'impact et l'urgence de cet incident ?</li>
+                    <li>Décrire les actions de diagnostic que vous effectueriez.</li>
+                    <li>Comment enregistreriez-vous la solution dans GLPI ?</li>
+                </ul>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol4').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol4">
+                <strong>Correction :</strong><br><br>
+                <strong>1. Impact et Urgence :</strong>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Impact :</strong> Moyen à ÉLEVÉ (dépend du nombre d'utilisateurs affectés)</li>
+                    <li><strong>Urgence :</strong> Normale à HAUTE (si impression critique)</li>
+                    <li><strong>Priorité estimée :</strong> P2 (HAUTE)</li>
+                </ul>
+                <strong>2. Actions de diagnostic :</strong>
+                <ul style="margin-left: 20px;">
+                    <li>Ping l'imprimante (adresse IP) → vérifier si elle répond sur le réseau</li>
+                    <li>Vérifier la connexion réseau (câble, port switch)</li>
+                    <li>Accéder à l'interface web de l'imprimante (http://[IP_imprimante])</li>
+                    <li>Vérifier les journaux d'erreur GLPI</li>
+                    <li>Redémarrer l'imprimante si nécessaire</li>
+                    <li>Tester depuis une autre machine client</li>
+                </ul>
+                <strong>3. Enregistrement dans GLPI :</strong>
+                <ul style="margin-left: 20px;">
+                    <li><strong>État du ticket :</strong> "Résolu"</li>
+                    <li><strong>Catégorie :</strong> "Imprimantes et périphériques"</li>
+                    <li><strong>Notes de résolution :</strong> "Diagnostic réseau effectué. Imprimante trouvée hors ligne. Cause : perte de connexion réseau. Action : vérification du câble réseau et redémarrage. Imprimante à nouveau opérationnelle. Utilisateur testé avec succès."</li>
+                    <li><strong>Temps total MTTR :</strong> 30 minutes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exercise">
+            <div class="exercise-title">
+                <i class="fas fa-file-contract"></i> Exercice 5 : Planification de Remplacement
+            </div>
+            <div class="exercise-content">
+                <strong>Énoncé :</strong> Vous devez planifier le budget de remplacement informatique pour les 3 prochaines années avec les données suivantes :
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>20 ordinateurs (2018) à remplacer en 2025-2026 : 800€ / unité</li>
+                    <li>5 serveurs (2019) à remplacer en 2024-2025 : 5 000€ / unité</li>
+                    <li>3 switchs réseau (2018) fin de vie en 2025 : 2 500€ / unité</li>
+                    <li>Budget annuel moyen d'études précédentes : 15 000€</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>Question :</strong> Calculez les budgets de remplacement prévus par année et l'écart face aux dépenses habituelles.</p>
+            </div>
+            <button class="toggle-btn" onclick="document.querySelector('#sol5').classList.toggle('show')">
+                <i class="fas fa-eye"></i> Voir la correction
+            </button>
+            <div class="solution" id="sol5">
+                <strong>Correction - Plan de Remplacement :</strong><br><br>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <tr style="background: rgba(0,0,0,0.1); border: 1px solid #059669;">
+                        <td style="padding: 8px;"><strong>Année</strong></td>
+                        <td style="padding: 8px;"><strong>Équipements</strong></td>
+                        <td style="padding: 8px;"><strong>Coût</strong></td>
+                        <td style="padding: 8px;"><strong>Différence</strong></td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">2024</td>
+                        <td style="padding: 8px;">Serveurs (5 × 5000€)</td>
+                        <td style="padding: 8px;">25 000€</td>
+                        <td style="padding: 8px;">+10 000€</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">2025</td>
+                        <td style="padding: 8px;">Ordinateurs (20 × 800€) + Switchs (3 × 2500€)</td>
+                        <td style="padding: 8px;">23 500€</td>
+                        <td style="padding: 8px;">+8 500€</td>
+                    </tr>
+                    <tr style="border: 1px solid #059669;">
+                        <td style="padding: 8px;">2026</td>
+                        <td style="padding: 8px;">Maintenance standard</td>
+                        <td style="padding: 8px;">15 000€</td>
+                        <td style="padding: 8px;">0€</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>Conclusion :</strong> Budget total 3 ans = 63 500€ (au lieu de 45 000€ habituels). Surplus : 18 500€ à prévoir en 2024-2025.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="quiz-section">
+        <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz Interactif</h2>
+        
+        <form id="quizForm">
+            <!-- Q1 -->
+            <div class="quiz-question">
+                <h4>❓ Question 1 : Qu'est-ce qu'un outil de ticketing dans GLPI ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="a"> Un système pour créer des factures clients
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="b"> Un système d'enregistrement et de suivi des incidents/demandes
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="c"> Un outil pour gérer les contrats d'assurance
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="d"> Un système de vente de licences logicielles
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question">
+                <h4>❓ Question 2 : Que signifie SLA ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="a"> Service Level Access
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="b"> Support Level Agreement
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="c"> Service Level Agreement
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="d"> System Limitation Authorization
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question">
+                <h4>❓ Question 3 : Quelle est la différence entre un incident et un problème selon ITIL ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="a"> Il n'y a aucune différence, les termes sont synonymes
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="b"> Un incident est une interruption de service, un problème est sa cause racine
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="c"> Un problème est une panne matérielle, un incident est une panne logicielle
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="d"> Un incident dure quelques minutes, un problème peut durer des heures
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-question">
+                <h4>❓ Question 4 : Le MTBF d'un équipement est de 40 000 heures. Qu'est-ce que cela signifie ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="a"> L'équipement fonctionnera pendant 40 000 heures avant de tomber en panne
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="b"> Il y aura une panne toutes les 40 000 heures en moyenne
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="c"> La réparation prendra 40 000 heures
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="d"> L'équipement nécessite une maintenance toutes les 40 000 heures
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-question">
+                <h4>❓ Question 5 : Comment calculer la disponibilité d'un service ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="a"> Nombre de jours de fonctionnement / 365
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="b"> MTBF / (MTBF + MTTR) × 100%
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="c"> MTTR / MTBF × 100%
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="d"> Nombre de tickets résolus / nombre total de tickets
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="quiz-question">
+                <h4>❓ Question 6 : Quel est le rôle principal d'OCS Inventory ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="a"> Gérer les tickets de support
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="b"> Faire une découverte automatique des équipements réseau et logiciels
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="c"> Chiffrer les données de l'entreprise
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="d"> Créer les sauvegardes automatiques
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="quiz-question">
+                <h4>❓ Question 7 : Quelle est la durée de vie moyenne d'un serveur informatique ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="a"> 2-3 ans
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="b"> 3-4 ans
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="c"> 5-7 ans
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q7" value="d"> 8-10 ans
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="quiz-question">
+                <h4>❓ Question 8 : Dans quel ordre se fait le cycle de vie d'un équipement ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="a"> Exploitation → Acquisition → Déploiement → Maintenance → Fin de vie
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="b"> Acquisition → Déploiement → Exploitation → Maintenance → Fin de vie
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="c"> Déploiement → Acquisition → Exploitation → Maintenance → Fin de vie
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q8" value="d"> Maintenance → Exploitation → Acquisition → Déploiement → Fin de vie
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="quiz-question">
+                <h4>❓ Question 9 : Quel est le calcul du MTTR ?</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="a"> Nombre total de pannes / Temps total de réparation
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="b"> Temps total de réparation / Nombre total de pannes
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="c"> Temps moyen entre deux interventions
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q9" value="d"> Nombre de jours sans panne / Nombre de mois
+                    </label>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="quiz-question">
+                <h4>❓ Question 10 : Le patrimoine informatique comprend :</h4>
+                <div class="quiz-options">
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="a"> Uniquement le matériel (ordinateurs, serveurs)
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="b"> Uniquement les logiciels et les données
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="c"> Matériel, logiciels, données, infrastructure réseau et services
+                    </label>
+                    <label class="quiz-option">
+                        <input type="radio" name="q10" value="d"> Uniquement les serveurs critiques
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="quiz-btn">
+                <i class="fas fa-check"></i> Valider le Quiz
+            </button>
+        </form>
+
+        <div class="quiz-result" id="quizResult"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        // Réponses correctes
+        const correctAnswers = {
+            q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'b',
+            q6: 'b', q7: 'c', q8: 'b', q9: 'b', q10: 'c'
+        };
+
+        // Gestion du quiz
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let score = 0;
+            const totalQuestions = Object.keys(correctAnswers).length;
+
+            for (let q in correctAnswers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === correctAnswers[q]) {
+                    score++;
+                }
+            }
+
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.classList.add('show');
+
+            if (score >= 8) {
+                resultDiv.classList.remove('incorrect');
+                resultDiv.classList.add('correct');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-check-circle"></i> <strong>Excellent !</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%)
+                `;
+            } else if (score >= 6) {
+                resultDiv.classList.remove('incorrect');
+                resultDiv.classList.add('correct');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-check-circle"></i> <strong>Très bien !</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%)
+                `;
+            } else {
+                resultDiv.classList.remove('correct');
+                resultDiv.classList.add('incorrect');
+                resultDiv.innerHTML = `
+                    <i class="fas fa-times-circle"></i> <strong>À revoir.</strong> Vous avez obtenu ${score}/${totalQuestions} (${percentage}%). Relisez le cours.
+                `;
+            }
+
+            // Sauvegarder le score
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores') || '{}');
+            scores['gestion-patrimoine'] = { score, total: totalQuestions, date: new Date().toLocaleDateString() };
+            localStorage.setItem('bts_sio_scores', JSON.stringify(scores));
+
+            // Mise à jour de la barre de progression
+            updateProgressBar();
+        });
+
+        // Barre de progression
+        function updateProgressBar() {
+            const scores = JSON.parse(localStorage.getItem('bts_sio_scores') || '{}');
+            const completion = Object.keys(scores).length / 15 * 100; // 15 pages total approximativement
+            document.getElementById('progressFill').style.width = completion + '%';
+        }
+
+        updateProgressBar();
+    </script>
+</body>
+</html>

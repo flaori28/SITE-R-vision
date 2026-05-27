@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS SIO 1ère Année - Révision</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>BTS SIO 1ère Année</span>
+            </div>
+            <button id="darkModeToggle" class="dark-mode-btn" title="Basculer le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>Matières</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <h4 class="nav-section-title">Fondamentaux</h4>
+                <a href="#" class="nav-link active" data-page="dashboard">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Tableau de bord</span>
+                </a>
+                <a href="#" class="nav-link" data-page="math">
+                    <i class="fas fa-calculator"></i>
+                    <span>Mathématiques</span>
+                </a>
+                <a href="#" class="nav-link" data-page="culture">
+                    <i class="fas fa-book"></i>
+                    <span>Culture Générale</span>
+                </a>
+                <a href="#" class="nav-link" data-page="anglais">
+                    <i class="fas fa-flag-usa"></i>
+                    <span>Anglais</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <h4 class="nav-section-title">SLAM</h4>
+                <a href="#" class="nav-link" data-page="slam-algo">
+                    <i class="fas fa-code"></i>
+                    <span>Algorithmique</span>
+                </a>
+                <a href="#" class="nav-link" data-page="slam-bdd">
+                    <i class="fas fa-database"></i>
+                    <span>Bases de données</span>
+                </a>
+                <a href="#" class="nav-link" data-page="slam-web">
+                    <i class="fas fa-globe"></i>
+                    <span>Développement Web</span>
+                </a>
+                <a href="#" class="nav-link" data-page="slam-poo">
+                    <i class="fas fa-cube"></i>
+                    <span>POO</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <h4 class="nav-section-title">SISR</h4>
+                <a href="#" class="nav-link" data-page="sisr-reseau">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Réseaux</span>
+                </a>
+                <a href="#" class="nav-link" data-page="sisr-systeme">
+                    <i class="fas fa-server"></i>
+                    <span>Systèmes</span>
+                </a>
+                <a href="#" class="nav-link" data-page="sisr-cyber">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Cybersécurité</span>
+                </a>
+                <a href="#" class="nav-link" data-page="sisr-virt">
+                    <i class="fas fa-boxes"></i>
+                    <span>Virtualisation</span>
+                </a>
+            </div>
+
+            <div class="nav-section">
+                <h4 class="nav-section-title">Transversales</h4>
+                <a href="#" class="nav-link" data-page="cejm">
+                    <i class="fas fa-scale-balanced"></i>
+                    <span>CEJM</span>
+                </a>
+                <a href="#" class="nav-link" data-page="ecodroit">
+                    <i class="fas fa-gavel"></i>
+                    <span>Économie-Droit</span>
+                </a>
+                <a href="#" class="nav-link" data-page="management">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Management SI</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard">
+            <div class="dashboard-header">
+                <h1>Tableau de bord</h1>
+                <p>Suivi de votre progression dans les révisions</p>
+            </div>
+
+            <div class="progress-overview">
+                <div class="progress-stat">
+                    <i class="fas fa-tasks"></i>
+                    <div>
+                        <div class="stat-value" id="totalProgress">0%</div>
+                        <div class="stat-label">Progression globale</div>
+                    </div>
+                </div>
+                <div class="progress-stat">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <div class="stat-value" id="avgScore">--</div>
+                        <div class="stat-label">Score moyen</div>
+                    </div>
+                </div>
+                <div class="progress-stat">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <div class="stat-value" id="completedCount">0</div>
+                        <div class="stat-label">Quiz complétés</div>
+                    </div>
+                </div>
+                <div class="progress-stat">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <div class="stat-value" id="studyTime">--</div>
+                        <div class="stat-label">Temps d'étude</div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Matières à réviser</h2>
+            <div class="subjects-grid">
+                <div class="subject-card" data-subject="math">
+                    <div class="card-header">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Mathématiques</h3>
+                    </div>
+                    <p>Algèbre de Boole, binaire, hexadécimal</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="slam-algo">
+                    <div class="card-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Algorithmique</h3>
+                    </div>
+                    <p>Variables, structures, fonctions, tableaux</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="slam-bdd">
+                    <div class="card-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Bases de données</h3>
+                    </div>
+                    <p>MCD, MLD, SQL, normalisation</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="slam-web">
+                    <div class="card-header">
+                        <i class="fas fa-globe"></i>
+                        <h3>Dev Web</h3>
+                    </div>
+                    <p>HTML5, CSS3, JavaScript, PHP</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="slam-poo">
+                    <div class="card-header">
+                        <i class="fas fa-cube"></i>
+                        <h3>POO</h3>
+                    </div>
+                    <p>Classes, héritage, encapsulation, polymorphisme</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="sisr-reseau">
+                    <div class="card-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Réseaux</h3>
+                    </div>
+                    <p>OSI, TCP/IP, adressage, routage</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="sisr-systeme">
+                    <div class="card-header">
+                        <i class="fas fa-server"></i>
+                        <h3>Systèmes</h3>
+                    </div>
+                    <p>Linux, Windows Server, gestion des droits</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="sisr-cyber">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersécurité</h3>
+                    </div>
+                    <p>Chiffrement, authentification, RGPD</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="sisr-virt">
+                    <div class="card-header">
+                        <i class="fas fa-boxes"></i>
+                        <h3>Virtualisation</h3>
+                    </div>
+                    <p>Hyperviseurs, VirtualBox, VMware</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="culture">
+                    <div class="card-header">
+                        <i class="fas fa-book"></i>
+                        <h3>Culture Générale</h3>
+                    </div>
+                    <p>Communication, expression écrite</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="anglais">
+                    <div class="card-header">
+                        <i class="fas fa-flag-usa"></i>
+                        <h3>Anglais</h3>
+                    </div>
+                    <p>Vocabulaire, expressions techniques</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="ecodroit">
+                    <div class="card-header">
+                        <i class="fas fa-gavel"></i>
+                        <h3>Économie-Droit</h3>
+                    </div>
+                    <p>Contrats, droit du travail, RGPD</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+
+                <div class="subject-card" data-subject="management">
+                    <div class="card-header">
+                        <i class="fas fa-briefcase"></i>
+                        <h3>Management SI</h3>
+                    </div>
+                    <p>ITIL, Agile, gestion de projet, Scrum</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="stat">0% complété</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Area for dynamically loaded pages -->
+        <div id="content" class="content-area"></div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+# Pages de contenu détaillées pour SLAM - Algorithmique
+# Cet ensemble de pages HTML sera intégré dans l'application principale
+
+# pages/slam/algorithmique.html
+
+def get_algorithmique_page():
+    return """
+    <div class="page-content">
+        <h1>Algorithmique et Programmation</h1>
+        <div class="lesson-content">
+            <h2>1. Introduction à l'algorithmique</h2>
+            <p>L'algorithmique est l'étude et la conception d'algorithmes - des procédures étape par étape pour résoudre un problème.</p>
+            
+            <h2>2. Concepts fondamentaux</h2>
+            
+            <h3>Variables et types de données</h3>
+            <div class="definition-box">Une variable est un espace mémoire nommé qui stocke une valeur. Les types de base sont : entier, réel, booléen et caractère.</div>
+            
+            <div class="code-block"><pre><code class="language-javascript">// Déclaration et initialisation
+let age = 25;              // Entier
+let salaire = 1500.50;     // Réel
+let nom = "Jean Dupont";   // Chaîne
+let actif = true;          // Booléen</code></pre></div>
+
+            <h3>Opérateurs arithmétiques</h3>
+            <ul>
+                <li><strong>Addition (+)</strong> : 5 + 3 = 8</li>
+                <li><strong>Soustraction (-)</strong> : 10 - 4 = 6</li>
+                <li><strong>Multiplication (*)</strong> : 6 * 7 = 42</li>
+                <li><strong>Division (/)</strong> : 20 / 4 = 5</li>
+                <li><strong>Modulo (%)</strong> : 17 % 5 = 2</li>
+            </ul>
+
+            <h3>Opérateurs de comparaison</h3>
+            <table>
+                <tr><th>Opérateur</th><th>Signification</th><th>Exemple</th></tr>
+                <tr><td>==</td><td>Égal</td><td>5 == 5 → true</td></tr>
+                <tr><td>!=</td><td>Différent</td><td>5 != 3 → true</td></tr>
+                <tr><td>&lt;</td><td>Inférieur</td><td>3 < 5 → true</td></tr>
+                <tr><td>&gt;</td><td>Supérieur</td><td>5 > 3 → true</td></tr>
+                <tr><td>&lt;=</td><td>Inférieur ou égal</td><td>3 <= 5 → true</td></tr>
+                <tr><td>&gt;=</td><td>Supérieur ou égal</td><td>5 >= 5 → true</td></tr>
+            </table>
+
+            <h2>3. Structures de contrôle</h2>
+
+            <h3>Condition IF</h3>
+            <div class="code-block"><pre><code class="language-javascript">if (age >= 18) {
+    console.log("Vous êtes majeur");
+} else if (age >= 13) {
+    console.log("Vous êtes adolescent");
+} else {
+    console.log("Vous êtes enfant");
+}</code></pre></div>
+
+            <h3>Boucle FOR</h3>
+            <div class="code-block"><pre><code class="language-javascript">// Boucle for simple
+for (let i = 0; i < 5; i++) {
+    console.log("Itération " + i);
+}
+
+// Affichage :
+// Itération 0
+// Itération 1
+// Itération 2
+// Itération 3
+// Itération 4</code></pre></div>
+
+            <h3>Boucle WHILE</h3>
+            <div class="code-block"><pre><code class="language-javascript">let compteur = 0;
+while (compteur < 3) {
+    console.log("Compteur : " + compteur);
+    compteur++;
+}</code></pre></div>
+
+            <h2>4. Fonctions</h2>
+            <p>Une fonction est un bloc de code réutilisable qui effectue une tâche spécifique.</p>
+            
+            <div class="code-block"><pre><code class="language-javascript">// Déclaration d'une fonction
+function additioner(a, b) {
+    return a + b;
+}
+
+// Appel de la fonction
+let resultat = additioner(5, 3);  // resultat = 8
+
+// Fonction sans retour
+function afficherMessage(message) {
+    console.log(message);
+}
+
+afficherMessage("Bonjour!");  // Affiche : Bonjour!</code></pre></div>
+
+            <h2>5. Tableaux</h2>
+            <p>Un tableau est une collection ordonnée d'éléments.</p>
+            
+            <div class="code-block"><pre><code class="language-javascript">// Déclaration d'un tableau
+let fruits = ["pomme", "banane", "orange"];
+
+// Accès aux éléments (index commence à 0)
+console.log(fruits[0]);  // pomme
+console.log(fruits.length);  // 3
+
+// Ajouter un élément
+fruits.push("raisin");
+
+// Parcourir le tableau
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}</code></pre></div>
+
+            <h2>6. Complexité algorithmique</h2>
+            <div class="definition-box"><strong>Complexité O(n)</strong> : Le temps augmente linéairement avec la taille de l'entrée. Exemple : parcourir un tableau.</div>
+            <div class="definition-box"><strong>Complexité O(n²)</strong> : Le temps augmente au carré. Exemple : boucles imbriquées.</div>
+            <div class="definition-box"><strong>Complexité O(log n)</strong> : Le temps augmente logarithmiquement. Exemple : recherche binaire.</div>
+        </div>
+
+        <div class="exercises-section">
+            <h2>Exercices pratiques</h2>
+            
+            <div class="exercise">
+                <h4>Exercice 1 : Afficher les nombres de 1 à 10</h4>
+                <p>Écrivez une boucle for qui affiche les nombres de 1 à 10.</p>
+                <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                <div class="exercise-solution">
+                    <strong>Solution :</strong>
+                    <div class="code-block"><pre><code class="language-javascript">for (let i = 1; i <= 10; i++) {
+    console.log(i);
+}</code></pre></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 2 : Calculer la somme d'un tableau</h4>
+                <p>Écrivez une fonction qui retourne la somme de tous les éléments d'un tableau.</p>
+                <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                <div class="exercise-solution">
+                    <strong>Solution :</strong>
+                    <div class="code-block"><pre><code class="language-javascript">function sommeTableau(tableau) {
+    let somme = 0;
+    for (let i = 0; i < tableau.length; i++) {
+        somme += tableau[i];
+    }
+    return somme;
+}
+
+// Utilisation
+let nombres = [1, 2, 3, 4, 5];
+console.log(sommeTableau(nombres));  // 15</code></pre></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 3 : Trouver le maximum d'un tableau</h4>
+                <p>Écrivez une fonction qui retourne le plus grand nombre d'un tableau.</p>
+                <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                <div class="exercise-solution">
+                    <strong>Solution :</strong>
+                    <div class="code-block"><pre><code class="language-javascript">function trouverMax(tableau) {
+    let max = tableau[0];
+    for (let i = 1; i < tableau.length; i++) {
+        if (tableau[i] > max) {
+            max = tableau[i];
+        }
+    }
+    return max;
+}
+
+// Utilisation
+console.log(trouverMax([3, 7, 2, 9, 1]));  // 9</code></pre></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 4 : Vérifier si un nombre est pair</h4>
+                <p>Écrivez une fonction qui retourne true si le nombre est pair, false sinon.</p>
+                <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                <div class="exercise-solution">
+                    <strong>Solution :</strong>
+                    <div class="code-block"><pre><code class="language-javascript">function estPair(nombre) {
+    return nombre % 2 === 0;
+}
+
+console.log(estPair(4));   // true
+console.log(estPair(7));   // false</code></pre></div>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercice 5 : Inverser une chaîne</h4>
+                <p>Écrivez une fonction qui retourne une chaîne inversée.</p>
+                <button class="btn" onclick="toggleSolution(this)">Voir la correction</button>
+                <div class="exercise-solution">
+                    <strong>Solution :</strong>
+                    <div class="code-block"><pre><code class="language-javascript">function inverserChaine(chaine) {
+    let resultat = "";
+    for (let i = chaine.length - 1; i >= 0; i--) {
+        resultat += chaine[i];
+    }
+    return resultat;
+}
+
+console.log(inverserChaine("hello"));  // olleh</code></pre></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quiz-section">
+            <h2>Quiz : Algorithmique</h2>
+            <form id="algoQuiz">
+                <div class="quiz-question">
+                    <h4>1. Quel opérateur calcule le reste d'une division ?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q1" value="0"> / (Division)</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="1"> % (Modulo)</label>
+                        <label class="quiz-option"><input type="radio" name="q1" value="0"> * (Multiplication)</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h4>2. Combien de fois la boucle s'exécute-t-elle : for(let i=0; i<5; i++)</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q2" value="0"> 4 fois</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="1"> 5 fois</label>
+                        <label class="quiz-option"><input type="radio" name="q2" value="0"> 6 fois</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h4>3. Quel est l'index du premier élément d'un tableau ?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q3" value="1"> 0</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="0"> 1</label>
+                        <label class="quiz-option"><input type="radio" name="q3" value="0"> -1</label>
+                    </div>
+                </div>
+
+                <div class="quiz-question">
+                    <h4>4. Que retourne la fonction si elle n'a pas d'instruction return ?</h4>
+                    <div class="quiz-options">
+                        <label class="quiz-option"><input type="radio" name="q4" value="0"> 0</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="1"> undefined</label>
+                        <label class="quiz-option"><input type="radio" name="q4" value="0"> null</label>
+                    </div>
+                </div>
+
+                <button type="button" class="btn" onclick="submitQuiz('algoQuiz', 'slam-algo')">Soumettre</button>
+            </form>
+            <div id="slam-algo-result" class="quiz-result"></div>
+        </div>
+    </div>
+    """
+
+print(get_algorithmique_page())

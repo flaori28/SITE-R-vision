@@ -1,0 +1,294 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  📋 INVENTAIRE COMPLET - BTS SIO                            ║
+║                    Plateforme de Révision Interactive                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📍 LOCALISATION
+   C:\BTS-SIO-Revision\
+
+📅 DATE : 27 mai 2026
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📂 FICHIERS DU PROJET (10 fichiers | ~149 KB)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🏠 FICHIERS RACINE
+─────────────────
+
+1. index.html (14.57 KB)
+   └─ Page d'accueil principale avec :
+      • Header avec logo et toggle mode sombre
+      • Sidebar navigation (13 matières)
+      • Dashboard avec statistiques et progression
+      • Grille des 12 matières avec cartes interactives
+
+2. css/style.css (17.82 KB)
+   └─ Feuille de styles complète :
+      • 50+ variables CSS pour theming
+      • Dark mode avec transitions
+      • Layout responsive (480px / 768px / 1024px+)
+      • Composants : cards, buttons, tables, forms
+      • Animations fluides (fadeIn, slideInLeft, pulse)
+
+3. js/main.js (14.42 KB)
+   └─ Logique JavaScript :
+      • Dark mode toggle + localStorage
+      • Navigation dynamique entre pages
+      • Système quiz avec scoring
+      • Progress tracking localStorage
+      • Syntax highlighting (highlight.js)
+      • 13 générateurs de pages
+
+📄 DOCUMENTATION
+─────────────────
+
+4. README.md (4.58 KB)
+   └─ Guide complet d'utilisation :
+      • Installation 3 méthodes (batch, PowerShell, direct)
+      • Structure du projet
+      • Technologies utilisées
+      • Instructions pour ajouter du contenu
+      • Guide de déploiement
+
+5. CREATION_SUMMARY.md (7.21 KB)
+   └─ Rapport détaillé de création :
+      • Fichiers créés et tailles
+      • Fonctionnalités implémentées
+      • Statut des phases
+      • Technologies stack
+      • Prochaines étapes
+
+6. QUICK_START.md (5.67 KB)
+   └─ Guide rapide utilisateur :
+      • Démarrage en 30 secondes
+      • Utilisation de la plateforme
+      • Suivi de progression
+      • Guide pour ajouter du contenu
+      • Personnalisation des couleurs
+      • Dépannage courant
+
+🚀 SCRIPTS DE DÉMARRAGE
+──────────────────────
+
+7. start.bat (0.81 KB)
+   └─ Script Windows (.bat)
+      • Double-cliquez pour lancer le serveur
+      • Vérifie Python est installé
+      • Démarre server sur port 8000
+      • Message "Appuyez sur Ctrl+C pour arrêter"
+
+8. start.ps1 (1.26 KB)
+   └─ Script PowerShell (.ps1)
+      • Démarrage avec affichage coloré
+      • Vérification Python
+      • Gestion d'erreurs
+      • Arrêt gracieux du serveur
+
+📚 PAGES DE CONTENU
+────────────────────
+
+9. pages/slam/algorithmique.html (11 KB)
+   └─ Cours complet SLAM - Algorithmique :
+      ✓ 6 sections de cours
+      ✓ 5 exercices avec solutions masquables
+      ✓ 4 questions de quiz QCM
+      ✓ Code examples avec coloration syntaxe
+      ✓ Tableaux comparatifs
+
+10. pages/transversal/cejm.html (71.47 KB)
+    └─ Cours complet CEJM (Culture Économique, Juridique et Managériale) :
+       ✓ THÈME 1 : L'intégration de l'entreprise dans son environnement
+         • PESTEL analysis
+         • Formes juridiques (EI, EURL, SARL, SAS, SA)
+         • Parties prenantes
+         • Valeur ajoutée
+         • Mutations numériques
+         → 5 exercices + 10 questions quiz
+       
+       ✓ THÈME 2 : Régulation de l'activité économique
+         • Mécanismes du marché (offre, demande, prix)
+         • Structures de marché (concurrence, monopole, oligopole)
+         • Rôle de l'État
+         • Politiques monétaire et budgétaire
+         • GAFAM et régulation numérique
+         → 5 exercices + 10 questions quiz
+       
+       ✓ THÈME 3 : L'entreprise et sa relation avec les salariés
+         • Contrats de travail (CDI, CDD, apprentissage)
+         • Rupture du contrat
+         • Durée du travail (35h/semaine, heures sup)
+         • Rémunération et bulletin de paie
+         • CSE et représentants du personnel
+         • Contrats informatiques (licence, SaaS, infogérance)
+         → 6 exercices + 10 questions quiz
+       
+       ✓ THÈME 4 : L'entreprise face aux enjeux de société
+         • RGPD et protection des données
+         • Cybersécurité et droit informatique
+         • Propriété intellectuelle (droit d'auteur, licences)
+         • RSE et numérique responsable
+         • Protection du consommateur en ligne
+         → 6 exercices + 10 questions quiz
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✨ FONCTIONNALITÉS GLOBALES
+
+✅ Dashboard interactif
+   • Progression globale en %
+   • Score moyen des quiz
+   • Nombre de quiz complétés
+   • Temps d'étude (prêt pour extension)
+
+✅ Navigation professionnelle
+   • Sidebar avec 13 matières
+   • 4 sections organisées (Fondamentaux, SLAM, SISR, Transversales)
+   • Active link highlighting
+   • Routing dynamique
+
+✅ Dark Mode
+   • Toggle button en header
+   • Persistance localStorage
+   • Transitions fluides
+   • Tous composants supportés
+
+✅ Système Quiz Interactif
+   • Questions QCM avec feedback immédiat
+   • Score automatique (correct/total)
+   • Sauvegarde localStorage par sujet
+   • Bouton "Recommencer"
+
+✅ Exercices avec Corrections
+   • Énoncé visible
+   • Correction masquable (toggle)
+   • Animation smooth
+   • Solutions détaillées
+
+✅ Design Responsif
+   • Mobile-first (480px)
+   • Tablette (768px)
+   • Desktop (1024px+)
+   • Sidebar adaptative
+
+✅ Code Highlighting
+   • Coloration syntaxe JavaScript, HTML, CSS
+   • Powered by highlight.js
+   • Thème dark atom-one-dark
+
+✅ Persistance Données
+   • localStorage pour dark mode
+   • localStorage pour quiz scores
+   • localStorage pour progrès utilisateur
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 STATISTIQUES
+
+Total Fichiers:          10
+Taille Totale:           ~149 KB
+Lignes de Code:          ~2,500 lignes
+
+Par Type:
+├─ HTML:                 3 fichiers (96.04 KB)
+├─ CSS:                  1 fichier  (17.82 KB)
+├─ JavaScript:           1 fichier  (14.42 KB)
+├─ Markdown (Docs):      3 fichiers (17.46 KB)
+└─ Batch/PowerShell:     2 fichiers (2.07 KB)
+
+Matières Intégrées:
+├─ Fondamentaux:         3 (Maths, Culture, Anglais)
+├─ SLAM:                 1 complète ✅ + 3 en construction
+├─ SISR:                 0 en construction
+└─ Transversales:        1 complète ✅ (CEJM) + 2 en construction
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 COMMENT DÉMARRER
+
+Étape 1 : Lancer le serveur
+   Option A (Simple) : Double-cliquez start.bat
+   Option B (Manuel) : cd C:\BTS-SIO-Revision && python -m http.server 8000
+
+Étape 2 : Ouvrir le navigateur
+   http://localhost:8000
+
+Étape 3 : Tester
+   • Cliquer sur "Algorithmique" ou "CEJM" dans la sidebar
+   • Essayer le quiz
+   • Tester le mode sombre (lune 🌙)
+   • Vérifier localStorage (F12 → Application)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 PROCHAINES ÉTAPES
+
+Phase 2 - Pages SLAM (3 pages)
+├─ Bases de données (MCD, MLD, SQL)
+├─ Développement Web (HTML5, CSS3, JavaScript, PHP)
+└─ POO (Classes, héritage, polymorphisme)
+
+Phase 3 - Pages SISR (4 pages)
+├─ Réseaux (OSI, TCP/IP, adressage IP)
+├─ Systèmes (Linux, Windows Server, droits)
+├─ Cybersécurité (chiffrement, authentification)
+└─ Virtualisation (VMware, VirtualBox, hyperviseurs)
+
+Phase 4 - Pages Transversales (2 pages)
+├─ Économie-Droit (compléter après CEJM)
+└─ Management SI (ITIL, Agile, Scrum)
+
+Phase 5 - Optimisations
+├─ Système de statistiques avancé
+├─ Téléchargement des résultats
+├─ Partage de progression
+└─ Performance optimization
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔧 TECHNOLOGIES UTILISÉES
+
+Frontend:
+├─ HTML5 (sémantique, accessibility)
+├─ CSS3 (Grid, Flexbox, variables, animations)
+└─ JavaScript ES6+ (vanilla, pas de frameworks)
+
+Libraries Externes (CDN):
+├─ Font Awesome 6.4.0 (icons)
+├─ Google Fonts - Poppins (typography)
+└─ highlight.js 11.8.0 (code syntax coloring)
+
+Storage:
+└─ localStorage (persistence)
+
+Server:
+└─ Python HTTP Server (simple, no dependencies)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 NOTES IMPORTANTES
+
+✓ Aucune dépendance backend requise
+✓ Fonctionne en local ou déployé sur n'importe quel CDN statique
+✓ Données persistées localement (localStorage)
+✓ Compatible modern browsers (Chrome, Firefox, Safari, Edge)
+✓ Entièrement responsive
+✓ Accessible (ARIA labels, semantic HTML)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📧 SUPPORT & DOCS
+
+Lectures recommandées :
+1. README.md          → Installation et structure
+2. QUICK_START.md     → Utilisation rapide
+3. CREATION_SUMMARY.md → Détails techniques
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Créé le : 27 mai 2026
+Plateforme : Windows 10/11 + Python 3.x
+Version : 1.0 - MVP Complète
+
+═══════════════════════════════════════════════════════════════════════════════
