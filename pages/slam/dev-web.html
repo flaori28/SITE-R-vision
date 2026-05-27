@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Développement Web - BTS SIO</title>
+    <title>DÃ©veloppement Web - BTS SIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
@@ -15,18 +15,18 @@
 <div class="page-content">
     <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour</a>
     <div class="page-header">
-        <h1><i class="fas fa-code"></i> Développement Web</h1>
+        <h1><i class="fas fa-code"></i> DÃ©veloppement Web</h1>
         <p>SLAM - HTML5, CSS3, JavaScript, PHP</p>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 
     <div class="lesson-content">
         <div class="lesson-section">
-            <h2><i class="fas fa-file-code"></i> HTML5 Sémantique</h2>
-            <p>HTML5 introduit des balises sémantiques qui donnent du sens au contenu.</p>
+            <h2><i class="fas fa-file-code"></i> HTML5 SÃ©mantique</h2>
+            <p>HTML5 introduit des balises sÃ©mantiques qui donnent du sens au contenu.</p>
             
             <div class="definition-box">
-                <strong>&lt;header&gt; :</strong> En-tête de page avec logo, titre principal, navigation principale.
+                <strong>&lt;header&gt; :</strong> En-tÃªte de page avec logo, titre principal, navigation principale.
             </div>
             <div class="definition-box">
                 <strong>&lt;nav&gt; :</strong> Bloc de navigation (menus, liens de section).
@@ -35,16 +35,16 @@
                 <strong>&lt;main&gt; :</strong> Contenu principal de la page (une seule par page).
             </div>
             <div class="definition-box">
-                <strong>&lt;article&gt; :</strong> Contenu autonome réutilisable (blog post, news, commentaire).
+                <strong>&lt;article&gt; :</strong> Contenu autonome rÃ©utilisable (blog post, news, commentaire).
             </div>
             <div class="definition-box">
-                <strong>&lt;section&gt; :</strong> Groupe thématique de contenu avec un titre.
+                <strong>&lt;section&gt; :</strong> Groupe thÃ©matique de contenu avec un titre.
             </div>
             <div class="definition-box">
-                <strong>&lt;aside&gt; :</strong> Contenu périphérique (sidebar, publicités, informations liées).
+                <strong>&lt;aside&gt; :</strong> Contenu pÃ©riphÃ©rique (sidebar, publicitÃ©s, informations liÃ©es).
             </div>
             <div class="definition-box">
-                <strong>&lt;footer&gt; :</strong> Pied de page avec copyright, liens, informations légales.
+                <strong>&lt;footer&gt; :</strong> Pied de page avec copyright, liens, informations lÃ©gales.
             </div>
 
             <div class="example-box">
@@ -59,7 +59,7 @@
     &lt;article&gt;&lt;h2&gt;Article 1&lt;/h2&gt;&lt;p&gt;Contenu...&lt;/p&gt;&lt;/article&gt;
     &lt;aside&gt;&lt;h3&gt;Sidebar&lt;/h3&gt;&lt;/aside&gt;
   &lt;/main&gt;
-  &lt;footer&gt;&lt;p&gt;© 2024&lt;/p&gt;&lt;/footer&gt;
+  &lt;footer&gt;&lt;p&gt;Â© 2024&lt;/p&gt;&lt;/footer&gt;
 &lt;/body&gt;&lt;/html&gt;</div>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <h2><i class="fas fa-paint-brush"></i> CSS3 : Flexbox et Grid</h2>
             
             <h3>Flexbox (Flexible Box Layout)</h3>
-            <p>Modèle de disposition 1D pour aligner items en rangée ou colonne.</p>
+            <p>ModÃ¨le de disposition 1D pour aligner items en rangÃ©e ou colonne.</p>
             
             <div class="code-box">.container {
   display: flex;
@@ -79,11 +79,11 @@
 }
 
 .item {
-  flex: 1; /* Croissance égale */
+  flex: 1; /* Croissance Ã©gale */
 }</div>
 
             <h3>CSS Grid</h3>
-            <p>Modèle 2D pour créer des grilles complexes.</p>
+            <p>ModÃ¨le 2D pour crÃ©er des grilles complexes.</p>
 
             <div class="code-box">.grid {
   display: grid;
@@ -108,9 +108,9 @@
         </div>
 
         <div class="lesson-section">
-            <h2><i class="fas fa-terminal"></i> JavaScript : DOM et Événements</h2>
+            <h2><i class="fas fa-terminal"></i> JavaScript : DOM et Ã‰vÃ©nements</h2>
             
-            <h3>Sélection d'éléments</h3>
+            <h3>SÃ©lection d'Ã©lÃ©ments</h3>
             <div class="code-box">/* Par ID */
 const elem = document.getElementById('myId');
 
@@ -121,20 +121,20 @@ const elems = document.querySelectorAll('.myClass');
 elem.textContent = 'Nouveau texte';
 elem.innerHTML = '&lt;strong&gt;Bold&lt;/strong&gt;';</div>
 
-            <h3>Gestion d'événements</h3>
-            <div class="code-box">/* Ajouter écouteur */
+            <h3>Gestion d'Ã©vÃ©nements</h3>
+            <div class="code-box">/* Ajouter Ã©couteur */
 button.addEventListener('click', function() {
-  alert('Bouton cliqué!');
+  alert('Bouton cliquÃ©!');
 });
 
 /* Formulaire */
 form.addEventListener('submit', function(e) {
-  e.preventDefault(); // Empêcher rechargement
+  e.preventDefault(); // EmpÃªcher rechargement
   const email = document.getElementById('email').value;
   console.log(email);
 });</div>
 
-            <h3>Requête Fetch Asynchrone</h3>
+            <h3>RequÃªte Fetch Asynchrone</h3>
             <div class="code-box">fetch('https://api.example.com/data')
   .then(response => response.json())
   .then(data => console.log(data))
@@ -154,27 +154,27 @@ form.addEventListener('submit', function(e) {
 /* PHP */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = $_POST['email'];
-  echo "Email reçu: " . htmlspecialchars($email);
+  echo "Email reÃ§u: " . htmlspecialchars($email);
 }</div>
 
             <h3>Sessions</h3>
-            <div class="code-box">/* Démarrer session */
+            <div class="code-box">/* DÃ©marrer session */
 session_start();
 
-/* Stocker données */
+/* Stocker donnÃ©es */
 $_SESSION['user_id'] = 123;
 $_SESSION['username'] = 'Jean';
 
-/* Récupérer données */
+/* RÃ©cupÃ©rer donnÃ©es */
 echo $_SESSION['username'];
 
-/* Détruire session */
+/* DÃ©truire session */
 session_destroy();</div>
 
-            <h3>Connexion PDO à BD</h3>
+            <h3>Connexion PDO Ã  BD</h3>
             <div class="code-box">$db = new PDO('mysql:host=localhost;dbname=mydb', 'user', 'password');
 
-/* Requête préparée */
+/* RequÃªte prÃ©parÃ©e */
 $stmt = $db->prepare('SELECT * FROM users WHERE id = ?');
 $stmt->execute([123]);
 $result = $stmt->fetchAll();
@@ -190,7 +190,7 @@ foreach ($result as $row) {
 
         <div class="exercise">
             <div class="exercise-title">Exercice 1 : Formulaire HTML5</div>
-            <div class="exercise-content">Créez un formulaire de contact valide avec champs : nom, email, message. Validez avec HTML5 (required, type="email").</div>
+            <div class="exercise-content">CrÃ©ez un formulaire de contact valide avec champs : nom, email, message. Validez avec HTML5 (required, type="email").</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol1').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol1">
                 <div class="code-box">&lt;form method="POST" action="contact.php"&gt;
@@ -210,7 +210,7 @@ foreach ($result as $row) {
 
         <div class="exercise">
             <div class="exercise-title">Exercice 2 : Validation JavaScript</div>
-            <div class="exercise-content">Écrivez un script qui valide un champ email en temps réel et affiche un message d'erreur si invalide.</div>
+            <div class="exercise-content">Ã‰crivez un script qui valide un champ email en temps rÃ©el et affiche un message d'erreur si invalide.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol2').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol2">
                 <div class="code-box">const emailInput = document.getElementById('email');
@@ -230,7 +230,7 @@ emailInput.addEventListener('blur', function() {
 
         <div class="exercise">
             <div class="exercise-title">Exercice 3 : Layout Flexbox</div>
-            <div class="exercise-content">Créez un layout responsive avec header, sidebar (gauche), main content (centre), footer. Mobile: stack vertical.</div>
+            <div class="exercise-content">CrÃ©ez un layout responsive avec header, sidebar (gauche), main content (centre), footer. Mobile: stack vertical.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol3').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol3">
                 <div class="code-box">body {
@@ -258,7 +258,7 @@ main { flex: 1; padding: 20px; }
 
         <div class="exercise">
             <div class="exercise-title">Exercice 4 : Script PHP Traitement Formulaire</div>
-            <div class="exercise-content">Écrivez un script PHP qui traite un formulaire POST et insère les données (nom, email) dans une BD MySQL via PDO.</div>
+            <div class="exercise-content">Ã‰crivez un script PHP qui traite un formulaire POST et insÃ¨re les donnÃ©es (nom, email) dans une BD MySQL via PDO.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol4').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol4">
                 <div class="code-box">&lt;?php
@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt = $db->prepare('INSERT INTO users (name, email) VALUES (?, ?)');
   $stmt->execute([$name, $email]);
   
-  echo 'Utilisateur créé!';
+  echo 'Utilisateur crÃ©Ã©!';
 }
 ?&gt;</div>
             </div>
@@ -279,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="exercise">
             <div class="exercise-title">Exercice 5 : Fetch API</div>
-            <div class="exercise-content">Récupérez des données JSON d'une API externe et affichez-les dans une liste HTML dynamiquement.</div>
+            <div class="exercise-content">RÃ©cupÃ©rez des donnÃ©es JSON d'une API externe et affichez-les dans une liste HTML dynamiquement.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol5').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol5">
                 <div class="code-box">fetch('https://jsonplaceholder.typicode.com/users')
@@ -301,7 +301,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz</h2>
         <form id="quizForm">
             <div class="quiz-question">
-                <h4>❓ Q1 : Quelle balise encadre le contenu principal ?</h4>
+                <h4>â“ Q1 : Quelle balise encadre le contenu principal ?</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q1" value="a"> &lt;section&gt;</label>
                     <label class="quiz-option"><input type="radio" name="q1" value="b"> &lt;main&gt;</label>
@@ -310,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q2 : Flexbox display property :</h4>
+                <h4>â“ Q2 : Flexbox display property :</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q2" value="a"> display: flex</label>
                     <label class="quiz-option"><input type="radio" name="q2" value="b"> display: flexbox</label>
@@ -319,73 +319,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q3 : Qu'est-ce que e.preventDefault() ?</h4>
+                <h4>â“ Q3 : Qu'est-ce que e.preventDefault() ?</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q3" value="a"> Arrête le formulaire de se soumettre</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="b"> Empêche le comportement par défaut de l'événement</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="c"> Cache l'élément</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="d"> Supprime l'événement</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="a"> ArrÃªte le formulaire de se soumettre</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="b"> EmpÃªche le comportement par dÃ©faut de l'Ã©vÃ©nement</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="c"> Cache l'Ã©lÃ©ment</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="d"> Supprime l'Ã©vÃ©nement</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q4 : POST est utilisé pour :</h4>
+                <h4>â“ Q4 : POST est utilisÃ© pour :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q4" value="a"> Récupérer des données visibles dans l'URL</label>
-                    <label class="quiz-option"><input type="radio" name="q4" value="b"> Envoyer des données sensibles cachées dans le corps de la requête</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="a"> RÃ©cupÃ©rer des donnÃ©es visibles dans l'URL</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="b"> Envoyer des donnÃ©es sensibles cachÃ©es dans le corps de la requÃªte</label>
                     <label class="quiz-option"><input type="radio" name="q4" value="c"> Sauvegarder les cookies</label>
-                    <label class="quiz-option"><input type="radio" name="q4" value="d"> Créer des sessions</label>
+                    <label class="quiz-option"><input type="radio" name="q4" value="d"> CrÃ©er des sessions</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q5 : Fetch retourne :</h4>
+                <h4>â“ Q5 : Fetch retourne :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q5" value="a"> Les données directement</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="a"> Les donnÃ©es directement</label>
                     <label class="quiz-option"><input type="radio" name="q5" value="b"> Un objet Response</label>
                     <label class="quiz-option"><input type="radio" name="q5" value="c"> Un tableau</label>
-                    <label class="quiz-option"><input type="radio" name="q5" value="d"> Une chaîne de caractères</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="d"> Une chaÃ®ne de caractÃ¨res</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q6 : CSS Grid grid-template-columns: repeat(3, 1fr) crée :</h4>
+                <h4>â“ Q6 : CSS Grid grid-template-columns: repeat(3, 1fr) crÃ©e :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q6" value="a"> 3 colonnes de largeur égale</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="a"> 3 colonnes de largeur Ã©gale</label>
                     <label class="quiz-option"><input type="radio" name="q6" value="b"> 3 colonnes de largeur 1px</label>
                     <label class="quiz-option"><input type="radio" name="q6" value="c"> 1 colonne de largeur 3fr</label>
-                    <label class="quiz-option"><input type="radio" name="q6" value="d"> 3 rangées</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="d"> 3 rangÃ©es</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q7 : htmlspecialchars() sert à :</h4>
+                <h4>â“ Q7 : htmlspecialchars() sert Ã  :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Encoder les caractères spéciaux pour éviter les injections XSS</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Encoder les caractÃ¨res spÃ©ciaux pour Ã©viter les injections XSS</label>
                     <label class="quiz-option"><input type="radio" name="q7" value="b"> Convertir en majuscules</label>
                     <label class="quiz-option"><input type="radio" name="q7" value="c"> Supprimer les espaces</label>
-                    <label class="quiz-option"><input type="radio" name="q7" value="d"> Créer des variables</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="d"> CrÃ©er des variables</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q8 : Le type d'input "email" valide :</h4>
+                <h4>â“ Q8 : Le type d'input "email" valide :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Uniquement côté client, pas côté serveur</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Uniquement cÃ´tÃ© client, pas cÃ´tÃ© serveur</label>
                     <label class="quiz-option"><input type="radio" name="q8" value="b"> Format email basique (x@y.z)</label>
                     <label class="quiz-option"><input type="radio" name="q8" value="c"> Format email strict en SMTP</label>
                     <label class="quiz-option"><input type="radio" name="q8" value="d"> Rien, c'est juste un type</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q9 : Une session PHP dure :</h4>
+                <h4>â“ Q9 : Une session PHP dure :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q9" value="a"> Jusqu'à la fermeture du navigateur par défaut</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="a"> Jusqu'Ã  la fermeture du navigateur par dÃ©faut</label>
                     <label class="quiz-option"><input type="radio" name="q9" value="b"> 24 heures toujours</label>
                     <label class="quiz-option"><input type="radio" name="q9" value="c"> 30 minutes toujours</label>
-                    <label class="quiz-option"><input type="radio" name="q9" value="d"> Indéfiniment</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="d"> IndÃ©finiment</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q10 : Média query max-width: 768px cible :</h4>
+                <h4>â“ Q10 : MÃ©dia query max-width: 768px cible :</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q10" value="a"> Uniquement les smartphones</label>
-                    <label class="quiz-option"><input type="radio" name="q10" value="b"> Les appareils avec écran ≤ 768px (tablettes et mobiles)</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="b"> Les appareils avec Ã©cran â‰¤ 768px (tablettes et mobiles)</label>
                     <label class="quiz-option"><input type="radio" name="q10" value="c"> Les appareils > 768px</label>
                     <label class="quiz-option"><input type="radio" name="q10" value="d"> Aucun appareil</label>
                 </div>
@@ -415,11 +415,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else if (score >= 6) {
                 res.classList.remove('incorrect');
                 res.classList.add('correct');
-                res.innerHTML = `<i class="fas fa-check-circle"></i> Très bien ! ${score}/${total} (${pct}%)`;
+                res.innerHTML = `<i class="fas fa-check-circle"></i> TrÃ¨s bien ! ${score}/${total} (${pct}%)`;
             } else {
                 res.classList.remove('correct');
                 res.classList.add('incorrect');
-                res.innerHTML = `<i class="fas fa-times-circle"></i> À revoir. ${score}/${total} (${pct}%)`;
+                res.innerHTML = `<i class="fas fa-times-circle"></i> Ã€ revoir. ${score}/${total} (${pct}%)`;
             }
             const scores = JSON.parse(localStorage.getItem('bts_sio_scores')||'{}');
             scores['dev-web'] = {score,total,date:new Date().toLocaleDateString()};
@@ -435,3 +435,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </body>
 </html>
+

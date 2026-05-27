@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programmation Orientée Objet - BTS SIO</title>
+    <title>Programmation OrientÃ©e Objet - BTS SIO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,7 +14,7 @@
 <div class="page-content">
     <a href="../../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Retour</a>
     <div class="page-header">
-        <h1><i class="fas fa-cube"></i> Programmation Orientée Objet</h1>
+        <h1><i class="fas fa-cube"></i> Programmation OrientÃ©e Objet</h1>
         <p>SLAM - Concepts POO et Design Pattern</p>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -22,8 +22,8 @@
     <div class="lesson-content">
         <div class="lesson-section">
             <h2><i class="fas fa-object-group"></i> Classe et Objet</h2>
-            <div class="definition-box"><strong>Classe :</strong> Modèle (blueprint) qui définit les propriétés (attributs) et comportements (méthodes) d'un type d'objet.</div>
-            <div class="definition-box"><strong>Objet :</strong> Instance d'une classe créée en mémoire avec des valeurs spécifiques.</div>
+            <div class="definition-box"><strong>Classe :</strong> ModÃ¨le (blueprint) qui dÃ©finit les propriÃ©tÃ©s (attributs) et comportements (mÃ©thodes) d'un type d'objet.</div>
+            <div class="definition-box"><strong>Objet :</strong> Instance d'une classe crÃ©Ã©e en mÃ©moire avec des valeurs spÃ©cifiques.</div>
             
             <h3>Exemple : Classe Compte Bancaire</h3>
             <div class="code-box">class CompteBancaire {
@@ -37,13 +37,13 @@
   
   public function deposer($montant) {
     $this->solde += $montant;
-    return "Dépôt de $montant effectué";
+    return "DÃ©pÃ´t de $montant effectuÃ©";
   }
   
   public function retirer($montant) {
     if ($montant <= $this->solde) {
       $this->solde -= $montant;
-      return "Retrait de $montant effectué";
+      return "Retrait de $montant effectuÃ©";
     }
     return "Solde insuffisant";
   }
@@ -61,7 +61,7 @@ echo "Solde: " . $compte->getSolde();</div>
 
         <div class="lesson-section">
             <h2><i class="fas fa-lock"></i> Encapsulation</h2>
-            <div class="definition-box"><strong>Encapsulation :</strong> Cachage des détails internes, exposition d'une interface publique.</div>
+            <div class="definition-box"><strong>Encapsulation :</strong> Cachage des dÃ©tails internes, exposition d'une interface publique.</div>
             
             <div class="definition-box">
                 <strong>public :</strong> Accessible partout<br>
@@ -90,8 +90,8 @@ echo $p->getNom(); // Alice</div>
         </div>
 
         <div class="lesson-section">
-            <h2><i class="fas fa-project-diagram"></i> Héritage</h2>
-            <div class="definition-box"><strong>Héritage :</strong> Une classe fille hérite des propriétés et méthodes d'une classe mère (parent).</div>
+            <h2><i class="fas fa-project-diagram"></i> HÃ©ritage</h2>
+            <div class="definition-box"><strong>HÃ©ritage :</strong> Une classe fille hÃ©rite des propriÃ©tÃ©s et mÃ©thodes d'une classe mÃ¨re (parent).</div>
 
             <div class="code-box">class CompteCourant extends CompteBancaire {
   private $decouverthauteur = 500;
@@ -99,23 +99,23 @@ echo $p->getNom(); // Alice</div>
   public function retirer($montant) {
     $limite = $this->getSolde() + $this->decouverthauteur;
     if ($montant <= $limite) {
-      // Appeler la méthode parente
+      // Appeler la mÃ©thode parente
       return parent::retirer($montant);
     }
-    return "Dépassement du découvert autorisé";
+    return "DÃ©passement du dÃ©couvert autorisÃ©";
   }
 }
 
 $compte = new CompteCourant("Alice", 200);
-echo $compte->retirer(600); // OK (200 + 500 découvert)</div>
+echo $compte->retirer(600); // OK (200 + 500 dÃ©couvert)</div>
 
-            <h3>Redéfinition (Override)</h3>
-            <div class="definition-box">Une classe fille peut redéfinir une méthode de sa classe mère pour adapter le comportement.</div>
+            <h3>RedÃ©finition (Override)</h3>
+            <div class="definition-box">Une classe fille peut redÃ©finir une mÃ©thode de sa classe mÃ¨re pour adapter le comportement.</div>
         </div>
 
         <div class="lesson-section">
             <h2><i class="fas fa-layer-group"></i> Polymorphisme</h2>
-            <div class="definition-box"><strong>Polymorphisme :</strong> Capacité d'une méthode à avoir plusieurs implémentations selon la classe.</div>
+            <div class="definition-box"><strong>Polymorphisme :</strong> CapacitÃ© d'une mÃ©thode Ã  avoir plusieurs implÃ©mentations selon la classe.</div>
 
             <div class="code-box">interface Animal {
   public function crier();
@@ -156,7 +156,7 @@ foreach ($comptes as $compte) {
   echo $compte->getSolde() . " euros\n";
 }
 
-// Filtrage et agrégation
+// Filtrage et agrÃ©gation
 $solde_total = 0;
 foreach ($comptes as $compte) {
   $solde_total += $compte->getSolde();
@@ -169,8 +169,8 @@ echo "Solde total: " . $solde_total;</div>
         <h2 class="section-title"><i class="fas fa-pencil-alt"></i> Exercices</h2>
 
         <div class="exercise">
-            <div class="exercise-title">Exercice 1 : Modéliser une classe Voiture</div>
-            <div class="exercise-content">Créez une classe Voiture avec attributs (marque, modèle, vitesse_max) et méthodes (accelerer, freiner, afficher_infos).</div>
+            <div class="exercise-title">Exercice 1 : ModÃ©liser une classe Voiture</div>
+            <div class="exercise-content">CrÃ©ez une classe Voiture avec attributs (marque, modÃ¨le, vitesse_max) et mÃ©thodes (accelerer, freiner, afficher_infos).</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol1').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol1">
                 <div class="code-box">class Voiture {
@@ -202,7 +202,7 @@ echo "Solde total: " . $solde_total;</div>
 
         <div class="exercise">
             <div class="exercise-title">Exercice 2 : Classe fille CompteEpargne</div>
-            <div class="exercise-content">Créez une classe CompteEpargne héritant de CompteBancaire avec un taux d'intérêt annuel et méthode calculer_interets().</div>
+            <div class="exercise-content">CrÃ©ez une classe CompteEpargne hÃ©ritant de CompteBancaire avec un taux d'intÃ©rÃªt annuel et mÃ©thode calculer_interets().</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol2').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol2">
                 <div class="code-box">class CompteEpargne extends CompteBancaire {
@@ -211,7 +211,7 @@ echo "Solde total: " . $solde_total;</div>
   public function calculer_interets() {
     $interets = $this->getSolde() * $this->taux_interet;
     $this->deposer($interets);
-    return "Intérêts: $interets ajoutés";
+    return "IntÃ©rÃªts: $interets ajoutÃ©s";
   }
   
   public function setTaux($taux) {
@@ -220,13 +220,13 @@ echo "Solde total: " . $solde_total;</div>
 }
 
 $epargne = new CompteEpargne("Jean", 10000);
-echo $epargne->calculer_interets(); // Intérêts: 200</div>
+echo $epargne->calculer_interets(); // IntÃ©rÃªts: 200</div>
             </div>
         </div>
 
         <div class="exercise">
             <div class="exercise-title">Exercice 3 : Instanciation et Parcours</div>
-            <div class="exercise-content">Créez 3 objets CompteBancaire et un tableau. Parcourez-les en affichant le solde moyen.</div>
+            <div class="exercise-content">CrÃ©ez 3 objets CompteBancaire et un tableau. Parcourez-les en affichant le solde moyen.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol3').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol3">
                 <div class="code-box">$comptes = [
@@ -246,7 +246,7 @@ echo "Solde moyen: $moyenne";</div>
 
         <div class="exercise">
             <div class="exercise-title">Exercice 4 : Encapsulation</div>
-            <div class="exercise-content">Modifiez CompteBancaire pour que $solde soit privé. Ajoutez une méthode privée pour valider le montant.</div>
+            <div class="exercise-content">Modifiez CompteBancaire pour que $solde soit privÃ©. Ajoutez une mÃ©thode privÃ©e pour valider le montant.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol4').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol4">
                 <div class="code-box">class CompteBancaire {
@@ -265,13 +265,13 @@ echo "Solde moyen: $moyenne";</div>
   }
 }
 
-// La méthode privée validerMontant n'est pas accessible de l'extérieur</div>
+// La mÃ©thode privÃ©e validerMontant n'est pas accessible de l'extÃ©rieur</div>
             </div>
         </div>
 
         <div class="exercise">
             <div class="exercise-title">Exercice 5 : Polymorphisme Interface</div>
-            <div class="exercise-content">Créez une interface Vehicule avec méthode demarrer(). Implémentez-la dans Voiture et Moto.</div>
+            <div class="exercise-content">CrÃ©ez une interface Vehicule avec mÃ©thode demarrer(). ImplÃ©mentez-la dans Voiture et Moto.</div>
             <button class="toggle-btn" onclick="document.querySelector('#sol5').classList.toggle('show')">Voir</button>
             <div class="solution" id="sol5">
                 <div class="code-box">interface Vehicule {
@@ -280,13 +280,13 @@ echo "Solde moyen: $moyenne";</div>
 
 class Voiture implements Vehicule {
   public function demarrer() {
-    return "Moteur de voiture démarré";
+    return "Moteur de voiture dÃ©marrÃ©";
   }
 }
 
 class Moto implements Vehicule {
   public function demarrer() {
-    return "Moteur de moto démarré";
+    return "Moteur de moto dÃ©marrÃ©";
   }
 }
 
@@ -301,34 +301,34 @@ function faire_demarrer(Vehicule $v) {
         <h2 class="section-title"><i class="fas fa-question-circle"></i> Quiz</h2>
         <form id="quizForm">
             <div class="quiz-question">
-                <h4>❓ Q1 : Qu'est-ce qu'une classe ?</h4>
+                <h4>â“ Q1 : Qu'est-ce qu'une classe ?</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q1" value="a"> Un groupe d'étudiants</label>
-                    <label class="quiz-option"><input type="radio" name="q1" value="b"> Un modèle (blueprint) pour créer des objets</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="a"> Un groupe d'Ã©tudiants</label>
+                    <label class="quiz-option"><input type="radio" name="q1" value="b"> Un modÃ¨le (blueprint) pour crÃ©er des objets</label>
                     <label class="quiz-option"><input type="radio" name="q1" value="c"> Une instance d'un objet</label>
                     <label class="quiz-option"><input type="radio" name="q1" value="d"> Un fichier PHP</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q2 : Le mot-clé "new" sert à :</h4>
+                <h4>â“ Q2 : Le mot-clÃ© "new" sert Ã  :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q2" value="a"> Définir une classe</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="b"> Créer une instance d'une classe</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="c"> Appeler une méthode</label>
-                    <label class="quiz-option"><input type="radio" name="q2" value="d"> Déclarer une variable</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="a"> DÃ©finir une classe</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="b"> CrÃ©er une instance d'une classe</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="c"> Appeler une mÃ©thode</label>
+                    <label class="quiz-option"><input type="radio" name="q2" value="d"> DÃ©clarer une variable</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q3 : Qu'est-ce que l'encapsulation ?</h4>
+                <h4>â“ Q3 : Qu'est-ce que l'encapsulation ?</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q3" value="a"> Mettre du code dans une classe</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="b"> Cachage des détails internes, exposition d'une interface publique</label>
-                    <label class="quiz-option"><input type="radio" name="q3" value="c"> Créer plusieurs classes</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="b"> Cachage des dÃ©tails internes, exposition d'une interface publique</label>
+                    <label class="quiz-option"><input type="radio" name="q3" value="c"> CrÃ©er plusieurs classes</label>
                     <label class="quiz-option"><input type="radio" name="q3" value="d"> Compiler le code</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q4 : Quel modificateur rend un attribut inaccessible de l'extérieur ?</h4>
+                <h4>â“ Q4 : Quel modificateur rend un attribut inaccessible de l'extÃ©rieur ?</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q4" value="a"> public</label>
                     <label class="quiz-option"><input type="radio" name="q4" value="b"> protected</label>
@@ -337,55 +337,55 @@ function faire_demarrer(Vehicule $v) {
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q5 : L'héritage permet :</h4>
+                <h4>â“ Q5 : L'hÃ©ritage permet :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q5" value="a"> De créer deux classes indépendantes</label>
-                    <label class="quiz-option"><input type="radio" name="q5" value="b"> Une classe fille d'hériter des propriétés/méthodes de sa classe mère</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="a"> De crÃ©er deux classes indÃ©pendantes</label>
+                    <label class="quiz-option"><input type="radio" name="q5" value="b"> Une classe fille d'hÃ©riter des propriÃ©tÃ©s/mÃ©thodes de sa classe mÃ¨re</label>
                     <label class="quiz-option"><input type="radio" name="q5" value="c"> De dupliquer le code</label>
                     <label class="quiz-option"><input type="radio" name="q5" value="d"> D'importer des fichiers</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q6 : Qu'est-ce que le polymorphisme ?</h4>
+                <h4>â“ Q6 : Qu'est-ce que le polymorphisme ?</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q6" value="a"> Plusieurs classes avec le même nom</label>
-                    <label class="quiz-option"><input type="radio" name="q6" value="b"> Capacité d'une méthode à avoir plusieurs implémentations selon la classe</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="a"> Plusieurs classes avec le mÃªme nom</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="b"> CapacitÃ© d'une mÃ©thode Ã  avoir plusieurs implÃ©mentations selon la classe</label>
                     <label class="quiz-option"><input type="radio" name="q6" value="c"> Un type de variable</label>
-                    <label class="quiz-option"><input type="radio" name="q6" value="d"> Une technique de sécurité</label>
+                    <label class="quiz-option"><input type="radio" name="q6" value="d"> Une technique de sÃ©curitÃ©</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q7 : Un constructeur __construct sert à :</h4>
+                <h4>â“ Q7 : Un constructeur __construct sert Ã  :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Construire des bâtiments</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="a"> Construire des bÃ¢timents</label>
                     <label class="quiz-option"><input type="radio" name="q7" value="b"> Initialiser les attributs d'une instance</label>
-                    <label class="quiz-option"><input type="radio" name="q7" value="c"> Créer des classes</label>
+                    <label class="quiz-option"><input type="radio" name="q7" value="c"> CrÃ©er des classes</label>
                     <label class="quiz-option"><input type="radio" name="q7" value="d"> Valider le code</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q8 : Une interface définit :</h4>
+                <h4>â“ Q8 : Une interface dÃ©finit :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Les méthodes concrètes à exécuter</label>
-                    <label class="quiz-option"><input type="radio" name="q8" value="b"> Un contrat : les méthodes qu'une classe doit implémenter</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="a"> Les mÃ©thodes concrÃ¨tes Ã  exÃ©cuter</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="b"> Un contrat : les mÃ©thodes qu'une classe doit implÃ©menter</label>
                     <label class="quiz-option"><input type="radio" name="q8" value="c"> Une classe abstraite</label>
-                    <label class="quiz-option"><input type="radio" name="q8" value="d"> Des attributs privés</label>
+                    <label class="quiz-option"><input type="radio" name="q8" value="d"> Des attributs privÃ©s</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q9 : parent:: sert à :</h4>
+                <h4>â“ Q9 : parent:: sert Ã  :</h4>
                 <div class="quiz-options">
-                    <label class="quiz-option"><input type="radio" name="q9" value="a"> Accéder à la classe parente (mère)</label>
-                    <label class="quiz-option"><input type="radio" name="q9" value="b"> Créer un parent objet</label>
-                    <label class="quiz-option"><input type="radio" name="q9" value="c"> Définir le parent d'une classe</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="a"> AccÃ©der Ã  la classe parente (mÃ¨re)</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="b"> CrÃ©er un parent objet</label>
+                    <label class="quiz-option"><input type="radio" name="q9" value="c"> DÃ©finir le parent d'une classe</label>
                     <label class="quiz-option"><input type="radio" name="q9" value="d"> Changer la classe parente</label>
                 </div>
             </div>
             <div class="quiz-question">
-                <h4>❓ Q10 : $this représente :</h4>
+                <h4>â“ Q10 : $this reprÃ©sente :</h4>
                 <div class="quiz-options">
                     <label class="quiz-option"><input type="radio" name="q10" value="a"> La classe courante</label>
-                    <label class="quiz-option"><input type="radio" name="q10" value="b"> L'instance courante (l'objet lui-même)</label>
+                    <label class="quiz-option"><input type="radio" name="q10" value="b"> L'instance courante (l'objet lui-mÃªme)</label>
                     <label class="quiz-option"><input type="radio" name="q10" value="c"> Une variable globale</label>
                     <label class="quiz-option"><input type="radio" name="q10" value="d"> Le serveur</label>
                 </div>
@@ -415,11 +415,11 @@ function faire_demarrer(Vehicule $v) {
             } else if (score >= 6) {
                 res.classList.remove('incorrect');
                 res.classList.add('correct');
-                res.innerHTML = `<i class="fas fa-check-circle"></i> Très bien ! ${score}/${total} (${pct}%)`;
+                res.innerHTML = `<i class="fas fa-check-circle"></i> TrÃ¨s bien ! ${score}/${total} (${pct}%)`;
             } else {
                 res.classList.remove('correct');
                 res.classList.add('incorrect');
-                res.innerHTML = `<i class="fas fa-times-circle"></i> À revoir. ${score}/${total} (${pct}%)`;
+                res.innerHTML = `<i class="fas fa-times-circle"></i> Ã€ revoir. ${score}/${total} (${pct}%)`;
             }
             const scores = JSON.parse(localStorage.getItem('bts_sio_scores')||'{}');
             scores['poo'] = {score,total,date:new Date().toLocaleDateString()};
@@ -435,3 +435,4 @@ function faire_demarrer(Vehicule $v) {
     </script>
 </body>
 </html>
+
