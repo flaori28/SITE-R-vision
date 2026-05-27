@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS SIO 1 - Plateforme de Révision Interactive</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Mermaid pour les schémas -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    
+    <style>
+        /* ===== ANIMATIONS FLUIDES ===== */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Transition 3D pour Flashcards */
+        .flashcard {
+            perspective: 1000px;
+            cursor: pointer;
+            height: 300px;
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front,
+        .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .flashcard-front {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: white;
+        }
+        
+        .flashcard-back {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        /* Mode Sombre */
+        body.dark .flashcard-front {
+            background: linear-gradient(135deg, #312e81, #4c1d95);
+            color: #e0e7ff;
+        }
+        
+        body.dark .flashcard-back {
+            background: linear-gradient(135deg, #164e63, #0c4a6e);
+            color: #cffafe;
+        }
+        
+        /* Animations pour les options de quiz */
+        .quiz-option {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-option:hover:not(.disabled) {
+            transform: translateX(4px);
+        }
+        
+        .quiz-option.correct {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+            animation: pulse-correct 0.6s ease;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            animation: shake 0.3s ease;
+        }
+        
+        @keyframes pulse-correct {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        /* Mode Sombre personnalisé */
+        body.dark {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        body.dark .sidebar {
+            background-color: #1e293b;
+            border-right: 1px solid #334155;
+        }
+        
+        body.dark .menu-item {
+            color: #cbd5e1;
+        }
+        
+        body.dark .menu-item.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+        
+        body.dark .menu-item:hover {
+            background-color: #334155;
+        }
+        
+        body.dark .submenu-item {
+            color: #a1a5af;
+        }
+        
+        body.dark .submenu-item.active {
+            background-color: #6366f1;
+            color: white;
+        }
+        
+        body.dark .content-area {
+            background-color: #1e293b;
+            color: #e2e8f0;
+        }
+        
+        body.dark .tab-btn {
+            color: #cbd5e1;
+        }
+        
+        body.dark .tab-btn.active {
+            color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        
+        body.dark .alert {
+            background-color: #1e3a1f;
+            border-color: #22c55e;
+            color: #bbf7d0;
+        }
+        
+        body.dark .alert.warning {
+            background-color: #3f2615;
+            border-color: #f59e0b;
+            color: #fbbf24;
+        }
+        
+        body.dark .alert.info {
+            background-color: #0c2d4a;
+            border-color: #0ea5e9;
+            color: #7dd3fc;
+        }
+        
+        body.dark .lesson-box {
+            background-color: #334155;
+            border-left-color: #4f46e5;
+        }
+        
+        body.dark .quiz-option {
+            background-color: #334155;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        
+        body.dark .quiz-option.correct {
+            background-color: #1e3a1f;
+            border-color: #22c55e;
+        }
+        
+        body.dark .quiz-option.incorrect {
+            background-color: #3f1f1f;
+            border-color: #ef4444;
+        }
+        
+        /* Slider pour le menu mobile */
+        .sidebar.open {
+            left: 0;
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        
+        body.dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+        
+        /* Animation de chargement */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.4s ease;
+        }
+        
+        /* Schémas Mermaid */
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        body.dark .mermaid {
+            background: #334155;
+        }
+        
+        .mermaid svg {
+            max-width: 100%;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                z-index: 50;
+            }
+            
+            .sidebar.open {
+                left: 0;
+                width: 80%;
+            }
+            
+            .overlay {
+                display: none;
+            }
+            
+            .overlay.open {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 40;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 overflow-hidden">
+    <!-- HEADER ===== -->
+    <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-30 shadow-sm">
+        <div class="flex items-center justify-between px-4 py-3">
+            <!-- Menu Toggle (Mobile) -->
+            <button id="menuToggle" class="md:hidden text-indigo-600 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            
+            <!-- Logo/Title -->
+            <div class="flex items-center gap-3">
+                <i class="fas fa-graduation-cap text-indigo-600 dark:text-indigo-400 text-2xl"></i>
+                <h1 class="font-bold text-lg text-gray-900 dark:text-white hidden sm:block">BTS SIO 1 - Révision</h1>
+            </div>
+            
+            <!-- Dark Mode Toggle & Back -->
+            <div class="flex items-center gap-2">
+                <button id="darkModeToggle" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                    <i class="fas fa-moon text-gray-600 dark:text-yellow-400"></i>
+                </button>
+                <a href="index.html" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Retour">
+                    <i class="fas fa-arrow-left text-gray-600 dark:text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- OVERLAY (Mobile) ===== -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 z-40 md:hidden hidden"></div>
+    
+    <!-- MAIN CONTAINER ===== -->
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- SIDEBAR ===== -->
+        <aside id="sidebar" class="sidebar w-full md:w-72 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 overflow-y-auto">
+            <!-- Fermeture mobile -->
+            <button id="closeMenu" class="md:hidden absolute top-4 right-4 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white p-2">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <nav class="p-4 space-y-2">
+                <!-- MENU 1: EDMN -->
+                <div class="menu-section">
+                    <button class="menu-item w-full text-left px-4 py-3 rounded-lg font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 active" data-menu="edmn">
+                        <i class="fas fa-balance-scale mr-3"></i>EDMN
+                    </button>
+                    <div class="submenu space-y-1 pl-4 mt-2 hidden" id="edmn-submenu">
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="cadre-juridique">
+                            📋 Cadre Juridique
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="gouvernance-donnees">
+                            🔐 Gouvernance des Données
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="management-innovation">
+                            💡 Management de l'Innovation
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- MENU 2: BLOC 1 -->
+                <div class="menu-section">
+                    <button class="menu-item w-full text-left px-4 py-3 rounded-lg font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" data-menu="bloc1">
+                        <i class="fas fa-server mr-3"></i>Bloc 1 (SI)
+                    </button>
+                    <div class="submenu space-y-1 pl-4 mt-2 hidden" id="bloc1-submenu">
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="gestion-patrimoine">
+                            💾 Patrimoine Informatique
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="reponses-incidents">
+                            🚨 Réponses aux Incidents
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="exploitation-donnees">
+                            📊 Exploitation des Données
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="gestion-investissements">
+                            💰 Gestion des Investissements
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- MENU 3: MATHS -->
+                <div class="menu-section">
+                    <button class="menu-item w-full text-left px-4 py-3 rounded-lg font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" data-menu="maths">
+                        <i class="fas fa-calculator mr-3"></i>Mathématiques
+                    </button>
+                    <div class="submenu space-y-1 pl-4 mt-2 hidden" id="maths-submenu">
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="algebre-boole">
+                            🔢 Algèbre de Boole
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="matrices">
+                            ⬜ Matrices
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="graphes-ordonnancement">
+                            🕸️ Graphes & Ordonnancement
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="bases-numerations">
+                            💻 Bases de Numération
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- MENU 4: CGE & ANGLAIS -->
+                <div class="menu-section">
+                    <button class="menu-item w-full text-left px-4 py-3 rounded-lg font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" data-menu="cge">
+                        <i class="fas fa-book mr-3"></i>CGE & Anglais
+                    </button>
+                    <div class="submenu space-y-1 pl-4 mt-2 hidden" id="cge-submenu">
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="synthese-documents">
+                            📄 Synthèse de Documents
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="ecriture-personnelle">
+                            ✍️ Écriture Personnelle
+                        </button>
+                        <button class="submenu-item w-full text-left px-4 py-2 text-sm rounded text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 transition" data-content="vocabulaire-it">
+                            🌍 Vocabulaire IT Anglais
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- CONTENT AREA ===== -->
+        <main class="content-area flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+            <div class="p-6 max-w-6xl mx-auto">
+                
+                <!-- TAB NAVIGATION ===== -->
+                <div class="flex gap-4 border-b border-gray-200 dark:border-gray-700 mb-6 overflow-x-auto">
+                    <button class="tab-btn px-4 py-3 font-semibold text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400 active" data-tab="cours">
+                        <i class="fas fa-book mr-2"></i>Cours
+                    </button>
+                    <button class="tab-btn px-4 py-3 font-semibold text-gray-600 dark:text-gray-400 border-b-2 border-transparent hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="flashcards">
+                        <i class="fas fa-layer-group mr-2"></i>Flashcards
+                    </button>
+                    <button class="tab-btn px-4 py-3 font-semibold text-gray-600 dark:text-gray-400 border-b-2 border-transparent hover:text-indigo-600 dark:hover:text-indigo-400" data-tab="quiz">
+                        <i class="fas fa-question-circle mr-2"></i>Quiz
+                    </button>
+                </div>
+                
+                <!-- ONGLET 1: COURS ===== -->
+                <div id="cours-tab" class="tab-content fade-in">
+                    <div id="cours-content" class="space-y-6">
+                        <!-- Contenu généré par JS -->
+                    </div>
+                </div>
+                
+                <!-- ONGLET 2: FLASHCARDS ===== -->
+                <div id="flashcards-tab" class="tab-content hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div id="flashcards-content" class="md:col-span-2">
+                            <!-- Contenu généré par JS -->
+                        </div>
+                    </div>
+                    <div class="flex gap-4 justify-center">
+                        <button id="prevFlashcard" class="px-6 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                            <i class="fas fa-chevron-left mr-2"></i>Précédent
+                        </button>
+                        <span id="flashcard-counter" class="px-4 py-2 text-gray-700 dark:text-gray-300 font-semibold"></span>
+                        <button id="nextFlashcard" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                            Suivant<i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- ONGLET 3: QUIZ ===== -->
+                <div id="quiz-tab" class="tab-content hidden">
+                    <div id="quiz-content" class="space-y-6">
+                        <!-- Contenu généré par JS -->
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        
+    </div>
+    
+    <!-- SCRIPTS ===== -->
+    <script src="bts-sio-data.js"></script>
+    <script src="bts-sio-app.js"></script>
+</body>
+</html>
