@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEJM - Culture Économique, Juridique et Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f5f5f5; color: #333; }
+        
+        .header {
+            background: linear-gradient(135deg, #0f766e, #14b8a6);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .header p { font-size: 1.1em; opacity: 0.9; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        /* MENU LATÉRAL */
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar h3 {
+            color: #0f766e;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #14b8a6;
+            padding-bottom: 10px;
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #f5f5f5;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .menu-item:hover {
+            background: #e0f2f1;
+            border-color: #0f766e;
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background: linear-gradient(135deg, #0f766e, #14b8a6);
+            color: white;
+            border-color: #0f766e;
+        }
+        
+        .menu-item i { font-size: 1.1em; }
+        
+        /* CONTENU PRINCIPAL */
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .section.active { display: block; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section h2 {
+            color: #0f766e;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #14b8a6;
+            padding-bottom: 10px;
+        }
+        
+        .lesson {
+            background: #f9f9f9;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #14b8a6;
+        }
+        
+        .lesson h3 {
+            color: #0f766e;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .lesson p { line-height: 1.6; color: #555; }
+        
+        /* QUESTIONS/RÉPONSES INTERACTIVES */
+        .qa-container {
+            margin-top: 20px;
+        }
+        
+        .qa-item {
+            background: #f0f9f9;
+            border: 1px solid #14b8a6;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .qa-question {
+            background: linear-gradient(135deg, #0f766e, #14b8a6);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: 0.3s;
+            user-select: none;
+        }
+        
+        .qa-question:hover {
+            background: linear-gradient(135deg, #14b8a6, #0f766e);
+        }
+        
+        .qa-question i { transition: 0.3s transform; }
+        
+        .qa-item.open .qa-question i {
+            transform: rotate(180deg);
+        }
+        
+        .qa-answer {
+            display: none;
+            padding: 20px;
+            background: white;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .qa-item.open .qa-answer { display: block; }
+        
+        /* EXERCICES */
+        .exercise {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .exercise h4 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .exercise-content {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .solution-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .solution-btn:hover { background: #f57c00; }
+        
+        .solution {
+            display: none;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            color: #2e7d32;
+        }
+        
+        .solution.show { display: block; }
+        
+        /* DARK MODE */
+        body.dark {
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        
+        body.dark .sidebar,
+        body.dark .main-content {
+            background: #2a2a3e;
+            color: #e0e0e0;
+        }
+        
+        body.dark .menu-item {
+            background: #3a3a3e;
+            color: #e0e0e0;
+        }
+        
+        body.dark .menu-item:hover { background: #0f766e; }
+        
+        body.dark .lesson {
+            background: #3a3a3e;
+            color: #e0e0e0;
+        }
+        
+        body.dark .qa-answer {
+            background: #3a3a3e;
+            color: #e0e0e0;
+        }
+        
+        body.dark .exercise {
+            background: #3a3a3e;
+            border-color: #ff9800;
+            color: #e0e0e0;
+        }
+        
+        /* TOGGLE DARK MODE */
+        .dark-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #0f766e;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        
+        .dark-toggle:hover { background: #14b8a6; }
+        
+        .back-link {
+            display: inline-block;
+            background: #0f766e;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        
+        .back-link:hover { background: #14b8a6; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+    
+    <div class="header">
+        <a href="../../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Retour</a>
+        <h1><i class="fas fa-briefcase"></i> Culture Économique, Juridique et Management</h1>
+        <p>Révision complète pour le BTS SIO</p>
+    </div>
+    
+    <div class="container">
+        <div class="layout">
+            <!-- MENU LATÉRAL -->
+            <aside class="sidebar">
+                <h3><i class="fas fa-list"></i> Chapitre</h3>
+                
+                <div class="menu-item active" onclick="showSection('enterprises')">
+                    <i class="fas fa-building"></i> Les Entreprises
+                </div>
+                
+                <div class="menu-item" onclick="showSection('legal-forms')">
+                    <i class="fas fa-file-contract"></i> Formes Juridiques
+                </div>
+                
+                <div class="menu-item" onclick="showSection('hr')">
+                    <i class="fas fa-users"></i> Ressources Humaines
+                </div>
+                
+                <div class="menu-item" onclick="showSection('contracts')">
+                    <i class="fas fa-handshake"></i> Contrats de Travail
+                </div>
+                
+                <div class="menu-item" onclick="showSection('obligations')">
+                    <i class="fas fa-list-check"></i> Obligations Légales
+                </div>
+            </aside>
+            
+            <!-- CONTENU PRINCIPAL -->
+            <main class="main-content">
+                
+                <!-- SECTION 1: LES ENTREPRISES -->
+                <section id="enterprises" class="section active">
+                    <h2><i class="fas fa-building"></i> Les Entreprises</h2>
+                    
+                    <div class="lesson">
+                        <h3>Définition et Caractéristiques</h3>
+                        <p>Une entreprise est une organisation qui produit ou offre des biens ou services pour satisfaire les besoins des consommateurs. Elle est caractérisée par :</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Finalité :</strong> Créer de la richesse et générer du profit</li>
+                            <li><strong>Ressources :</strong> Humaines, financières, matérielles, informationnelles</li>
+                            <li><strong>Responsabilité :</strong> Légale, sociale, environnementale</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>Secteurs d'Activité</h3>
+                        <p><strong>Secteur Primaire :</strong> Agriculture, extraction (matières premières)</p>
+                        <p><strong>Secteur Secondaire :</strong> Industrie, transformation (manufacture)</p>
+                        <p><strong>Secteur Tertiaire :</strong> Services (commerce, santé, IT, éducation)</p>
+                    </div>
+                    
+                    <div class="qa-container">
+                        <h3 style="color: #0f766e; margin: 20px 0;">Questions/Réponses</h3>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Qu'est-ce qui distingue l'entreprise publique de l'entreprise privée ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>Entreprise Publique :</strong> Appartient à l'État ou collectivités, gérée par des fonctionnaires, objectif de service public.<br><br>
+                                <strong>Entreprise Privée :</strong> Appartient à des particuliers ou sociétés, gérée librement, objectif de profit.
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quelle est la taille d'une PME et d'une ETI ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>PME :</strong> Petite et Moyenne Entreprise = moins de 250 salariés et moins de 50M€ de chiffre d'affaires<br><br>
+                                <strong>ETI :</strong> Entreprise de Taille Intermédiaire = entre 250 et 5000 salariés
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quels sont les objectifs principaux d'une entreprise IT ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                • Innover technologiquement<br>
+                                • Assurer la qualité des services<br>
+                                • Satisfaire les clients<br>
+                                • Générer des profits<br>
+                                • Respecter les obligations légales et éthiques
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION 2: FORMES JURIDIQUES -->
+                <section id="legal-forms" class="section">
+                    <h2><i class="fas fa-file-contract"></i> Formes Juridiques</h2>
+                    
+                    <div class="lesson">
+                        <h3>Entreprise Individuelle</h3>
+                        <p><strong>Caractéristiques :</strong> Propriétaire unique, responsabilité illimitée, patrimoine confondu avec celui de l'entreprise</p>
+                        <p><strong>Avantages :</strong> Simple à créer, liberté de gestion</p>
+                        <p><strong>Inconvénients :</strong> Responsabilité personnelle, difficulté de financement</p>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>SARL (Société À Responsabilité Limitée)</h3>
+                        <p><strong>Caractéristiques :</strong> Minimum 2 associés, responsabilité limitée au capital, parts sociales</p>
+                        <p><strong>Avantages :</strong> Responsabilité limitée, structure flexible</p>
+                        <p><strong>Inconvénients :</strong> Formalités administratives, imposition plus complexe</p>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>SA (Société Anonyme)</h3>
+                        <p><strong>Caractéristiques :</strong> Minimum 2 actionnaires, responsabilité limitée, actions transférables</p>
+                        <p><strong>Avantages :</strong> Capacité de financement importante, transparence</p>
+                        <p><strong>Inconvénients :</strong> Formalités très lourdes, coûts élevés</p>
+                    </div>
+                    
+                    <div class="qa-container">
+                        <h3 style="color: #0f766e; margin: 20px 0;">Questions/Réponses</h3>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quelle forme juridique convient pour démarrer seul avec peu de capital ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>Entreprise Individuelle</strong> est la plus appropriée car :<br>
+                                • Peu de formalités<br>
+                                • Coûts minimes de création<br>
+                                • Flexibilité de gestion<br>
+                                Alternative : Micro-entreprise (régime simplifié)
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quelles sont les différences entre SARL et SA ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>SARL :</strong> Responsabilité limitée, parts sociales, minimum 2 associés, impôts plus simples<br><br>
+                                <strong>SA :</strong> Responsabilité limitée, actions cotées, minimum 2 actionnaires, structure complexe, idéale pour grandes entreprises
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION 3: RESSOURCES HUMAINES -->
+                <section id="hr" class="section">
+                    <h2><i class="fas fa-users"></i> Ressources Humaines</h2>
+                    
+                    <div class="lesson">
+                        <h3>Rôle des RH</h3>
+                        <p>Le service RH assure :</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Recrutement et sélection du personnel</li>
+                            <li>Formation et développement des compétences</li>
+                            <li>Gestion des salaires et payes</li>
+                            <li>Relations sociales et négociations</li>
+                            <li>Respect de la législation du travail</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>Processus de Recrutement</h3>
+                        <p>1. Analyse des besoins → 2. Publication offre → 3. Présélection → 4. Entretiens → 5. Vérification références → 6. Proposition → 7. Intégration</p>
+                    </div>
+                    
+                    <div class="qa-container">
+                        <h3 style="color: #0f766e; margin: 20px 0;">Questions/Réponses</h3>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Qu'est-ce que la mobilité professionnelle ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                La capacité d'un salarié à changer de poste, fonction ou entreprise.<br><br>
+                                <strong>Mobilité interne :</strong> Changement au sein de l'entreprise<br>
+                                <strong>Mobilité externe :</strong> Changement d'entreprise<br>
+                                <strong>Mobilité verticale :</strong> Promotion/Évolution hiérarchique<br>
+                                <strong>Mobilité horizontale :</strong> Changement de domaine au même niveau
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Comment se pratique la formation en entreprise ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>Formation interne :</strong> Assurée par les employés expérimentés<br>
+                                <strong>Formation externe :</strong> Organisée par des organismes spécialisés<br>
+                                <strong>Formation continue :</strong> Obligatoire pour maintenir les compétences<br>
+                                <strong>Apprentissage :</strong> Contrat combinant travail et formation (BTS)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION 4: CONTRATS DE TRAVAIL -->
+                <section id="contracts" class="section">
+                    <h2><i class="fas fa-handshake"></i> Contrats de Travail</h2>
+                    
+                    <div class="lesson">
+                        <h3>CDI - Contrat à Durée Indéterminée</h3>
+                        <p><strong>Définition :</strong> Contrat sans date de fin, relation durable entre employeur et salarié</p>
+                        <p><strong>Caractéristiques :</strong> Période d'essai possible, protection du salarié, difficile de résilier</p>
+                        <p><strong>Durée :</strong> Illimitée</p>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>CDD - Contrat à Durée Déterminée</h3>
+                        <p><strong>Définition :</strong> Contrat avec date de fin précise, pour un besoin temporaire</p>
+                        <p><strong>Cas d'usage :</strong> Remplacement, travaux saisonniers, missions temporaires</p>
+                        <p><strong>Durée maximale :</strong> 18 mois généralement (renouvelable une fois)</p>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>Autres Contrats</h3>
+                        <p><strong>Contrat d'apprentissage :</strong> Combien travail et formation (16-25 ans)</p>
+                        <p><strong>Contrat de professionnalisation :</strong> Formation en alternance</p>
+                        <p><strong>Stage :</strong> Immersion professionnelle sans lien de subordination</p>
+                    </div>
+                    
+                    <div class="qa-container">
+                        <h3 style="color: #0f766e; margin: 20px 0;">Questions/Réponses</h3>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quels sont les éléments obligatoires d'un contrat de travail ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                • Identité des parties<br>
+                                • Date de début<br>
+                                • Fonction/Poste<br>
+                                • Lieu de travail<br>
+                                • Durée du travail (horaire)<br>
+                                • Rémunération et avantages<br>
+                                • Conditions de résiliation
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quelle est la différence entre période d'essai et préavis ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                <strong>Période d'essai :</strong> Phase initiale du contrat (1-3 mois) permettant de vérifier l'adéquation, peut être rompue librement<br><br>
+                                <strong>Préavis :</strong> Durée entre la notification de rupture et le départ effectif (généralement 2 semaines minimum)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- SECTION 5: OBLIGATIONS LÉGALES -->
+                <section id="obligations" class="section">
+                    <h2><i class="fas fa-list-check"></i> Obligations Légales</h2>
+                    
+                    <div class="lesson">
+                        <h3>Obligations de l'Employeur</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Payer le salaire en fonction du travail effectué</li>
+                            <li>Respecter le droit du travail et conventions collectives</li>
+                            <li>Assurer la sécurité et santé des salariés</li>
+                            <li>Fournir l'équipement et matériel nécessaires</li>
+                            <li>Tenir à jour les dossiers et registres légaux</li>
+                            <li>Cotiser aux charges sociales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>Obligations du Salarié</h3>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>Effectuer le travail convenu dans le contrat</li>
+                            <li>Respecter la discipline et règlement intérieur</li>
+                            <li>Respecter les horaires et assiduité</li>
+                            <li>Maintenir le secret professionnel et confidentialité</li>
+                            <li>Signaler les problèmes de sécurité</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="lesson">
+                        <h3>Droits Importants</h3>
+                        <p><strong>Droit au SMIC :</strong> Salaire Minimum Interprofessionnel de Croissance</p>
+                        <p><strong>Droit à la retraite :</strong> Cotisation obligatoire auprès de régimes de retraite</p>
+                        <p><strong>Droit à la protection :</strong> Protection contre la discrimination et le harcèlement</p>
+                        <p><strong>Droit aux congés :</strong> 5 semaines minimum par an</p>
+                    </div>
+                    
+                    <div class="qa-container">
+                        <h3 style="color: #0f766e; margin: 20px 0;">Questions/Réponses</h3>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Quel est le rôle des conventions collectives ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                Les conventions collectives sont des accords négociés entre syndicats (salariés) et patronat (employeurs) définissant :<br><br>
+                                • Les salaires minima par fonction<br>
+                                • Les conditions de travail<br>
+                                • Les avantages sociaux<br>
+                                • Les procédures de licenciement
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Qu'est-ce que la discrimination en milieu professionnel ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                Traitement défavorable basé sur :<br>
+                                • L'origine, couleur, religion<br>
+                                • Le sexe ou orientation sexuelle<br>
+                                • L'âge ou handicap<br>
+                                • Les opinions politiques<br>
+                                <br>
+                                <strong>Conséquences :</strong> Sanctions disciplinaires, indemnités, annulation d'actes (licenciement)
+                            </div>
+                        </div>
+                        
+                        <div class="qa-item">
+                            <div class="qa-question" onclick="toggleQA(this)">
+                                <span>Que faire en cas de harcèlement au travail ?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="qa-answer">
+                                1. Documenter les faits (dates, témoins, contexte)<br>
+                                2. En informer les supérieurs ou RH<br>
+                                3. Consulter un délégué syndical ou représentant<br>
+                                4. Porter plainte auprès des autorités si nécessaire<br>
+                                5. Contacter les organismes d'aide (ANACT, inspection du travail)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            // Masquer toutes les sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+            
+            // Afficher la section sélectionnée
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Mettre à jour le menu
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+            event.target.closest('.menu-item').classList.add('active');
+            
+            // Scroll vers le top
+            window.scrollTo(0, 0);
+        }
+        
+        function toggleQA(element) {
+            element.closest('.qa-item').classList.toggle('open');
+        }
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark'));
+        }
+        
+        // Appliquer le mode sombre sauvegardé
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark');
+            }
+        });
+    </script>
+</body>
+</html>
